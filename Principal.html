@@ -30,6 +30,9 @@ body {
 .highcharts-data-table table {
     margin: 0 auto;
 }
+a {
+    color: white;
+}
 </style>
 <script src=" https://code.highcharts.com/highcharts.js"> </script> <script src="https://code.highcharts.com/highcharts-more.js">
 </script>
@@ -37,9 +40,8 @@ body {
 <script src="https://code.highcharts.com/modules/accessibility.js"></script>
 <script src="https://charts.bgeometrics.com/assets/js/themes/brand-dark.js"></script>
 <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
-<div id="headercontainer">
-</div>
-<div id="container" style="display: inline-block;"></div>
+<div id="headercontainer" style="color: #36ba64;">| <a id="tarifasbtc"></a> | <a id="tarifaseth"></a> |</div>
+<div id="container" style="display: inline-block;"><div style="position: fixed;background-color: black;height: 100%;top: 0;left: 0;z-index: 10;width: 100%;">cargando...</div></div>
 <div class="tradingview-widget-container" style="filter: invert(1);max-width: 100%;display: inline-block;">
     <div class="tradingview-widget-container__widget"></div>
     <div class="tradingview-widget-copyright"></div>
@@ -62,9 +64,11 @@ body {
     const trackColors = Highcharts.getOptions().colors.map(color =>
         new Highcharts.Color(color).setOpacity(0.3).get()
     );
-    const data_json = await fetch('https://script.google.com/macros/s/AKfycbw7pkcHCClMRd_4lurvJ7pLLAjWuLRWz0aRMdYoRhjHHXj8KZLE08rNj-4yiBjwOwqjFw/exec?indicator=fear-greed-home').then(response => response.json());
+    const data_json = await fetch('https://script.google.com/macros/s/AKfycbw7pkcHCClMRd_4lurvJ7pLLAjWuLRWz0aRMdYoRhjHHXj8KZLE08rNj-4yiBjwOwqjFw/exec?indicator=datos-home').then(response => response.json());
     var globalyvar = Number(data_json.indiceglobal);
     var btcyvar = Number(data_json.indicebtc);
+    var tarifasbtc = Number(data_json.tarifasbtc).toFixed(2);
+    document.getElementById('tarifasbtc').innerHTML = `BTC gas: $${tarifasbtc}`;
 
     Highcharts.chart('container', {
 
@@ -78,7 +82,7 @@ body {
                         centerX = chart.plotWidth / 2,
                         centerY = chart.plotHeight / 2 + chart.plotTop,
                         tooltipHtml = '<div style="text-align: center;position: relative;top: -35px;left: 10px;">' +
-                        '<span style="font-size: 1.3rem; color: #79ba38;font-weight: bold;">Global: ' + globalyvar + '</span><br>' +
+                        '<span style="font-size: 1.3rem; color: #47c967;font-weight: bold;">Global: ' + globalyvar + '</span><br>' +
                         '<span style="font-size: 1.3rem; color: #d9912d;font-weight: bold;">Bitcoin: ' + btcyvar + '</span></div>';
 
                     if (!chart.customTooltip) {
@@ -131,14 +135,9 @@ body {
             startAngle: -90,
             endAngle: 270,
             background: [{ // Track for Conversion
-                outerRadius: '112%',
-                innerRadius: '88%',
-                backgroundColor: "#79ba383d",
-                borderWidth: 0
-            }, { // Track for Engagement
-                outerRadius: '87%',
+                outerRadius: '104%',
                 innerRadius: '63%',
-                backgroundColor: "#d9912d3d",
+                backgroundColor: "#131313",
                 borderWidth: 0
             }]
         },
@@ -157,7 +156,7 @@ body {
                 },
                 linecap: 'round',
                 stickyTracking: false,
-                rounded: true,
+                rounded: false,
                 events: {
                     mouseOver: function() {
                         if (this.chart.customTooltip) {
@@ -182,31 +181,22 @@ body {
             }
         },
         credits: {
-            text: 'S4mu31 Terminal',
-            href: 'https://s4mu31-terminal.blogspot.com',
-            style: {
-                font: '11px sans-serif, Verdana, "Trebuchet MS"'
-            },
-            position: {
-                align: 'right',
-                x: -5,
-                y: -5
-            }
+            enabled: false
         },
 
         series: [{
             name: 'Global',
             data: [{
-                color: "#79ba38",
-                radius: '112%',
-                innerRadius: '88%',
+                color: "#47c967",
+                radius: '104%',
+                innerRadius: '84%',
                 y: globalyvar
             }]
         }, {
             name: 'Bitcoin',
             data: [{
                 color: "#d9912d",
-                radius: '87%',
+                radius: '83%',
                 innerRadius: '63%',
                 y: btcyvar
             }]
@@ -221,10 +211,10 @@ async function fetchGasPrice() {
         const response = await fetch('https://api.cryptorank.io/v0/global');
         const data = await response.json();
         const gasPriceGwei = data.gas.average.gasPriceGwei;
-        document.getElementById('headercontainer').innerHTML = `<a class="toppage">Gas Price: ${gasPriceGwei} Gwei<a>`;
+        document.getElementById('tarifaseth').innerHTML = `ETH gas: ${gasPriceGwei} Gwei`;
     } catch (error) {
         console.error('Error fetching gas price:', error);
-        document.getElementById('headercontainer').innerHTML = '';
+        document.getElementById('tarifaseth').innerHTML = '';
     }
 }
 
