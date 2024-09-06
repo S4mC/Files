@@ -211,7 +211,7 @@
                 const response = await fetch('https://api.cryptorank.io/v0/global');
                 const data = await response.json();
                 const gasPriceGwei = data.gas.average.gasPriceGwei;
-                document.getElementById('tarifaseth').innerHTML = `ETH gas: ${gasPriceGwei} Gwei`;
+                document.getElementById('tarifaseth').innerHTML = `ETH gas: ${gasPriceGwei.toFixed(4)} Gwei`;
             } catch (error) {
                 console.error('Error fetching gas price:', error);
                 document.getElementById('tarifaseth').innerHTML = '';
