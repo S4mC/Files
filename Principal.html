@@ -73,7 +73,6 @@
             );
             const data_json = await fetch('https://script.google.com/macros/s/AKfycbw7pkcHCClMRd_4lurvJ7pLLAjWuLRWz0aRMdYoRhjHHXj8KZLE08rNj-4yiBjwOwqjFw/exec?indicator=datos-home').then(response => response.json());
             var globalyvar = Number(data_json.indiceglobal);
-            var btcyvar = Number(data_json.indicebtc);
             var tarifasbtc = Number(data_json.tarifasbtc).toFixed(2);
             document.getElementById('tarifasbtc').innerHTML = `BTC gas: $${tarifasbtc}`;
 
@@ -90,9 +89,6 @@
                                 centerX = chart.plotWidth / 2,
                                 centerY = chart.plotHeight / 2 + chart.plotTop,
                                 tooltipHtml = '<div style="text-align: center;position: relative;top: -35px;left: 10px;">' + '<span style="font-size: 1.1rem; color: #47c967;font-weight: bold;">Global: ' + globalyvar + '</span><br>';
-                            if (btcyvar) {
-                                tooltipHtml += '<span style="font-size: 1.1rem; color: #d9912d;font-weight: bold;">Bitcoin: ' + btcyvar + '</span></div>';
-                            }
                             if (!chart.customTooltip) {
                                 chart.customTooltip = chart.renderer.label(tooltipHtml, centerX, centerY, 'callout', 0, 0, true)
                                     .css({
@@ -147,8 +143,8 @@
                     startAngle: -90,
                     endAngle: 270,
                     background: [{ // Track for Conversion
-                        outerRadius: '104%',
-                        innerRadius: '63%',
+                        outerRadius: '100%',
+                        innerRadius: '80%',
                         backgroundColor: "#131313",
                         borderWidth: 0
                     }]
@@ -200,17 +196,9 @@
                     name: 'Global',
                     data: [{
                         color: "#47c967",
-                        radius: '104%',
-                        innerRadius: '84%',
+                        radius: '100%',
+                        innerRadius: '80%',
                         y: globalyvar
-                    }]
-                }, {
-                    name: 'Bitcoin',
-                    data: [{
-                        color: "#d9912d",
-                        radius: '83%',
-                        innerRadius: '63%',
-                        y: btcyvar
                     }]
                 }]
             });
