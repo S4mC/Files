@@ -43,7 +43,7 @@
     <script src="https://code.highcharts.com/modules/solid-gauge.js"></script>
     <script src="https://charts.bgeometrics.com/assets/js/themes/brand-dark.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
-    <div id="headercontainer" style="color: #36ba64;">| <a id="tarifasbtc"></a> | <a id="tarifaseth"></a> |</div><br><br>
+    <div id="headercontainer" style="color: #2b601f;">| <a id="tarifasbtc"></a> | <a id="tarifaseth"></a> |</div><br><br>
     <div style="display: flex; justify-content: center;flex-wrap: wrap;">
         <div id="container" style="display: inline-block;margin-top: 21px;">
             <div style="position: fixed;background-color: black;height: 100%;top: 0;left: 0;z-index: 10;width: 100%;text-align: center;">cargando...</div>
@@ -88,7 +88,7 @@
                             var chart = this,
                                 centerX = chart.plotWidth / 2,
                                 centerY = chart.plotHeight / 2 + chart.plotTop,
-                                tooltipHtml = '<div style="text-align: center;position: relative;top: -35px;left: 10px;">' + '<span style="font-size: 1.1rem; color: #47c967;font-weight: bold;">Global: ' + globalyvar + '</span><br>';
+                                tooltipHtml = '<div style="text-align: center;position: relative;top: -35px;left: 10px;">' + '<span style="font-size: 1.1rem; color: #aad937;font-weight: bold;">Global: ' + globalyvar + '</span><br>';
                             if (!chart.customTooltip) {
                                 chart.customTooltip = chart.renderer.label(tooltipHtml, centerX, centerY, 'callout', 0, 0, true)
                                     .css({
@@ -195,7 +195,7 @@
                 series: [{
                     name: 'Global',
                     data: [{
-                        color: "#47c967",
+                        color: "#aad937",
                         radius: '100%',
                         innerRadius: '80%',
                         y: globalyvar
