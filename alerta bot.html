@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Añadir alerta</title>
+
+</head>
+
+<body>
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
+    <script>
+        window.Telegram.WebApp.ready();
+
+        function userSelection(option) {
+            Telegram.WebApp.sendData(option);
+        }
+    </script>
+
+    <!-- Botones para que el usuario elija una opción -->
+    <button onclick="userSelection('Opción 1')">Opción 1</button>
+    <button onclick="userSelection('Opción 2')">Opción 2</button>
+</body>
+
+</html>
