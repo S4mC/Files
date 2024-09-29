@@ -5,22 +5,341 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Añadir alerta</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+    <link rel="stylesheet" type="text/css" href="https://firebasestorage.googleapis.com/v0/b/s4mu31-terminal.appspot.com/o/dark.css?alt=media&token=b0137ad5-00b8-45e9-928f-395e3d6bf6fd">
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #1e1e1e;
+            color: #ffffff;
+            padding: 20px;
+            margin: 0;
+        }
 
+        .container {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+        }
+
+        input,
+        select {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            background-color: #333;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            outline: none;
+        }
+
+        input:focus,
+        select:focus,
+        button:focus {
+            outline: none;
+        }
+
+        button {
+            padding: 10px 20px;
+            background-color: #70a04f;
+            color: white;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+            width: 100%;
+        }
+
+        button:hover {
+            background-color: #689d45;
+        }
+
+        .flatpickr {
+            display: flex;
+            align-items: center;
+        }
+
+        .flatpickr .input-button {
+            background-color: #333;
+            color: white;
+            border: none;
+            width: 40px;
+            margin-top: -14px;
+            padding: 10px;
+            cursor: pointer;
+            margin-left: 10px;
+            border-radius: 5px;
+        }
+
+        .flatpickr .input-button i {
+            font-style: normal;
+        }
+
+        .flatpickr .input-button:hover {
+            background-color: #444;
+        }
+    </style>
 </head>
 
 <body>
+    <div class="container">
+        <label for="fecha-hora">Fecha y hora</label>
+        <div class="flatpickr">
+            <input type="text" id="fecha-hora" placeholder="Elige la fecha y hora..." data-input>
+            <button class="input-button" title="toggle" data-toggle>
+                📅
+            </button>
+        </div>
+    </div>
+
+    <div class="container">
+        <label for="repetir">Repetir</label>
+        <div id="repetir-container" style="display: flex; align-items: center;flex-direction: column;">
+            <select id="repetir">
+                <option value="false">No repetir</option>
+                <option value="1">Cada X horas</option>
+                <option value="24">Cada X días</option>
+                <option value="168">Cada X semanas</option>
+                <option value="mes">Cada X meses</option>
+                <option value="year">Cada X años</option>
+                <option value="dias_sem">Cada semana el día...</option>
+                <option value="dias_mes">Cada mes el día...</option>
+            </select>
+        </div>
+    </div>
+
+    <label for="texto-boton">Texto del botón que cerrará la alerta</label>
+    <div class="container" style="display: flex; align-items: center;flex-direction: column;">
+        <input list="opciones-texto-boton" id="texto-boton" value="Descartar" placeholder="Escribe o selecciona..." style="width: calc(100% - 25px);">
+        <datalist id="opciones-texto-boton">
+            <option value="Descartar">
+            <option value="Cerrar">
+        </datalist>
+    </div>
+
+    <button onclick="userSelection()">Aceptar</button>
+
     <script src="https://telegram.org/js/telegram-web-app.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr/dist/l10n/es.js"></script>
     <script>
         window.Telegram.WebApp.ready();
 
-        function userSelection(option) {
-            Telegram.WebApp.sendData(option);
-        }
-    </script>
+        // Inicializar flatpickr con botones externos para abrir y limpiar
+        flatpickr(".flatpickr", {
+            locale: "es",
+            enableTime: true,
+            altInput: true,
+            altFormat: "F j, Y h:i K", // Formato amigable para el usuario
+            dateFormat: "Y-m-d H:i", // Formato para la lógica
+            time_24hr: false, // Usar formato de 12 horas
+            wrap: true, // Habilitar para usar botones externos
+            minDate: "today", // Deshabilitar fechas pasadas
+        });
 
-    <!-- Botones para que el usuario elija una opción -->
-    <button onclick="userSelection('Opción 1')">Opción 1</button>
-    <button onclick="userSelection('Opción 2')">Opción 2</button>
+        // Función para formatear la fecha y hora en el formato solicitado "yyyy-MM-dd HH:mm"
+
+        function userSelection() {
+            const fechaHoraInput = document.getElementById('fecha-hora').value;
+            const repetir = document.getElementById('repetir').value;
+            const textoBoton = document.getElementById('texto-boton').value;
+            let finalrepetir = repetir;
+            if (repetir !== "false") {
+                let nomrep = 0;
+                if (document.getElementById('repnumb')) {
+                    nomrep = document.getElementById('repnumb').value;
+                }
+                if (repetir == "year") {
+                    finalrepetir = {
+                        "year": nomrep
+                    };
+                } else {
+                    if (repetir == "mes") {
+                        finalrepetir = {
+                            "mes": nomrep
+                        };
+                    } else {
+                        if (repetir == "dias_sem") {
+                            finalrepetir = {
+                                "dias_sem": []
+                            };
+                            let dayElement = document.getElementById("day-" + nomrep.toString());
+                            while (dayElement) {
+                                if (dayElement.checked) {
+                                    finalrepetir.dias_sem.push(Number(dayElement.value));
+                                }
+                                nomrep++;
+                                dayElement = document.getElementById("day-" + nomrep.toString());
+                            }
+                        } else {
+                            if (repetir == "dias_mes") {
+                                finalrepetir = {
+                                    "dias_mes": [{}]
+                                };
+                                let dayElement = document.getElementById("day-" + nomrep.toString());
+                                while (dayElement) {
+                                    if (dayElement.checked) {
+                                        let diasMesObj = finalrepetir.dias_mes[0];
+
+                                        let inputValue = document.getElementById("input-day-" + nomrep.toString()).value;
+                                        if (inputValue == "") {
+                                            inputValue = "1,2,3,4,5";
+                                        }
+                                        let inputValuesArray = inputValue
+                                            .split(',')
+                                            .map(val => Number(val.trim()))
+                                        let dayEleval = Number(dayElement.value);
+                                        if (diasMesObj.hasOwnProperty(dayEleval)) {
+                                            diasMesObj[dayEleval].push(...inputValuesArray);
+                                        } else {
+                                            diasMesObj[dayEleval] = inputValuesArray;
+                                        }
+                                    }
+                                    nomrep++;
+                                    dayElement = document.getElementById("day-" + nomrep.toString());
+                                }
+                            } else {
+                                finalrepetir = {
+                                    "horas": (nomrep * Number(repetir))
+                                };
+                            }
+                        }
+                    }
+                }
+            }
+
+            const data = {
+                fechaFormateada: fechaHoraInput,
+                repetir: finalrepetir,
+                btn_cerrar: textoBoton
+            };
+
+            Telegram.WebApp.sendData(JSON.stringify(data)); // Envía los datos como JSON a Telegram
+        }
+
+        document.getElementById('repetir').addEventListener('change', function() {
+            const repetirContainer = document.getElementById('repetir-container');
+            const repetirValue = this.value;
+
+            // Verificar si el valor seleccionado es diferente de "No"
+            if (repetirValue !== 'false' && repetirValue !== 'dias_sem' && repetirValue !== 'dias_mes' && !document.getElementById('repnumb')) {
+                // Crear el text box si no existe ya
+                const repnumbInput = document.createElement('input');
+                repnumbInput.type = 'number';
+                repnumbInput.id = 'repnumb';
+                repnumbInput.value = '1';
+                repnumbInput.style.width = 'calc(100% - 25px)'; // Separar el input del select
+                repetirContainer.appendChild(repnumbInput);
+
+                if (document.getElementById("dayCheckboxes")) {
+                    document.getElementById("dayCheckboxes").remove();
+                }
+            } else {
+                if (repetirValue == 'false' && document.getElementById('repnumb')) {
+                    document.getElementById('repnumb').remove();
+                }
+                if (repetirValue == 'false' && document.getElementById("dayCheckboxes")) {
+                    document.getElementById("dayCheckboxes").remove();
+                }
+                if ((repetirValue === 'dias_mes' || repetirValue === 'dias_sem') && document.getElementById('repnumb')) {
+                    document.getElementById('repnumb').remove();
+                }
+                if (document.getElementById('dayCheckboxes')) {
+                    document.getElementById('dayCheckboxes').remove();
+                }
+                if ((repetirValue === 'dias_sem' || repetirValue === 'dias_mes')) {
+                    // Crear un contenedor para los checkboxes si no existe
+                    const checkboxContainer = document.createElement('div');
+                    checkboxContainer.id = 'dayCheckboxes';
+                    checkboxContainer.style.display = 'flex';
+                    checkboxContainer.style.alignItems = 'baseline';
+                    checkboxContainer.style.flexWrap = 'wrap';
+
+                    // Array con los nombres de los días de la semana y sus valores correspondientes
+                    const days = [{
+                            text: 'Domingo',
+                            value: 0
+                        },
+                        {
+                            text: 'Lunes',
+                            value: 1
+                        },
+                        {
+                            text: 'Martes',
+                            value: 2
+                        },
+                        {
+                            text: 'Miércoles',
+                            value: 3
+                        },
+                        {
+                            text: 'Jueves',
+                            value: 4
+                        },
+                        {
+                            text: 'Viernes',
+                            value: 5
+                        },
+                        {
+                            text: 'Sábado',
+                            value: 6
+                        }
+                    ];
+
+                    // Crear los checkboxes y añadirlos al contenedor
+                    days.forEach(day => {
+                        const chcktainer = document.createElement('div');
+                        chcktainer.style.display = 'flex';
+                        chcktainer.style.alignItems = 'baseline';
+
+                        const checkbox = document.createElement('input');
+                        checkbox.type = 'checkbox';
+                        checkbox.style.width = '16px';
+                        checkbox.id = `day-${day.value}`;
+                        checkbox.value = day.value;
+                        checkbox.style.cursor = 'pointer';
+
+                        const label = document.createElement('label');
+                        label.htmlFor = `day-${day.value}`;
+                        label.textContent = day.text;
+                        label.style.marginRight = '5px';
+                        label.style.cursor = 'pointer';
+
+                        // Evento para crear un input al seleccionar un checkbox
+                        checkbox.addEventListener('change', function() {
+                            const existingInput = document.getElementById(`input-${checkbox.id}`);
+                            if (this.checked && !existingInput && repetirValue === 'dias_mes') {
+                                // Crear el input para ingresar números del 1 al 5
+                                const numberInput = document.createElement('input');
+                                numberInput.type = 'text'; // Cambiado a texto para permitir múltiples valores
+                                numberInput.id = `input-${checkbox.id}`;
+                                numberInput.placeholder = '1,2,3,4,5';
+                                numberInput.style.width = '53px';
+                                numberInput.style.marginLeft = '10px';
+
+                                // Insertar el input junto al checkbox
+                                chcktainer.appendChild(numberInput);
+                            } else if (!this.checked && existingInput) {
+                                // Eliminar el input si el checkbox se desmarca
+                                existingInput.remove();
+                            }
+                        });
+
+                        chcktainer.appendChild(checkbox);
+                        chcktainer.appendChild(label);
+                        checkboxContainer.appendChild(chcktainer); // Saltar línea
+                    });
+
+                    // Insertar el contenedor de los checkboxes después del selector "repetir"
+                    document.getElementById('repetir').insertAdjacentElement('afterend', checkboxContainer);
+                }
+            }
+        });
+    </script>
 </body>
 
 </html>
