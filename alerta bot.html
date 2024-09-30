@@ -106,7 +106,7 @@
     <div class="container">
         <label for="fecha-hora">Fecha y hora</label>
         <div class="flatpickr">
-            <input type="text" id="fecha-hora" placeholder="Elige la fecha y hora..." data-input>
+            <input class="flatpickr-input form-control input" type="text" id="fecha-hora" placeholder="Elige la fecha y hora..." data-input>
             <button class="input-button" title="toggle" data-toggle>
                 📅
             </button>
@@ -126,6 +126,19 @@
                 <option value="dias_sem">Cada semana el día...</option>
                 <option value="dias_mes">Cada mes el día...</option>
             </select>
+        </div>
+    </div>
+
+    <div class="container" id="f-fin-horadiv" style="display: none;">
+        <label for="fecha-hora">Fecha y hora de finalización</label>
+        <div class="flatpickr">
+            <input type="hidden" id="f-fin-hora" placeholder="Nunca" data-input class="flatpickr-input">
+            <button class="input-button" title="clear" data-clear>
+                ❌
+            </button>
+            <button class="input-button" title="toggle" data-toggle>
+                📅
+            </button>
         </div>
     </div>
 
@@ -164,6 +177,15 @@
         </datalist>
     </div>
 
+    <div id="checklistdiv" class="container" style="display: none; align-items: center;max-width: 380px;margin-right: 20px;">
+        <label for="checklist-boton" style="margin-right: 10px;width: 110px;">Título del checklist</label>
+        <input list="opciones-checklist-boton" id="checklist-boton" value="Checklist:" placeholder="Escribe o selecciona..." style="width: calc(100% - 25px);">
+        <datalist id="opciones-checklist-boton">
+            <option value="Checklist:">
+            <option value="Lista:">
+        </datalist>
+    </div>
+
     <button onclick="userSelection(true)" class="buttonver">Aceptar</button>
     <button onclick="userSelection(false)" class="buttonroj">Cancelar</button>
 
@@ -179,6 +201,7 @@
         if (tValues.length > 0) {
             if (tValues[0] == "fila_check") {
                 document.getElementById("comple_b_check").style.display = "block";
+                document.getElementById("checklistdiv").style.display = "inline-flex";
             } else {
                 if (tValues[0] == "v_pasos") {
                     document.getElementById("anteriordiv").style.display = "inline-flex";
@@ -206,10 +229,15 @@
         function userSelection(truorfal) {
             if (truorfal) {
                 const fechaHoraInput = document.getElementById('fecha-hora').value;
+                let fechafinalHoraInput = document.getElementById('f-fin-hora').value;
+                if (!fechafinalHoraInput) {
+                    fechafinalHoraInput = false;
+                }
                 const repetir = document.getElementById('repetir').value;
                 const textoBoton = document.getElementById('texto-boton').value;
                 const siguientetextoBoton = document.getElementById('siguiente-boton').value;
                 const anteriortextoBoton = document.getElementById('anterior-boton').value;
+                const checklistextoBoton = document.getElementById('checklist-boton').value;
                 let finalrepetir;
                 if (repetir !== "false") {
                     let nomrep = 0;
@@ -273,22 +301,24 @@
                             }
                         }
                     }
-                }else{
+                } else {
                     finalrepetir = false;
                 }
                 let comple_b_check = document.getElementById('comple_b_check_select').value;
-                if (comple_b_check == "true"){
+                if (comple_b_check == "true") {
                     comple_b_check = true;
-                }else{
+                } else {
                     comple_b_check = false;
                 }
 
                 const data = {
                     fechaFormateada: fechaHoraInput,
+                    f_fin: fechafinalHoraInput,
                     repetir: finalrepetir,
                     comple_b_check: comple_b_check,
                     btn_sig: siguientetextoBoton,
                     btn_ant: anteriortextoBoton,
+                    fl_titulo: checklistextoBoton,
                     btn_cerrar: textoBoton
                 };
 
@@ -307,6 +337,12 @@
             const repetirValue = this.value;
 
             // Verificar si el valor seleccionado es diferente de "No"
+            if (repetirValue == 'false') {
+                document.getElementById("f-fin-horadiv").style.display = "none";
+            }else{
+                document.getElementById("f-fin-horadiv").style.display = "block";
+            }
+
             if (repetirValue !== 'false' && repetirValue !== 'dias_sem' && repetirValue !== 'dias_mes' && !document.getElementById('repnumb')) {
                 // Crear el text box si no existe ya
                 const repnumbInput = document.createElement('input');
