@@ -44,18 +44,35 @@
             outline: none;
         }
 
-        button {
+        .buttonver {
             padding: 10px 20px;
-            background-color: #70a04f;
-            color: white;
+            background-color: #82ad49;
+            color: black;
+            font-size: 17px;
             border: none;
             cursor: pointer;
             border-radius: 5px;
             width: 100%;
         }
 
-        button:hover {
-            background-color: #689d45;
+        .buttonver:hover {
+            background-color: #639343;
+        }
+
+        .buttonroj {
+            margin-top: 10px;
+            padding: 10px 20px;
+            background-color: #cc3535;
+            color: white;
+            font-size: 17px;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+            width: 100%;
+        }
+
+        .buttonroj:hover {
+            background-color: #ad2f2f;
         }
 
         .flatpickr {
@@ -112,8 +129,16 @@
         </div>
     </div>
 
-    <label for="texto-boton">Texto del botón que cerrará la alerta</label>
-    <div class="container" style="display: flex; align-items: center;flex-direction: column;">
+    <div class="container" id="comple_b_check" style="display: none;">
+        <label for="comple_b_check_select">Borrar al completar</label>
+        <select id="comple_b_check_select">
+            <option value="true">Sí</option>
+            <option value="false">No</option>
+        </select>
+    </div>
+
+    <div class="container" style="display: inline-flex; align-items: center;max-width: 380px;margin-right: 20px;">
+        <label for="texto-boton" style="margin-right: 10px;width: 270px;">Texto del botón que cerrará la alerta</label>
         <input list="opciones-texto-boton" id="texto-boton" value="Descartar" placeholder="Escribe o selecciona..." style="width: calc(100% - 25px);">
         <datalist id="opciones-texto-boton">
             <option value="Descartar">
@@ -121,13 +146,48 @@
         </datalist>
     </div>
 
-    <button onclick="userSelection()">Aceptar</button>
+    <div id="siguientediv" class="container" style="display: none; align-items: center;max-width: 380px;margin-right: 20px;">
+        <label for="siguiente-boton" style="margin-right: 10px;width: 270px;">Texto del botón siguiente</label>
+        <input list="opciones-siguiente-boton" id="siguiente-boton" value="Siguiente" placeholder="Escribe o selecciona..." style="width: calc(100% - 25px);">
+        <datalist id="opciones-siguiente-boton">
+            <option value="Siguiente">
+            <option value="Continuar">
+        </datalist>
+    </div>
+
+    <div id="anteriordiv" class="container" style="display: none; align-items: center;max-width: 380px;margin-right: 20px;">
+        <label for="anterior-boton" style="margin-right: 10px;width: 270px;">Texto del botón anterior</label>
+        <input list="opciones-anterior-boton" id="anterior-boton" value="Anterior" placeholder="Escribe o selecciona..." style="width: calc(100% - 25px);">
+        <datalist id="opciones-anterior-boton">
+            <option value="Anterior">
+            <option value="Retroceder">
+        </datalist>
+    </div>
+
+    <button onclick="userSelection(true)" class="buttonver">Aceptar</button>
+    <button onclick="userSelection(false)" class="buttonroj">Cancelar</button>
 
     <script src="https://telegram.org/js/telegram-web-app.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
     <script src="https://cdn.jsdelivr.net/npm/flatpickr/dist/l10n/es.js"></script>
     <script>
         window.Telegram.WebApp.ready();
+
+        const params = new URLSearchParams(window.location.search);
+        const tValues = params.getAll('t');
+
+        if (tValues.length > 0) {
+            if (tValues[0] == "fila_check") {
+                document.getElementById("comple_b_check").style.display = "block";
+            } else {
+                if (tValues[0] == "v_pasos") {
+                    document.getElementById("anteriordiv").style.display = "inline-flex";
+                    document.getElementById("siguientediv").style.display = "inline-flex";
+                }
+            }
+        } else {
+            console.log('El parámetro t no está presente en la URL.');
+        }
 
         // Inicializar flatpickr con botones externos para abrir y limpiar
         flatpickr(".flatpickr", {
@@ -143,82 +203,103 @@
 
         // Función para formatear la fecha y hora en el formato solicitado "yyyy-MM-dd HH:mm"
 
-        function userSelection() {
-            const fechaHoraInput = document.getElementById('fecha-hora').value;
-            const repetir = document.getElementById('repetir').value;
-            const textoBoton = document.getElementById('texto-boton').value;
-            let finalrepetir = repetir;
-            if (repetir !== "false") {
-                let nomrep = 0;
-                if (document.getElementById('repnumb')) {
-                    nomrep = document.getElementById('repnumb').value;
-                }
-                if (repetir == "year") {
-                    finalrepetir = {
-                        "year": nomrep
-                    };
-                } else {
-                    if (repetir == "mes") {
+        function userSelection(truorfal) {
+            if (truorfal) {
+                const fechaHoraInput = document.getElementById('fecha-hora').value;
+                const repetir = document.getElementById('repetir').value;
+                const textoBoton = document.getElementById('texto-boton').value;
+                const siguientetextoBoton = document.getElementById('siguiente-boton').value;
+                const anteriortextoBoton = document.getElementById('anterior-boton').value;
+                let finalrepetir;
+                if (repetir !== "false") {
+                    let nomrep = 0;
+                    if (document.getElementById('repnumb')) {
+                        nomrep = document.getElementById('repnumb').value;
+                    }
+                    if (repetir == "year") {
                         finalrepetir = {
-                            "mes": nomrep
+                            "year": nomrep
                         };
                     } else {
-                        if (repetir == "dias_sem") {
+                        if (repetir == "mes") {
                             finalrepetir = {
-                                "dias_sem": []
+                                "mes": nomrep
                             };
-                            let dayElement = document.getElementById("day-" + nomrep.toString());
-                            while (dayElement) {
-                                if (dayElement.checked) {
-                                    finalrepetir.dias_sem.push(Number(dayElement.value));
-                                }
-                                nomrep++;
-                                dayElement = document.getElementById("day-" + nomrep.toString());
-                            }
                         } else {
-                            if (repetir == "dias_mes") {
+                            if (repetir == "dias_sem") {
                                 finalrepetir = {
-                                    "dias_mes": [{}]
+                                    "dias_sem": []
                                 };
                                 let dayElement = document.getElementById("day-" + nomrep.toString());
                                 while (dayElement) {
                                     if (dayElement.checked) {
-                                        let diasMesObj = finalrepetir.dias_mes[0];
-
-                                        let inputValue = document.getElementById("input-day-" + nomrep.toString()).value;
-                                        if (inputValue == "") {
-                                            inputValue = "1,2,3,4,5";
-                                        }
-                                        let inputValuesArray = inputValue
-                                            .split(',')
-                                            .map(val => Number(val.trim()))
-                                        let dayEleval = Number(dayElement.value);
-                                        if (diasMesObj.hasOwnProperty(dayEleval)) {
-                                            diasMesObj[dayEleval].push(...inputValuesArray);
-                                        } else {
-                                            diasMesObj[dayEleval] = inputValuesArray;
-                                        }
+                                        finalrepetir.dias_sem.push(Number(dayElement.value));
                                     }
                                     nomrep++;
                                     dayElement = document.getElementById("day-" + nomrep.toString());
                                 }
                             } else {
-                                finalrepetir = {
-                                    "horas": (nomrep * Number(repetir))
-                                };
+                                if (repetir == "dias_mes") {
+                                    finalrepetir = {
+                                        "dias_mes": [{}]
+                                    };
+                                    let dayElement = document.getElementById("day-" + nomrep.toString());
+                                    while (dayElement) {
+                                        if (dayElement.checked) {
+                                            let diasMesObj = finalrepetir.dias_mes[0];
+
+                                            let inputValue = document.getElementById("input-day-" + nomrep.toString()).value;
+                                            if (inputValue == "") {
+                                                inputValue = "1,2,3,4,5";
+                                            }
+                                            let inputValuesArray = inputValue
+                                                .split(',')
+                                                .map(val => Number(val.trim()))
+                                            let dayEleval = Number(dayElement.value);
+                                            if (diasMesObj.hasOwnProperty(dayEleval)) {
+                                                diasMesObj[dayEleval].push(...inputValuesArray);
+                                            } else {
+                                                diasMesObj[dayEleval] = inputValuesArray;
+                                            }
+                                        }
+                                        nomrep++;
+                                        dayElement = document.getElementById("day-" + nomrep.toString());
+                                    }
+                                } else {
+                                    finalrepetir = {
+                                        "horas": (nomrep * Number(repetir))
+                                    };
+                                }
                             }
                         }
                     }
+                }else{
+                    finalrepetir = false;
+                }
+                let comple_b_check = document.getElementById('comple_b_check_select').value;
+                if (comple_b_check == "true"){
+                    comple_b_check = true;
+                }else{
+                    comple_b_check = false;
+                }
+
+                const data = {
+                    fechaFormateada: fechaHoraInput,
+                    repetir: finalrepetir,
+                    comple_b_check: comple_b_check,
+                    btn_sig: siguientetextoBoton,
+                    btn_ant: anteriortextoBoton,
+                    btn_cerrar: textoBoton
+                };
+
+                Telegram.WebApp.sendData(JSON.stringify(data)); // Envía los datos como JSON a Telegram
+            } else {
+                let userConfirmed = confirm("¿Estás seguro de que deseas suprimir la alarma?");
+                if (userConfirmed) {
+                    Telegram.WebApp.sendData("false")
                 }
             }
 
-            const data = {
-                fechaFormateada: fechaHoraInput,
-                repetir: finalrepetir,
-                btn_cerrar: textoBoton
-            };
-
-            Telegram.WebApp.sendData(JSON.stringify(data)); // Envía los datos como JSON a Telegram
         }
 
         document.getElementById('repetir').addEventListener('change', function() {
