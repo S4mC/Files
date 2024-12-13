@@ -41,7 +41,7 @@
     <script src="https://code.highcharts.com/highcharts-more.js">
     </script>
     <script src="https://code.highcharts.com/modules/solid-gauge.js"></script>
-    <script src="https://charts.bgeometrics.com/assets/js/themes/brand-dark.js"></script>
+    <script src="https://code.highcharts.com/themes/brand-dark.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
     <div id="headercontainer" style="color: #2b601f;">| <a id="tarifasbtc"></a> | <a id="tarifaseth"></a> |</div><br><br>
     <div style="display: flex; justify-content: center;flex-wrap: wrap;">
@@ -72,10 +72,10 @@
                 new Highcharts.Color(color).setOpacity(0.3).get()
             );
             const data_json = await fetch('https://script.google.com/macros/s/AKfycbw7pkcHCClMRd_4lurvJ7pLLAjWuLRWz0aRMdYoRhjHHXj8KZLE08rNj-4yiBjwOwqjFw/exec?indicator=datos-home')
-            .then(response => response.json())
-            .catch(() => {
-                document.getElementById("container").innerHTML = "Error";
-            });
+                .then(response => response.json())
+                .catch(() => {
+                    document.getElementById("container").innerHTML = "Error";
+                });
             var globalyvar = Number(data_json.indiceglobal);
             var tarifasbtc = Number(data_json.tarifasbtc).toFixed(2);
             document.getElementById('tarifasbtc').innerHTML = `BTC gas: $${tarifasbtc}`;
@@ -115,7 +115,7 @@
                 },
 
                 accessibility: {
-                    enabled:false
+                    enabled: false
                 },
 
                 title: {
