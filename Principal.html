@@ -14,12 +14,6 @@
             box-sizing: border-box;
         }
 
-        #container {
-            width: 250px;
-            margin: 0;
-            color: white;
-        }
-
         #headercontainer {
             width: 100%;
             padding-block: 10px;
@@ -37,21 +31,14 @@
             color: white;
         }
     </style>
-    <script src=" https://code.highcharts.com/highcharts.js"> </script>
-    <script src="https://code.highcharts.com/highcharts-more.js">
-    </script>
-    <script src="https://code.highcharts.com/modules/solid-gauge.js"></script>
-    <script src="https://code.highcharts.com/themes/brand-dark.js"></script>
-    <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
-    <div id="headercontainer" style="color: #2b601f;">| <a id="tarifasbtc"></a> | <a id="tarifaseth"></a> |</div><br><br>
+    <div id="headercontainer" style="color: #2b601f;">| <a id="tarifasbtc"></a> | <a id="tarifaseth"></a> |</div>
+    <br><br>
     <div style="display: flex; justify-content: center;flex-wrap: wrap;">
-        <div id="container" style="display: inline-block;margin-top: 21px;">
-            <div style="position: fixed;background-color: black;height: 100%;top: 0;left: 0;z-index: 10;width: 100%;text-align: center;">cargando...</div>
-        </div>
         <div class="tradingview-widget-container" style="filter: invert(1);max-width: 95%;display: inline-block;">
             <div class="tradingview-widget-container__widget"></div>
             <div class="tradingview-widget-copyright"></div>
-            <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-technical-analysis.js" async>
+            <script type="text/javascript"
+                src="https://s3.tradingview.com/external-embedding/embed-widget-technical-analysis.js" async>
                 {
                     "interval": "1D",
                     "width": 300,
@@ -67,151 +54,18 @@
         </div>
     </div>
     <script>
-        (async () => {
-            const trackColors = Highcharts.getOptions().colors.map(color =>
-                new Highcharts.Color(color).setOpacity(0.3).get()
-            );
-            const data_json = await fetch('https://script.google.com/macros/s/AKfycbw7pkcHCClMRd_4lurvJ7pLLAjWuLRWz0aRMdYoRhjHHXj8KZLE08rNj-4yiBjwOwqjFw/exec?indicator=datos-home')
-                .then(response => response.json())
-                .catch(() => {
-                    document.getElementById("container").innerHTML = "Error";
-                });
-            var globalyvar = Number(data_json.indiceglobal);
-            var tarifasbtc = Number(data_json.tarifasbtc).toFixed(2);
-            document.getElementById('tarifasbtc').innerHTML = `BTC gas: $${tarifasbtc}`;
-
-
-            Highcharts.chart('container', {
-
-                chart: {
-                    type: 'solidgauge',
-                    backgroundColor: "black",
-                    height: '110%',
-                    events: {
-                        render: function() {
-                            var chart = this,
-                                centerX = chart.plotWidth / 2,
-                                centerY = chart.plotHeight / 2 + chart.plotTop,
-                                tooltipHtml = '<div style="text-align: center;position: relative;top: -35px;left: 10px;">' + '<span style="font-size: 1.1rem; color: #aad937;font-weight: bold;">Global: ' + globalyvar + '</span><br>';
-                            if (!chart.customTooltip) {
-                                chart.customTooltip = chart.renderer.label(tooltipHtml, centerX, centerY, 'callout', 0, 0, true)
-                                    .css({
-                                        textAlign: 'center'
-                                    })
-                                    .attr({
-                                        align: 'center',
-                                        padding: 8,
-                                        r: 5,
-                                        zIndex: 6
-                                    })
-                                    .add();
-                            } else {
-                                chart.customTooltip.attr({
-                                    text: tooltipHtml
-                                });
-                            }
-                        }
-                    }
-                },
-
-                accessibility: {
-                    enabled: false
-                },
-
-                title: {
-                    text: 'Indice de miedo y codicia',
-                    style: {
-                        fontSize: '14px'
-                    }
-                },
-
-                tooltip: {
-                    borderWidth: 0,
-                    enabled: true,
-                    backgroundColor: 'none',
-                    shadow: false,
-                    style: {
-                        fontSize: '16px'
-                    },
-                    pointFormat: '<span style="font-size: 1.4em; color: {point.color}; ' +
-                        'font-weight: bold">{series.name}<br>{point.y}</span>',
-                    positioner: function(labelWidth) {
-                        return {
-                            x: (this.chart.chartWidth - labelWidth) / 2,
-                            y: (this.chart.plotHeight / 2) + 15
-                        };
-                    }
-                },
-
-                pane: {
-                    startAngle: -90,
-                    endAngle: 270,
-                    background: [{ // Track for Conversion
-                        outerRadius: '100%',
-                        innerRadius: '80%',
-                        backgroundColor: "#131313",
-                        borderWidth: 0
-                    }]
-                },
-
-                yAxis: {
-                    min: 0,
-                    max: 100,
-                    lineWidth: 0,
-                    tickPositions: []
-                },
-
-                plotOptions: {
-                    solidgauge: {
-                        dataLabels: {
-                            enabled: false
-                        },
-                        linecap: 'round',
-                        stickyTracking: false,
-                        rounded: false,
-                        events: {
-                            mouseOver: function() {
-                                if (this.chart.customTooltip) {
-                                    this.chart.customTooltip.hide();
-                                }
-                                if (this.chart.tooltipTimeout) {
-                                    clearTimeout(this.chart.tooltipTimeout);
-                                }
-                            },
-                            mouseOut: function() {
-                                var chart = this.chart;
-                                if (this.chart.tooltipTimeout) {
-                                    clearTimeout(this.chart.tooltipTimeout);
-                                }
-                                if (chart.customTooltip) {
-                                    chart.tooltipTimeout = setTimeout(function() {
-                                        chart.customTooltip.show();
-                                    }, 800);
-                                }
-                            }
-                        }
-                    }
-                },
-                credits: {
-                    enabled: false
-                },
-
-                series: [{
-                    name: 'Global',
-                    data: [{
-                        color: "#aad937",
-                        radius: '100%',
-                        innerRadius: '80%',
-                        y: globalyvar
-                    }]
-                }]
-            });
-
-        })();
-
-
         async function fetchGasPrice() {
+
             try {
+                const data_json = await fetch(
+                        'https://script.google.com/macros/s/AKfycbw7pkcHCClMRd_4lurvJ7pLLAjWuLRWz0aRMdYoRhjHHXj8KZLE08rNj-4yiBjwOwqjFw/exec?indicator=datos-home'
+                        )
+                    .then(response => response.json())
+                    .catch(() => {
+                        document.getElementById("container").innerHTML = "Error";
+                    });
+                var tarifasbtc = Number(data_json.tarifasbtc).toFixed(2);
+                document.getElementById('tarifasbtc').innerHTML = `BTC gas: $${tarifasbtc}`;
                 const response = await fetch('https://api.cryptorank.io/v0/global');
                 const data = await response.json();
                 const gasPriceGwei = data.gas.average.gasPriceGwei;
@@ -221,8 +75,7 @@
                 document.getElementById('tarifaseth').innerHTML = '';
             }
         }
-
         fetchGasPrice();
-        setInterval(fetchGasPrice, 60000); // Update every minute
+        setInterval(fetchGasPrice, 60000);
     </script>
 </body>
