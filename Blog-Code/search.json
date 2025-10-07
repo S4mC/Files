@@ -11,8 +11,7 @@
       "title": "Test Post",
       "summary": "Learn how to embed external content using the special iframe syntax.",
       "path": "./posts/test-posts.md",
-      "date": "2025-01-17",
-      "tags": ["iframes", "embedded", "tutorial"]
+      "date": "2025-01-17"
     },
     {
       "title": "Markdown Guide",
@@ -30,5 +29,6 @@
     }
   ]
 }
+
 
 
