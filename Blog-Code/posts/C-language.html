@@ -1,0 +1,642 @@
+<h1 id="c-language">C language</h1><h2 id="section-0">Directives</h2><p>Directives are special instructions given to the preprocessor (not to the compiler directly). They always start with the  <code class="language-c">#</code> symbol and are executed before the program is compiled.</p>
+<h3 id="section-0-item-0">Define</h3><p>Use  <code class="language-c">#define Name Value</code> to create symbolic constants or macros (text substitutions).</p>
+<p><div class="code-block-wrapper"><button class="code-copy-button">
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M13 13H7a2 2 0 01-2-2V5a2 2 0 012-2h6a2 2 0 012 2v6a2 2 0 01-2 2z" stroke="currentColor" stroke-width="2"/>
+                    <path d="M3 11V3a2 2 0 012-2h6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                </svg>
+            </button><pre><code class="language-c">// Example:
+#define PI 3.1416</code></pre></div></p>
+<h3 id="section-0-item-1">Librarys</h3><p>Use  <code class="language-c">#include &lt;libraryName.h&gt;</code> to include a standar library in the program (.h for header file).<br>Use  <code class="language-c">#include &quot;myfile.h&quot;</code> to include a library of files in your program<span class="float-trigger" data-float-id="customLibrary">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 28"><g fill="none" stroke="currentColor" stroke-width="2"><rect width="14" height="14" x="5" y="5" rx="4"/><path stroke-linecap="round" d="M12 15.52v-.01m-1.998-5.533C10.157 9.019 11 8.5 12 8.5s1.686.672 1.87 1.207c.183.535.144 1.344-.363 1.809s-.773.316-1.229.8a1.8 1.8 0 0 0-.278.432"/></g></svg>
+        </span>.</p>
+<div class="float-container" id="float-customLibrary"><button class="float-close">×</button>
+
+<p>This library can have <strong>declarations</strong> (functions, structures, macros, etc.), but <strong>definitions</strong> (the code for the functions) must be in a file with the same name, but with a .c extension.</p>
+</div>
+
+
+<p><rawhtml><br></rawhtml></p>
+<div class="content-conector">
+
+<h4 id="section-0-item-1-subitem-0"><code class="language-c">&lt;stdio.h&gt;</code>:</h4><p>Acronym of <em>standard input-output header</em> contains all the basic input and output tools in C, both for working with the console and with files.</p>
+<ul>
+<li><code class="language-c">printf(&quot;content&quot;); // print formatted</code>:<br>It print data in a specific format to the console.<br>For floating-point numbers (float or double), you can print a certain number of decimal places with the syntax:<div class="code-block-wrapper"><button class="code-copy-button">
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M13 13H7a2 2 0 01-2-2V5a2 2 0 012-2h6a2 2 0 012 2v6a2 2 0 01-2 2z" stroke="currentColor" stroke-width="2"/>
+                    <path d="M3 11V3a2 2 0 012-2h6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                </svg>
+            </button><pre><code class="language-c">printf(&quot;%.3f&quot;, num); // 3 decimal places
+printf(&quot;%.2lf&quot;, num); // 2 decimal places</code></pre></div></li>
+<li><div style="height: 8px"></div>  <code class="language-c">scanf(&quot;%d&quot;, &amp;x); // scan formatted</code>:<br>
+Gets data from the console in the address parameter in a specific format.</li>
+</ul>
+<h4 id="section-0-item-1-subitem-1"><code class="language-c">&lt;stdlib.h&gt;</code>:</h4><p>Provides functions for performing general-purpose operations.</p>
+<ul>
+<li><code class="language-c">int absolute = abs(a); // int absolute value</code></li>
+</ul>
+<h4 id="section-0-item-1-subitem-2"><code class="language-c">&lt;math.h&gt;</code>:</h4><p>Manages double type operations.</p>
+<ul>
+<li><code class="language-c">double power = pow(n,2); // power</code></li>
+<li><code class="language-c">double square_root = sqrt(n); // square root</code></li>
+<li><code class="language-c">double logarithm = log(n)/log(base); // logarithm</code></li>
+<li><code class="language-c">double absolute = fabs(n); // float absolute value</code></li>
+</ul>
+</div>
+
+
+<h2 id="section-1">Main</h2><p>In standard C, every executable program must have a <strong>main function</strong>, because it is the entry point of the program.<div class="code-block-wrapper"><button class="code-copy-button">
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M13 13H7a2 2 0 01-2-2V5a2 2 0 012-2h6a2 2 0 012 2v6a2 2 0 01-2 2z" stroke="currentColor" stroke-width="2"/>
+                    <path d="M3 11V3a2 2 0 012-2h6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                </svg>
+            </button><pre><code class="language-c">int main(){
+    return 0;
+}</code></pre></div></p>
+<ul>
+<li>The int value  <code class="language-c">return 0;</code> returned by main is the exit code for the operating system (0 = success, non-0 = error).</li>
+</ul>
+<h2 id="section-2">Comments</h2><p>You can use two types of comments.</p>
+<ul>
+<li>Single line comment:  <code class="language-c">// Comment</code></li>
+<li>Multi-line or block comment:  <code class="language-c">/* ... */</code></li>
+</ul>
+<h2 id="section-3">Data types</h2><table>
+<thead>
+<tr>
+<th>Data type</th>
+<th>Description</th>
+<th>Format</th>
+<th>Size</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code class="language-c">char</code></td>
+<td>An integer type representing a single <strong>character in the ASCII table</strong> (smallest data type in C).</td>
+<td>%c <br> (char)</td>
+<td>1 byte</td>
+</tr>
+<tr>
+<td><code class="language-c">int</code></td>
+<td>A basic integer type used to store <strong>whole numbers</strong>.</td>
+<td>%d <br> (decimal)</td>
+<td>2 - 4 bytes<span class="float-trigger" data-float-id="intSize">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 28"><g fill="none" stroke="currentColor" stroke-width="2"><rect width="14" height="14" x="5" y="5" rx="4"/><path stroke-linecap="round" d="M12 15.52v-.01m-1.998-5.533C10.157 9.019 11 8.5 12 8.5s1.686.672 1.87 1.207c.183.535.144 1.344-.363 1.809s-.773.316-1.229.8a1.8 1.8 0 0 0-.278.432"/></g></svg>
+        </span></td>
+</tr>
+<tr>
+<td><code class="language-c">long</code></td>
+<td>An extended integer type used to store larger whole numbers than  <code class="language-c">int</code>.</td>
+<td>%ld <br> (long decimal)</td>
+<td>Typically 8 bytes</td>
+</tr>
+<tr>
+<td><code class="language-c">float</code></td>
+<td>A floating-point type used to store single-precision decimal numbers.</td>
+<td>%f <br> (float)</td>
+<td>4 bytes</td>
+</tr>
+<tr>
+<td><code class="language-c">double</code></td>
+<td>A <strong>floating-point type</strong> used to store precision decimal numbers. <em>(The name means that it is double as precise as a  <code class="language-c">float</code> type.)</em></td>
+<td>%lf <br> (long float)</td>
+<td>8 bytes</td>
+</tr>
+</tbody></table>
+<h3 id="section-3-item-0">Get the memory address where a variable is stored</h3><p>You can use  <code class="language-c">&amp;</code> on variables or objects that take up memory to get that memory address<div class="code-block-wrapper"><button class="code-copy-button">
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M13 13H7a2 2 0 01-2-2V5a2 2 0 012-2h6a2 2 0 012 2v6a2 2 0 01-2 2z" stroke="currentColor" stroke-width="2"/>
+                    <path d="M3 11V3a2 2 0 012-2h6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                </svg>
+            </button><pre><code class="language-c">#include &lt;stdio.h&gt;
+
+int main() {
+    int x = 42;
+    printf(&quot;x = %d\n&quot;, x); // This prints the variable content
+    printf(&quot;&amp;x = %p\n&quot;, &amp;x); // This prints the address of the variable.
+    return 0;
+}</code></pre></div></p>
+<div class="float-container" id="float-intSize"><button class="float-close">×</button>
+
+<p>use  <code class="language-c">#include &lt;limits.h&gt;</code> and  <code class="language-c">printf(&quot;%d\n&quot;, INT_MAX);</code> for sure</p>
+</div>
+
+
+<h2 id="section-4">Arithmetic operators</h2><p>Used for basic math operations<div class="code-block-wrapper"><button class="code-copy-button">
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M13 13H7a2 2 0 01-2-2V5a2 2 0 012-2h6a2 2 0 012 2v6a2 2 0 01-2 2z" stroke="currentColor" stroke-width="2"/>
+                    <path d="M3 11V3a2 2 0 012-2h6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                </svg>
+            </button><pre><code class="language-c">int a = 5 + 3;  // addition
+int a = 10 - 7; // subtraction
+int a = 4 * 3;  // multiplication
+float b = 10.0 / 3; // division
+int a = 10 % 3; // modulus (remainder)</code></pre></div></p>
+<h2 id="section-5">Casting</h2><p>Casting is the process of explicitly converting a value from one data type to another. It tells the compiler to treat a variable or expression as if it were of a different type.</p>
+<p><div class="code-block-wrapper"><button class="code-copy-button">
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M13 13H7a2 2 0 01-2-2V5a2 2 0 012-2h6a2 2 0 012 2v6a2 2 0 01-2 2z" stroke="currentColor" stroke-width="2"/>
+                    <path d="M3 11V3a2 2 0 012-2h6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                </svg>
+            </button><pre><code class="language-c">int x = 10;
+double y = (double)x; // converts int 10 to double 10.0</code></pre></div></p>
+<p>For example, in this code it is necessary to have a casting to obtain a suitable result:</p>
+<p><div class="code-block-wrapper"><button class="code-copy-button">
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M13 13H7a2 2 0 01-2-2V5a2 2 0 012-2h6a2 2 0 012 2v6a2 2 0 01-2 2z" stroke="currentColor" stroke-width="2"/>
+                    <path d="M3 11V3a2 2 0 012-2h6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                </svg>
+            </button><pre><code class="language-c">#include &lt;stdio.h&gt;
+
+int main() {
+    double quotient;
+        
+    quotient = (double)5/2; // The (double) is needed to convert an int type to a double type and have all decimal places
+    printf(&quot;quotient = %lf\n&quot;, quotient);
+    return 0;
+}</code></pre></div></p>
+<h2 id="section-6">Conditionals</h2><p>The  <code class="language-c">if</code> condition in c is exactly the same as in javascript:<div class="code-block-wrapper"><button class="code-copy-button">
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M13 13H7a2 2 0 01-2-2V5a2 2 0 012-2h6a2 2 0 012 2v6a2 2 0 01-2 2z" stroke="currentColor" stroke-width="2"/>
+                    <path d="M3 11V3a2 2 0 012-2h6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                </svg>
+            </button><pre><code class="language-c">int nota = 15;
+
+if (nota &gt;= 18) {
+    printf(&quot;Excellent&quot;);
+} else if (nota &gt;= 11) {
+    printf(&quot;Approved&quot;);
+} else {
+    printf(&quot;Disapproved&quot;);
+}</code></pre></div></p>
+<h3 id="section-6-item-0">Ternary Operator</h3><p>A shorthand for simple if ... else statements, exactly the same as in javascript:<br>  <code class="language-javascript">variable = condition ? value_if_true: value_if_false;</code></p>
+<div style="height: 8px"></div>
+
+<h2 id="section-7">Loops</h2><p>The  <code class="language-c">while</code> loop in c is exactly the same as in javascript:<div class="code-block-wrapper"><button class="code-copy-button">
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M13 13H7a2 2 0 01-2-2V5a2 2 0 012-2h6a2 2 0 012 2v6a2 2 0 01-2 2z" stroke="currentColor" stroke-width="2"/>
+                    <path d="M3 11V3a2 2 0 012-2h6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                </svg>
+            </button><pre><code class="language-c">while (condition) {
+    // code to execute
+}</code></pre></div></p>
+<h2 id="section-8">Functions</h2><p>If functions are declared after the main function, then they must have a <strong>prototype</strong>, which is simply the function header, before the main function.<div class="code-block-wrapper"><button class="code-copy-button">
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M13 13H7a2 2 0 01-2-2V5a2 2 0 012-2h6a2 2 0 012 2v6a2 2 0 01-2 2z" stroke="currentColor" stroke-width="2"/>
+                    <path d="M3 11V3a2 2 0 012-2h6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                </svg>
+            </button><pre><code class="language-c">int functionName(int argument1); // Prototype, this is necessary if the function is called before implementation because otherwise the compiler does not know what the structure of the function looks like when it is called in the main function and cannot compile the C program.
+
+int main() {
+    functionName(100);
+    return 0;
+}
+
+int functionName(int argument1) { // Implementation
+    // Function code
+    return 1;
+}</code></pre></div></p>
+<ul>
+<li>Functions must have the return type in their header  <code class="language-c">func_type functionName(type_arg1 arg1)</code>, if you don&#39;t want to return a value simply use  <code class="language-c">void</code>.</li>
+<li>Arguments must have their type in their header, you can pass a variable memory address using  <code class="language-c">functionName(&amp;variable);</code> and receive it using  <code class="language-c">functionName(int *variable_adress)</code>, the  <code class="language-c">*</code> in the argument is because it gets the value from the variable address:<div class="code-block-wrapper"><button class="code-copy-button">
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M13 13H7a2 2 0 01-2-2V5a2 2 0 012-2h6a2 2 0 012 2v6a2 2 0 01-2 2z" stroke="currentColor" stroke-width="2"/>
+                    <path d="M3 11V3a2 2 0 012-2h6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                </svg>
+            </button><pre><code class="language-c">void functionName(int *variable_adress); // Prototype
+
+int main() {
+    int variable;
+    functionName(&amp;variable);
+    // variable now has other value
+    return 0;
+}
+
+void functionName(int *variable_adress) { // Implementation
+    *variable_adress = 10 // If you change *variable_address the changes will also have an effect on the variable in the main function.
+}</code></pre></div></li>
+<li>In general, when you use  <code class="language-c">int *ptr = &amp;variable;</code> it means: &quot;Put the address of <strong>variable</strong> in <strong>ptr</strong> and the value in that address is <strong>int</strong> type&quot;</li>
+</ul>
+<script id="entry-script">
+
+        /* Make it scroll slowly with special functionalities */
+        document.querySelectorAll("a").forEach((link) => {
+            link.addEventListener("click", function (e) {
+                const href = this.getAttribute("href") || this.getAttribute("xlink:href");
+                
+                // Only process if it's an internal link (starts with #)
+                if (href && href.startsWith("#")) {
+                    e.preventDefault(); // prevents instant jump
+
+                    let target = null;
+                    const entryContent = document.querySelector('.entry-content');
+                    let targetId = href.substring(1); // substring removes the "#"
+                    
+                    targetId = decodeURIComponent(targetId);
+                    
+                    // Check if it's a special link with parameters
+                    if (targetId.includes('=')) {
+                        
+                        // Use indexOf to properly handle values with spaces or special characters
+                        const equalIndex = targetId.indexOf('=');
+                        const type = targetId.substring(0, equalIndex);
+                        const value = targetId.substring(equalIndex + 1);
+                        
+                        if (type === 'h' && !isNaN(value)) {
+                            // Search for the specified h{number} (e.g. #h=1 searches for the first h1)
+                            const headingLevel = parseInt(value);
+                            if (headingLevel >= 1 && headingLevel <= 6) {
+                                const headings = entryContent ? 
+                                    entryContent.querySelectorAll(`h${headingLevel}`) : 
+                                    document.querySelectorAll(`h${headingLevel}`);
+                                if (headings.length > 0) {
+                                    target = headings[0];
+                                }
+                            }
+                        } else if (type.match(/^h[1-6]$/)) {
+                            // Search by position or by text in the specified h type
+                            const headingLevel = parseInt(type.substring(1));
+                            
+                            if (headingLevel >= 1 && headingLevel <= 6) {
+                                const headings = entryContent ? 
+                                    entryContent.querySelectorAll(`h${headingLevel}`) : 
+                                    document.querySelectorAll(`h${headingLevel}`);
+                                
+                                if (!isNaN(value)) {
+                                    // Search by position (e.g. #h2=3 searches for the third h2)
+                                    const elementIndex = parseInt(value) - 1; // Convert to 0-based index
+                                    if (elementIndex >= 0 && headings.length > elementIndex) {
+                                        target = headings[elementIndex];
+                                    }
+                                } else {
+                                    // Search by text (e.g. #h2=Introduction searches for the first h2 containing "Introduction")
+                                    const searchText = decodeURIComponent(value);
+                                    target = Array.from(headings).find(heading => 
+                                        heading.textContent.toLowerCase().includes(searchText.toLowerCase())
+                                    );
+                                }
+                            }
+                        } else if (type === 'text') {
+                            const searchText = decodeURIComponent(value);
+                            const searchArea = entryContent || document;
+
+                            // Search directly in all elements
+                            const allElements = searchArea.querySelectorAll('*');
+                            target = Array.from(allElements).find(element => 
+                                element.textContent.includes(searchText)
+                            );
+                        } else if (type === 'query') {
+                            // Execute custom querySelector (e.g. #query=document.querySelector("selector"))
+                            try {
+                                const queryString = decodeURIComponent(value);
+                                // Evaluate the query safely
+                                target = eval(queryString);
+                            } catch (error) {
+                                console.warn('Error executing query selector:', error);
+                                target = null;
+                            }
+                        }
+                    } else {
+                        // Normal search by ID
+                        target = document.getElementById(targetId);
+                    }
+
+                    if (target) {
+                        const container = document.getElementsByClassName('entry-content')[0];
+                        if (container) {
+                            const containerRect = container.getBoundingClientRect();
+                            const targetRect = target.getBoundingClientRect();
+                            
+                            // Calculate the relative position of target within the container
+                            const relativeTop = targetRect.top - containerRect.top + container.scrollTop;
+                            
+                            // Calculate offset to center in the container
+                            const offset = relativeTop - container.clientHeight / 2 + targetRect.height / 2;
+                            
+                            container.scrollTo({
+                                top: Math.max(0, offset),
+                                behavior: 'smooth'
+                            });
+                        }
+                        
+                        // Add highlighting animation to the target element
+                        if (window.isHighlighting == target) {
+                            return; // Do nothing if already animating
+                        }
+                        window.isHighlighting = target;
+
+                        setTimeout(() => {
+                            // Clear previous animations
+                            document.querySelectorAll('.target-highlight').forEach(el => {
+                                el.classList.remove('target-highlight');
+                                // Restore original display if it was changed
+                                if (el.dataset.originalDisplay) {
+                                    el.style.display = el.dataset.originalDisplay;
+                                    delete el.dataset.originalDisplay;
+                                }
+                            });
+                            
+                            // Check if element is inline or computed inline
+                            const computedStyle = window.getComputedStyle(target);
+                            const isInline = computedStyle.display === 'inline';
+                            
+                            // Store original display and temporarily change to inline-block if needed
+                            if (isInline) {
+                                target.dataset.originalDisplay = computedStyle.display;
+                                target.style.display = 'inline-block';
+                            }
+                            
+                            // Add highlighting class
+                            target.classList.add('target-highlight');
+                            
+                            // Remove class after animation
+                            window.highlightTargetTimeoutOut = setTimeout(() => {
+                                target.classList.remove('target-highlight');
+                                // Restore original display if it was changed
+                                if (target.dataset.originalDisplay) {
+                                    target.style.display = target.dataset.originalDisplay;
+                                    delete target.dataset.originalDisplay;
+                                }
+                                window.isHighlighting = false;
+                            }, 1100);
+                        }, 300); // Reduced from 500ms to 300ms to be faster
+                    }
+                }
+            });
+        });
+    
+        // Remover listener anterior del documento si existe
+        if (window.detailsClickHandler) {
+            document.removeEventListener('click', window.detailsClickHandler);
+        }
+
+        // Crear el handler
+        window.detailsClickHandler = function(e) {
+            const details = e.target.closest('details');
+            if (!details) return;
+            
+            const summary = e.target.closest('summary');
+            if (!summary) return;
+            
+            const contentWrapper = details.querySelector('.content-wrapper-details');
+            if (!contentWrapper) return;
+            
+            e.preventDefault();
+            
+            if (details.open) {
+                // Close with animation
+                contentWrapper.classList.add('animating');
+                contentWrapper.classList.remove('opening');
+                
+                setTimeout(() => {
+                    details.open = false;
+                    contentWrapper.classList.remove('animating');
+                }, 400);
+            } else {
+                // Open with animation
+                details.open = true;
+                contentWrapper.classList.add('animating');
+                
+                // Forzar reflow
+                contentWrapper.offsetHeight;
+                
+                contentWrapper.classList.add('opening');
+                
+                setTimeout(() => {
+                    contentWrapper.classList.remove('animating');
+                }, 400);
+            }
+        };
+
+        // Agregar un solo listener al documento
+        document.addEventListener('click', window.detailsClickHandler);
+        
+        // Inicializar estado de contenido ya abierto
+        document.querySelectorAll('details[open]').forEach(details => {
+            const contentWrapper = details.querySelector('.content-wrapper-details');
+            contentWrapper.classList.add('opening');
+        });
+    
+    // Clean previous event listeners if they exist
+    if (window.floatEventListeners) {
+        if (window.floatEventListeners.triggerClick) {
+            window.floatEventListeners.triggerClick.forEach(item => {
+                item.element.removeEventListener('click', item.handler);
+            });
+        }
+        if (window.floatEventListeners.documentClick) {
+            document.removeEventListener('click', window.floatEventListeners.documentClick);
+        }
+        if (window.floatEventListeners.documentKeydown) {
+            document.removeEventListener('keydown', window.floatEventListeners.documentKeydown);
+        }
+    }
+    
+    // Inicializar el objeto para almacenar los event listeners
+    window.floatEventListeners = {
+        triggerClick: [],
+        documentClick: null,
+        documentKeydown: null,
+        activeFloats: new Set()
+    };
+    
+    // Manejar los elementos flotantes
+    document.querySelectorAll('.float-trigger').forEach(trigger => {
+        const clickHandler = function() {
+            const floatId = this.getAttribute('data-float-id');
+            const floatContainer = document.getElementById('float-' + floatId);
+            
+            if (!floatContainer) return;
+            
+            // If the container is already visible, we close it
+            if (floatContainer.classList.contains('visible')) {
+                floatContainer.classList.remove('visible');
+                window.floatEventListeners.activeFloats.delete(floatId);
+                return;
+            }
+            
+            // Close all floating containers that are open
+            document.querySelectorAll('.float-container.visible').forEach(container => {
+                container.classList.remove('visible');
+                const openFloatId = container.id.replace('float-', '');
+                window.floatEventListeners.activeFloats.delete(openFloatId);
+            });
+            
+            // Mostrar el contenedor
+            floatContainer.classList.add('visible');
+            void floatContainer.offsetWidth; // reflow force before measuring
+            window.floatEventListeners.activeFloats.add(floatId);
+            
+            const triggerRect = this.getBoundingClientRect();
+            const parentRect = floatContainer.offsetParent.getBoundingClientRect();
+            
+            // Find the scrollable container (entry-content or closest scrollable parent)
+            let scrollContainer = this.closest('.entry-content');
+            if (!scrollContainer) {
+                scrollContainer = this.closest('[style*="overflow"]') || document.documentElement;
+            }
+            
+            // Get scroll offsets
+            const scrollLeft = scrollContainer.scrollLeft || 0;
+            const scrollTop = scrollContainer.scrollTop || 0;
+
+            let left = triggerRect.left - parentRect.left + scrollLeft;
+            let top  = triggerRect.bottom - parentRect.top + scrollTop + 10;
+
+            const floatWidth = floatContainer.offsetWidth;
+            const floatHeight = floatContainer.offsetHeight;
+            const parentWidth = floatContainer.offsetParent.clientWidth;
+            const parentHeight = floatContainer.offsetParent.clientHeight;
+
+            // Ajustar horizontal
+            if (left + floatWidth > parentWidth - 10) {
+                left = parentWidth - floatWidth - 10;
+            }
+            if (left < 0) {
+                left = 0;
+            }
+
+            // Ajustar vertical - considerar tanto el viewport del contenedor con scroll como el viewport de la ventana
+            const scrollContainerRect = scrollContainer.getBoundingClientRect();
+            const triggerBottomRelativeToScroll = triggerRect.bottom - scrollContainerRect.top;
+            const availableSpaceInContainer = scrollContainer.clientHeight - triggerBottomRelativeToScroll;
+            
+            // También verificar si se sale del viewport de la ventana
+            const availableSpaceInWindow = window.innerHeight - triggerRect.bottom;
+            
+            // Si el contenedor tiene scroll, usar su espacio disponible, sino usar el de la ventana
+            const hasContainerScroll = scrollContainer.scrollHeight > scrollContainer.clientHeight;
+            const shouldCheckContainer = hasContainerScroll && scrollContainer !== document.documentElement;
+            
+            let shouldPlaceAbove = false;
+            if (shouldCheckContainer) {
+                // El contenedor tiene scroll, verificar espacio en el contenedor
+                shouldPlaceAbove = availableSpaceInContainer < floatHeight + 50;
+            } else {
+                // El contenedor no tiene scroll, verificar espacio en la ventana
+                shouldPlaceAbove = availableSpaceInWindow < floatHeight + 50;
+            }
+            
+            if (shouldPlaceAbove) {
+                // si no cabe debajo, colócalo arriba del trigger
+                top = triggerRect.top - parentRect.top + scrollTop - floatHeight - 10;
+            }
+
+            // Asegurar que no se salga por arriba
+            const minTop = shouldCheckContainer ? scrollTop + 10 : 10;
+            if (top < minTop) {
+                top = minTop;
+            }
+            
+            // Asegurar que no se salga por abajo del viewport de la ventana
+            if (!shouldCheckContainer) {
+                const maxTop = window.innerHeight - floatHeight - 20;
+                const currentTopInViewport = top - scrollTop + parentRect.top;
+                if (currentTopInViewport > maxTop) {
+                    top = maxTop + scrollTop - parentRect.top;
+                }
+            }
+
+            floatContainer.style.left = left + "px";
+            floatContainer.style.top = top + "px";
+        };
+        
+        trigger.addEventListener('click', clickHandler);
+        window.floatEventListeners.triggerClick.push({
+            element: trigger,
+            handler: clickHandler
+        });
+    });
+    
+    // Cerrar los elementos flotantes al hacer clic fuera
+    const documentClickHandler = function(e) {
+        if (e.target.classList.contains('float-close')) {
+            const container = e.target.closest('.float-container');
+            if (container) {
+                container.classList.remove('visible');
+                const floatId = container.id.replace('float-', '');
+                window.floatEventListeners.activeFloats.delete(floatId);
+            }
+        } else if (!e.target.closest('.float-container') && !e.target.closest('.float-trigger')) {
+            document.querySelectorAll('.float-container.visible').forEach(container => {
+                container.classList.remove('visible');
+                const floatId = container.id.replace('float-', '');
+                window.floatEventListeners.activeFloats.delete(floatId);
+            });
+        }
+    };
+    
+    document.addEventListener('click', documentClickHandler);
+    window.floatEventListeners.documentClick = documentClickHandler;
+    
+    // Cerrar con ESC
+    const documentKeydownHandler = function(e) {
+        if (e.key === 'Escape') {
+            document.querySelectorAll('.float-container.visible').forEach(container => {
+                container.classList.remove('visible');
+                const floatId = container.id.replace('float-', '');
+                window.floatEventListeners.activeFloats.delete(floatId);
+            });
+        }
+    };
+    
+    document.addEventListener('keydown', documentKeydownHandler);
+    window.floatEventListeners.documentKeydown = documentKeydownHandler;
+    
+    // Global method to close all floating elements
+    window.closeAllFloats = function() {
+        document.querySelectorAll('.float-container.visible').forEach(container => {
+            container.classList.remove('visible');
+        });
+        window.floatEventListeners.activeFloats.clear();
+    };
+    // Select the first element with class "entry-content"
+    const entryContent = document.querySelector('.entry-content');
+
+    if (entryContent) {
+        // Select all <script> elements within that element
+        const scripts = entryContent.querySelectorAll('script');
+
+        scripts.forEach(oldScript => {
+            try {
+                // Create a new script element to execute
+                const newScript = document.createElement('script');
+
+                // Copy attributes (e.g., src, type, etc.)
+                Array.from(oldScript.attributes).forEach(attr => {
+                newScript.setAttribute(attr.name, attr.value);
+                });
+
+                // Copy inline content if it exists
+                if (oldScript.textContent) {
+                newScript.textContent = oldScript.textContent;
+                }
+
+                // Replace the old <script> with the new one (this triggers execution)
+                oldScript.parentNode.replaceChild(newScript, oldScript);
+            } catch (err) {
+                console.log("Error executing script:", err, oldScript);
+            }
+        });
+    }
+    
+</script><script id="sidebar-data" type="application/json">
+[
+    "## Directives",
+    "### Define",
+    "### Librarys",
+    "####  <code class=\"language-c\">stdio.h</code>:",
+    "####  <code class=\"language-c\">stdlib.h</code>:",
+    "####  <code class=\"language-c\">math.h</code>:",
+    "## Main",
+    "## Comments",
+    "## Data types",
+    "### Get the memory address where a variable is stored",
+    "## Arithmetic operators",
+    "## Casting",
+    "## Conditionals",
+    "### Ternary Operator",
+    "## Loops",
+    "## Functions"
+]
+</script>
