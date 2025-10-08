@@ -1,22 +1,6 @@
 {
   "entries": [
     {
-      "title": "Soy un blog de prueba",
-      "summary": "qedqwdqdw",
-      "path": "https://s4mc.github.io/Files/Blog-Code/posts/Nuevo.md",
-      "tags": [
-        "tagdqwd qwdwq",
-        "65qdw165561561qwd"
-      ],
-      "date": "2025-10-08"
-    },
-    {
-      "title": "Soy un blog de prueba",
-      "summary": "ewqdwqdqw",
-      "path": "https://s4mc.github.io/Files/Blog-Code/posts/Purbea.html",
-      "tags": []
-    },
-    {
       "title": "C language",
       "summary": "C language documentation",
       "path": "https://s4mc.github.io/Files/Blog-Code/posts/C-language.md",
