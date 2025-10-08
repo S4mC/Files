@@ -1,6 +1,12 @@
 {
   "entries": [
     {
+      "title": "Soy un blog de prueba",
+      "summary": "ewqdwqdqw",
+      "path": "https://s4mc.github.io/Files/Blog-Code/posts/Purbea.html",
+      "tags": []
+    },
+    {
       "title": "C language",
       "summary": "C language documentation",
       "path": "https://s4mc.github.io/Files/Blog-Code/posts/C-language.md",
