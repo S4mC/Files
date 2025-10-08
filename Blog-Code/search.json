@@ -2,6 +2,12 @@
   "entries": [
     {
       "title": "C language",
+      "summary": "fr",
+      "path": "https://s4mc.github.io/Files/Blog-Code/posts/C-language.html",
+      "tags": []
+    },
+    {
+      "title": "C language",
       "summary": "C language documentation",
       "path": "https://s4mc.github.io/Files/Blog-Code/posts/C-language.md",
       "tags": [
