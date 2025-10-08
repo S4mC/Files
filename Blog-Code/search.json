@@ -1,6 +1,14 @@
 {
   "entries": [
     {
+      "title": "Soy un blog de pruebawdq",
+      "summary": "wdq",
+      "path": "https://s4mc.github.io/Files/Blog-Code/posts/wqd.html",
+      "tags": [
+        "wdq"
+      ]
+    },
+    {
       "title": "C language",
       "summary": "C language documentation",
       "path": "https://s4mc.github.io/Files/Blog-Code/posts/C-language.md",
