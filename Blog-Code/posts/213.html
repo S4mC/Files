@@ -1,4 +1,222 @@
-<h1 id="soy-un-blog-de-prueba">Soy un blog de prueba</h1><p>very easy</p>
+<h1 id="c-language">C language</h1><h2 id="section-0">Directives</h2><p>Directives are special instructions given to the preprocessor (not to the compiler directly). They always start with the  <code class="language-c">#</code> symbol and are executed before the program is compiled.</p>
+<h3 id="section-0-item-0">Define</h3><p>Use  <code class="language-c">#define Name Value</code> to create symbolic constants or macros (text substitutions).</p>
+<p><div class="code-block-wrapper"><button class="code-copy-button">
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M13 13H7a2 2 0 01-2-2V5a2 2 0 012-2h6a2 2 0 012 2v6a2 2 0 01-2 2z" stroke="currentColor" stroke-width="2"/>
+                    <path d="M3 11V3a2 2 0 012-2h6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                </svg>
+            </button><pre><code class="language-c">// Example:
+#define PI 3.1416</code></pre></div></p>
+<h3 id="section-0-item-1">Librarys</h3><p>Use  <code class="language-c">#include &lt;libraryName.h&gt;</code> to include a standar library in the program (.h for header file).<br>Use  <code class="language-c">#include &quot;myfile.h&quot;</code> to include a library of files in your program<span class="float-trigger" data-float-id="customLibrary">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 28"><g fill="none" stroke="currentColor" stroke-width="2"><rect width="14" height="14" x="5" y="5" rx="4"/><path stroke-linecap="round" d="M12 15.52v-.01m-1.998-5.533C10.157 9.019 11 8.5 12 8.5s1.686.672 1.87 1.207c.183.535.144 1.344-.363 1.809s-.773.316-1.229.8a1.8 1.8 0 0 0-.278.432"/></g></svg>
+        </span>.</p>
+<div class="float-container" id="float-customLibrary"><button class="float-close">×</button>
+
+<p>This library can have <strong>declarations</strong> (functions, structures, macros, etc.), but <strong>definitions</strong> (the code for the functions) must be in a file with the same name, but with a .c extension.</p>
+</div>
+
+
+<p><rawhtml><br></rawhtml></p>
+<div class="content-conector">
+
+<h4 id="section-0-item-1-subitem-0"><code class="language-c">&lt;stdio.h&gt;</code>:</h4><p>Acronym of <em>standard input-output header</em> contains all the basic input and output tools in C, both for working with the console and with files.</p>
+<ul>
+<li><code class="language-c">printf(&quot;content&quot;); // print formatted</code>:<br>It print data in a specific format to the console.<br>For floating-point numbers (float or double), you can print a certain number of decimal places with the syntax:<div class="code-block-wrapper"><button class="code-copy-button">
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M13 13H7a2 2 0 01-2-2V5a2 2 0 012-2h6a2 2 0 012 2v6a2 2 0 01-2 2z" stroke="currentColor" stroke-width="2"/>
+                    <path d="M3 11V3a2 2 0 012-2h6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                </svg>
+            </button><pre><code class="language-c">printf(&quot;%.3f&quot;, num); // 3 decimal places
+printf(&quot;%.2lf&quot;, num); // 2 decimal places</code></pre></div></li>
+<li><div style="height: 8px"></div>  <code class="language-c">scanf(&quot;%d&quot;, &amp;x); // scan formatted</code>:<br>
+Gets data from the console in the address parameter in a specific format.</li>
+</ul>
+<h4 id="section-0-item-1-subitem-1"><code class="language-c">&lt;stdlib.h&gt;</code>:</h4><p>Provides functions for performing general-purpose operations.</p>
+<ul>
+<li><code class="language-c">int absolute = abs(a); // int absolute value</code></li>
+</ul>
+<h4 id="section-0-item-1-subitem-2"><code class="language-c">&lt;math.h&gt;</code>:</h4><p>Manages double type operations.</p>
+<ul>
+<li><code class="language-c">double power = pow(n,2); // power</code></li>
+<li><code class="language-c">double square_root = sqrt(n); // square root</code></li>
+<li><code class="language-c">double logarithm = log(n)/log(base); // logarithm</code></li>
+<li><code class="language-c">double absolute = fabs(n); // float absolute value</code></li>
+</ul>
+</div>
+
+
+<h2 id="section-1">Main</h2><p>In standard C, every executable program must have a <strong>main function</strong>, because it is the entry point of the program.<div class="code-block-wrapper"><button class="code-copy-button">
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M13 13H7a2 2 0 01-2-2V5a2 2 0 012-2h6a2 2 0 012 2v6a2 2 0 01-2 2z" stroke="currentColor" stroke-width="2"/>
+                    <path d="M3 11V3a2 2 0 012-2h6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                </svg>
+            </button><pre><code class="language-c">int main(){
+    return 0;
+}</code></pre></div></p>
+<ul>
+<li>The int value  <code class="language-c">return 0;</code> returned by main is the exit code for the operating system (0 = success, non-0 = error).</li>
+</ul>
+<h2 id="section-2">Comments</h2><p>You can use two types of comments.</p>
+<ul>
+<li>Single line comment:  <code class="language-c">// Comment</code></li>
+<li>Multi-line or block comment:  <code class="language-c">/* ... */</code></li>
+</ul>
+<h2 id="section-3">Data types</h2><table>
+<thead>
+<tr>
+<th>Data type</th>
+<th>Description</th>
+<th>Format</th>
+<th>Size</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code class="language-c">char</code></td>
+<td>An integer type representing a single <strong>character in the ASCII table</strong> (smallest data type in C).</td>
+<td>%c <br> (char)</td>
+<td>1 byte</td>
+</tr>
+<tr>
+<td><code class="language-c">int</code></td>
+<td>A basic integer type used to store <strong>whole numbers</strong>.</td>
+<td>%d <br> (decimal)</td>
+<td>2 - 4 bytes<span class="float-trigger" data-float-id="intSize">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 28"><g fill="none" stroke="currentColor" stroke-width="2"><rect width="14" height="14" x="5" y="5" rx="4"/><path stroke-linecap="round" d="M12 15.52v-.01m-1.998-5.533C10.157 9.019 11 8.5 12 8.5s1.686.672 1.87 1.207c.183.535.144 1.344-.363 1.809s-.773.316-1.229.8a1.8 1.8 0 0 0-.278.432"/></g></svg>
+        </span></td>
+</tr>
+<tr>
+<td><code class="language-c">long</code></td>
+<td>An extended integer type used to store larger whole numbers than  <code class="language-c">int</code>.</td>
+<td>%ld <br> (long decimal)</td>
+<td>Typically 8 bytes</td>
+</tr>
+<tr>
+<td><code class="language-c">float</code></td>
+<td>A floating-point type used to store single-precision decimal numbers.</td>
+<td>%f <br> (float)</td>
+<td>4 bytes</td>
+</tr>
+<tr>
+<td><code class="language-c">double</code></td>
+<td>A <strong>floating-point type</strong> used to store precision decimal numbers. <em>(The name means that it is double as precise as a  <code class="language-c">float</code> type.)</em></td>
+<td>%lf <br> (long float)</td>
+<td>8 bytes</td>
+</tr>
+</tbody></table>
+<h3 id="section-3-item-0">Get the memory address where a variable is stored</h3><p>You can use  <code class="language-c">&amp;</code> on variables or objects that take up memory to get that memory address<div class="code-block-wrapper"><button class="code-copy-button">
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M13 13H7a2 2 0 01-2-2V5a2 2 0 012-2h6a2 2 0 012 2v6a2 2 0 01-2 2z" stroke="currentColor" stroke-width="2"/>
+                    <path d="M3 11V3a2 2 0 012-2h6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                </svg>
+            </button><pre><code class="language-c">#include &lt;stdio.h&gt;
+
+int main() {
+    int x = 42;
+    printf(&quot;x = %d\n&quot;, x); // This prints the variable content
+    printf(&quot;&amp;x = %p\n&quot;, &amp;x); // This prints the address of the variable.
+    return 0;
+}</code></pre></div></p>
+<div class="float-container" id="float-intSize"><button class="float-close">×</button>
+
+<p>use  <code class="language-c">#include &lt;limits.h&gt;</code> and  <code class="language-c">printf(&quot;%d\n&quot;, INT_MAX);</code> for sure</p>
+</div>
+
+
+<h2 id="section-4">Arithmetic operators</h2><p>Used for basic math operations<div class="code-block-wrapper"><button class="code-copy-button">
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M13 13H7a2 2 0 01-2-2V5a2 2 0 012-2h6a2 2 0 012 2v6a2 2 0 01-2 2z" stroke="currentColor" stroke-width="2"/>
+                    <path d="M3 11V3a2 2 0 012-2h6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                </svg>
+            </button><pre><code class="language-c">int a = 5 + 3;  // addition
+int a = 10 - 7; // subtraction
+int a = 4 * 3;  // multiplication
+float b = 10.0 / 3; // division
+int a = 10 % 3; // modulus (remainder)</code></pre></div></p>
+<h2 id="section-5">Casting</h2><p>Casting is the process of explicitly converting a value from one data type to another. It tells the compiler to treat a variable or expression as if it were of a different type.</p>
+<p><div class="code-block-wrapper"><button class="code-copy-button">
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M13 13H7a2 2 0 01-2-2V5a2 2 0 012-2h6a2 2 0 012 2v6a2 2 0 01-2 2z" stroke="currentColor" stroke-width="2"/>
+                    <path d="M3 11V3a2 2 0 012-2h6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                </svg>
+            </button><pre><code class="language-c">int x = 10;
+double y = (double)x; // converts int 10 to double 10.0</code></pre></div></p>
+<p>For example, in this code it is necessary to have a casting to obtain a suitable result:</p>
+<p><div class="code-block-wrapper"><button class="code-copy-button">
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M13 13H7a2 2 0 01-2-2V5a2 2 0 012-2h6a2 2 0 012 2v6a2 2 0 01-2 2z" stroke="currentColor" stroke-width="2"/>
+                    <path d="M3 11V3a2 2 0 012-2h6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                </svg>
+            </button><pre><code class="language-c">#include &lt;stdio.h&gt;
+
+int main() {
+    double quotient;
+        
+    quotient = (double)5/2; // The (double) is needed to convert an int type to a double type and have all decimal places
+    printf(&quot;quotient = %lf\n&quot;, quotient);
+    return 0;
+}</code></pre></div></p>
+<h2 id="section-6">Conditionals</h2><p>The  <code class="language-c">if</code> condition in c is exactly the same as in javascript:<div class="code-block-wrapper"><button class="code-copy-button">
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M13 13H7a2 2 0 01-2-2V5a2 2 0 012-2h6a2 2 0 012 2v6a2 2 0 01-2 2z" stroke="currentColor" stroke-width="2"/>
+                    <path d="M3 11V3a2 2 0 012-2h6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                </svg>
+            </button><pre><code class="language-c">int nota = 15;
+
+if (nota &gt;= 18) {
+    printf(&quot;Excellent&quot;);
+} else if (nota &gt;= 11) {
+    printf(&quot;Approved&quot;);
+} else {
+    printf(&quot;Disapproved&quot;);
+}</code></pre></div></p>
+<h3 id="section-6-item-0">Ternary Operator</h3><p>A shorthand for simple if ... else statements, exactly the same as in javascript:<br>  <code class="language-javascript">variable = condition ? value_if_true: value_if_false;</code></p>
+<div style="height: 8px"></div>
+
+<h2 id="section-7">Loops</h2><p>The  <code class="language-c">while</code> loop in c is exactly the same as in javascript:<div class="code-block-wrapper"><button class="code-copy-button">
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M13 13H7a2 2 0 01-2-2V5a2 2 0 012-2h6a2 2 0 012 2v6a2 2 0 01-2 2z" stroke="currentColor" stroke-width="2"/>
+                    <path d="M3 11V3a2 2 0 012-2h6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                </svg>
+            </button><pre><code class="language-c">while (condition) {
+    // code to execute
+}</code></pre></div></p>
+<h2 id="section-8">Functions</h2><p>If functions are declared after the main function, then they must have a <strong>prototype</strong>, which is simply the function header, before the main function.<div class="code-block-wrapper"><button class="code-copy-button">
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M13 13H7a2 2 0 01-2-2V5a2 2 0 012-2h6a2 2 0 012 2v6a2 2 0 01-2 2z" stroke="currentColor" stroke-width="2"/>
+                    <path d="M3 11V3a2 2 0 012-2h6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                </svg>
+            </button><pre><code class="language-c">int functionName(int argument1); // Prototype, this is necessary if the function is called before implementation because otherwise the compiler does not know what the structure of the function looks like when it is called in the main function and cannot compile the C program.
+
+int main() {
+    functionName(100);
+    return 0;
+}
+
+int functionName(int argument1) { // Implementation
+    // Function code
+    return 1;
+}</code></pre></div></p>
+<ul>
+<li>Functions must have the return type in their header  <code class="language-c">func_type functionName(type_arg1 arg1)</code>, if you don&#39;t want to return a value simply use  <code class="language-c">void</code>.</li>
+<li>Arguments must have their type in their header, you can pass a variable memory address using  <code class="language-c">functionName(&amp;variable);</code> and receive it using  <code class="language-c">functionName(int *variable_adress)</code>, the  <code class="language-c">*</code> in the argument is because it gets the value from the variable address:<div class="code-block-wrapper"><button class="code-copy-button">
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M13 13H7a2 2 0 01-2-2V5a2 2 0 012-2h6a2 2 0 012 2v6a2 2 0 01-2 2z" stroke="currentColor" stroke-width="2"/>
+                    <path d="M3 11V3a2 2 0 012-2h6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                </svg>
+            </button><pre><code class="language-c">void functionName(int *variable_adress); // Prototype
+
+int main() {
+    int variable;
+    functionName(&amp;variable);
+    // variable now has other value
+    return 0;
+}
+
+void functionName(int *variable_adress) { // Implementation
+    *variable_adress = 10 // If you change *variable_address the changes will also have an effect on the variable in the main function.
+}</code></pre></div></li>
+<li>In general, when you use  <code class="language-c">int *ptr = &amp;variable;</code> it means: &quot;Put the address of <strong>variable</strong> in <strong>ptr</strong> and the value in that address is <strong>int</strong> type&quot;</li>
+</ul>
 <script id="entry-script">
 
         /* Make it scroll slowly with special functionalities */
@@ -403,5 +621,22 @@
     }
     
 </script><script id="sidebar-data" type="application/json">
-[]
+[
+    "## Directives",
+    "### Define",
+    "### Librarys",
+    "####  <code class=\"language-c\">stdio.h</code>:",
+    "####  <code class=\"language-c\">stdlib.h</code>:",
+    "####  <code class=\"language-c\">math.h</code>:",
+    "## Main",
+    "## Comments",
+    "## Data types",
+    "### Get the memory address where a variable is stored",
+    "## Arithmetic operators",
+    "## Casting",
+    "## Conditionals",
+    "### Ternary Operator",
+    "## Loops",
+    "## Functions"
+]
 </script>
