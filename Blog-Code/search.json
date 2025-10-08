@@ -1,11 +1,23 @@
 {
   "entries": [
     {
+      "title": "Soy un blog de prueba",
+      "summary": "siuuuuuuuuuuuuuuuuuuuuu",
+      "path": "https://s4mc.github.io/Files/Blog-Code/posts/prueba.html",
+      "date": "2025-10-08",
+      "tags": [
+        "tagdqwd qwdwq",
+        "65qdw165561561qwd"
+      ]
+    },
+    {
       "title": "C language",
       "summary": "C language documentation",
       "path": "https://s4mc.github.io/Files/Blog-Code/posts/C-language.md",
       "date": "2025-08-27",
-      "tags": ["language"]
+      "tags": [
+        "language"
+      ]
     },
     {
       "title": "Test Post",
@@ -17,18 +29,22 @@
       "summary": "Everything you need to know about Markdown syntax for writing in the blog.",
       "path": "./posts/markdown-guide.md",
       "date": "2025-01-16",
-      "tags": ["markdown", "guide", "writing"]
+      "tags": [
+        "markdown",
+        "guide",
+        "writing"
+      ]
     },
     {
       "title": "How to Use Iframes",
       "summary": "Learn how to embed external content using the special iframe syntax.",
       "path": "https://s4mc.github.io/Files/Blog-Code/posts/how-to-use-iframes.md",
       "date": "2025-01-17",
-      "tags": ["iframes", "embedded", "tutorial"]
+      "tags": [
+        "iframes",
+        "embedded",
+        "tutorial"
+      ]
     }
   ]
 }
-
-
-
-
