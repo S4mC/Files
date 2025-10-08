@@ -1,10 +1,13 @@
 {
   "entries": [
     {
-      "title": "wqd",
-      "summary": "wqdqwd",
+      "title": "entrada 1",
+      "summary": "p´ro",
       "path": "https://s4mc.github.io/Files/Blog-Code/posts/wqdqw.md",
-      "tags": []
+      "tags": [
+        "wdq"
+      ],
+      "date": "2000-02-10"
     },
     {
       "title": "Soy un bdw",
