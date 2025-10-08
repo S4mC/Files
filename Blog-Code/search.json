@@ -1,20 +1,6 @@
 {
   "entries": [
     {
-      "title": "Soy un blog de prueba",
-      "summary": "wqd",
-      "path": "https://s4mc.github.io/Files/Blog-Code/posts/wqdwqd.md",
-      "tags": []
-    },
-    {
-      "title": "wqd",
-      "summary": "wqd",
-      "path": "https://s4mc.github.io/Files/Blog-Code/posts/Yeahh.md",
-      "tags": [
-        "wdq"
-      ]
-    },
-    {
       "title": "C language",
       "summary": "C language documentation",
       "path": "https://s4mc.github.io/Files/Blog-Code/posts/C-language.md",
