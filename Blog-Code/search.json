@@ -7,6 +7,29 @@
       "tags": []
     },
     {
+      "title": "C",
+      "summary": "1234567",
+      "path": "https://s4mc.github.io/Files/Blog-Code/posts/Probando.md",
+      "tags": [
+        "tagdqwd qwdwq",
+        "65qdw165561561qwd"
+      ]
+    },
+    {
+      "title": "wdqwqd",
+      "summary": "qdwqwd",
+      "path": "https://s4mc.github.io/Files/Blog-Code/posts/pruebaaa.html",
+      "tags": []
+    },
+    {
+      "title": "C language",
+      "summary": "C language documentation",
+      "path": "https://s4mc.github.io/Files/Blog-Code/posts/C-language.md",
+      "tags": [
+        "language"
+      ]
+    },
+    {
       "title": "Test Post prueba 2",
       "summary": "Learn how to embed external content using the special iframe syntax.",
       "path": "./posts/test-posts.md",
