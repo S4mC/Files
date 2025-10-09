@@ -1,7 +1,7 @@
 {
   "entries": [
     {
-      "title": "Sin títulowqd",
+      "title": "Sin tÃ­tulowqd",
       "summary": "wqdwqd",
       "path": "https://s4mc.github.io/Files/Blog-Code/posts/wef.md",
       "tags": []
@@ -15,9 +15,10 @@
       ]
     },
     {
-      "title": "Test Post",
+      "title": "Test Post prueba 2",
       "summary": "Learn how to embed external content using the special iframe syntax.",
-      "path": "./posts/test-posts.md"
+      "path": "./posts/test-posts.md",
+      "tags": []
     },
     {
       "title": "Markdown Guide",
