@@ -1,6 +1,12 @@
 {
   "entries": [
     {
+      "title": "prueba 2",
+      "summary": "fetvrve",
+      "path": "./posts/prueba 2/hola.md",
+      "tags": []
+    },
+    {
       "title": "siuu",
       "summary": "hhgf",
       "path": "posts/top/siu.md",
