@@ -1,6 +1,12 @@
 {
   "entries": [
     {
+      "title": "prueba capr",
+      "summary": "dqwe",
+      "path": "./posts/pruebaC arpte/123.html",
+      "tags": []
+    },
+    {
       "title": "Git",
       "summary": "Git commands",
       "path": "https://s4mc.github.io/Files/Blog-Code/posts/Git.md",
