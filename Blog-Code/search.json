@@ -1,10 +1,13 @@
 {
   "entries": [
     {
-      "title": "prueba 2",
-      "summary": "fetvrve",
+      "title": "prueba 3",
+      "summary": "1234 3",
       "path": "./posts/prueba 2/hola.md",
-      "tags": []
+      "tags": [
+        "1"
+      ],
+      "date": "2025-10-09"
     },
     {
       "title": "Git",
