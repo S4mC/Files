@@ -15,12 +15,6 @@
       ]
     },
     {
-      "title": "Test Post prueba 2",
-      "summary": "Learn how to embed external content using the special iframe syntax.",
-      "path": "./posts/test-posts.md",
-      "tags": []
-    },
-    {
       "title": "Markdown Guide",
       "summary": "Everything you need to know about Markdown syntax for writing in the blog.",
       "path": "./posts/markdown-guide.md",
