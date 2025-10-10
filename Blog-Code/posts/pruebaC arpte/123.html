@@ -1,245 +1,213 @@
-<h1 id="c-language">C language</h1><h2 id="section-0">Directives</h2><p>Directives are special instructions given to the preprocessor (not to the compiler directly). They always start with the  <code class="language-c">#</code> symbol and are executed before the program is compiled.</p>
-<h3 id="section-0-item-0">Define</h3><p>Use  <code class="language-c">#define Name Value</code> to create symbolic constants or macros (text substitutions).<br>f<div class="code-block-wrapper"><button class="code-copy-button">
+<h1 id="xd">xd</h1><p>This is an example of a <strong>blog entry</strong> with <em>italic text</em>.</p>
+<h2 id="section-0">Feature List</h2><ul>
+<li>Support for <strong>bold</strong> and <em>italic</em></li>
+<li>Numbered and bullet lists</li>
+<li><code>inline code</code></li>
+<li>Links: <a href="https://example.com" >Example</a></li>
+</ul>
+<details open>
+                            <summary><p>Collapsible Element</p></summary>
+                            <div class="content-wrapper-details">
+                                <div class="contentDetails">
+
+<h3 id="section-0-item-0">This item is open by default</h3><p>content</p>
+</div> </div> </details>
+
+
+<h3 id="section-0-item-1">SVG Container</h3><p><div
+                id="SVGiewer1"
+                class="SVG-viewer"
+                 style="height:15em;"
+            >
+            <button style="position: absolute; bottom: 10px; right: 10px;background: transparent; border: 0;">
+                <svg id="zoom-in1" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" style="background: black; border-radius: 50%;"><path fill="#fff" d="M19 12.998h-6v6h-2v-6H5v-2h6v-6h2v6h6z"></path></svg>
+                <svg id="zoom-out1" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" style="background: black; border-radius: 50%;"><path fill="#fff" d="M19 12.998H5v-2h14z"/></svg>
+                <svg id="reset_zoom1" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" style="background: black; border-radius: 50%;"><path fill="#fff" d="m12 10.587l4.95-4.95l1.414 1.414l-4.95 4.95l4.95 4.95l-1.415 1.414l-4.95-4.95l-4.949 4.95l-1.414-1.415l4.95-4.95l-4.95-4.95L7.05 5.638z"/></svg>
+            </button><svg id='page1'xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M3 21q-.825 0-1.412-.587T1 19V5q0-.825.588-1.412T3 3h18q.825 0 1.413.588T23 5v14q0 .825-.587 1.413T21 21zm4-4h2V7H5v2h2zm4.5 0h2l1.75-3.175L17 17h2l-2.75-5L19 7h-2l-1.75 3.175L13.5 7h-2l2.75 5z"/></svg></div>
+            </p>
+<h3 id="section-0-item-2">Code Block</h3><p><div class="code-block-wrapper"><button class="code-copy-button">
                 <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M13 13H7a2 2 0 01-2-2V5a2 2 0 012-2h6a2 2 0 012 2v6a2 2 0 01-2 2z" stroke="currentColor" stroke-width="2"/>
                     <path d="M3 11V3a2 2 0 012-2h6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
                 </svg>
-            </button><pre><code class="language-c">// Example:
-#define PI 3.1416</code></pre></div></p>
-<h3 id="section-0-item-1">Librarys</h3><p>Use  <code class="language-c">#include &lt;libraryName.h&gt;</code> to include a standar library in the program (.h for fdbheader file).<br>Use  <code class="language-c">#include &quot;myfile.h&quot;</code> to include a library of files in your program<span class="float-trigger" data-float-id="customLibrary">
-            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 28"><g fill="none" stroke="currentColor" stroke-width="2"><rect width="14" height="14" x="5" y="5" rx="4"/><path stroke-linecap="round" d="M12 15.52v-.01m-1.998-5.533C10.157 9.019 11 8.5 12 8.5s1.686.672 1.87 1.207c.183.535.144 1.344-.363 1.809s-.773.316-1.229.8a1.8 1.8 0 0 0-.278.432"/></g></svg>
-        </span>.</p>
-<div class="float-container" id="float-customLibrary"><button class="float-close">×</button>
-
-<p>This library can have <strong>declarations</strong> (functions, structures, macros, etc.), but <strong>definitions</strong> (the code for the functions) must be in a file with the same name, but with a .c extension.</p>
-</div>
-
-
-<p><rawhtml><br></rawhtml></p>
-<div class="content-conector">
-
-<h4 id="section-0-item-1-subitem-0"><code class="language-c">&lt;stdio.h&gt;</code>:</h4><p>Acronym of <em>standard input-output header</em> contains all the basic input and output tools in C, both for working with the console and with files.</p>
-<ul>
-<li><code class="language-c">printf(&quot;content&quot;); // print formatted</code>:<br>It print data in a specific format to the console.<br>For floating-point numbers (float or double), you can print a certain number of decimal places with the syntax:<div class="code-block-wrapper"><button class="code-copy-button">
-                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M13 13H7a2 2 0 01-2-2V5a2 2 0 012-2h6a2 2 0 012 2v6a2 2 0 01-2 2z" stroke="currentColor" stroke-width="2"/>
-                    <path d="M3 11V3a2 2 0 012-2h6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-                </svg>
-            </button><pre><code class="language-c">printf(&quot;%.3f&quot;, num); // 3 decimal places
-printf(&quot;%.2lf&quot;, num); // 2 decimal places</code></pre></div></li>
-<li><div style="height: 8px"></div>  <code class="language-c">scanf(&quot;%d&quot;, &amp;x); // scan formatted</code>:<br>
-Gets data from the console in the address parameter in a specific format.</li>
-</ul>
-<h4 id="section-0-item-1-subitem-1"><code class="language-c">&lt;stdlib.h&gt;</code>:</h4><p>Provides functions for performing general-purpose operations.</p>
-<ul>
-<li><code class="language-c">int absolute = abs(a); // int absolute value</code></li>
-</ul>
-<h4 id="section-0-item-1-subitem-2"><code class="language-c">&lt;math.h&gt;</code>:</h4><p>Manages double type operations.</p>
-<ul>
-<li><code class="language-c">double power = pow(n,2); // power</code></li>
-<li><code class="language-c">double square_root = sqrt(n); // square root</code></li>
-<li><code class="language-c">double logarithm = log(n)/log(base); // logarithm</code></li>
-<li><code class="language-c">double absolute = fabs(n); // float absolute value</code></li>
-</ul>
-</div>
-
-
-<h2 id="section-1">Main</h2><p>In standard C, every executable program must have a <strong>main function</strong>, because it is the entry point of the program.<div class="code-block-wrapper"><button class="code-copy-button">
-                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M13 13H7a2 2 0 01-2-2V5a2 2 0 012-2h6a2 2 0 012 2v6a2 2 0 01-2 2z" stroke="currentColor" stroke-width="2"/>
-                    <path d="M3 11V3a2 2 0 012-2h6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-                </svg>
-            </button><pre><code class="language-c">int main(){
-    return 0;
+            </button><pre><code class="language-javascript">function hello() {
+    console.log(&quot;Hello world!&quot;);
 }</code></pre></div></p>
-<ul>
-<li>The int value  <code class="language-c">return 0;</code> returned by main is the exit code for the operating system (0 = success, non-0 = error).</li>
-</ul>
-<h2 id="section-2">Comments</h2><p>You can use two types of comments.</p>
-<ul>
-<li>Single line comment:  <code class="language-c">// Comment</code></li>
-<li>Multi-line or block comment:  <code class="language-c">/* ... */</code></li>
-</ul>
-<h2 id="section-3">Data types</h2><table>
+<h3 id="section-0-item-3">Example Table</h3><table>
 <thead>
 <tr>
-<th>Data type</th>
-<th>Description</th>
-<th>Format</th>
-<th>Size</th>
+<th>Column 1</th>
+<th>Column 2</th>
+<th>Column 3</th>
 </tr>
 </thead>
 <tbody><tr>
-<td><code class="language-c">char</code></td>
-<td>An integer type representing a single <strong>character in the ASCII table</strong><span class="float-trigger" data-float-id="chartipe">
-            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 28"><g fill="none" stroke="currentColor" stroke-width="2"><rect width="14" height="14" x="5" y="5" rx="4"/><path stroke-linecap="round" d="M12 15.52v-.01m-1.998-5.533C10.157 9.019 11 8.5 12 8.5s1.686.672 1.87 1.207c.183.535.144 1.344-.363 1.809s-.773.316-1.229.8a1.8 1.8 0 0 0-.278.432"/></g></svg>
-        </span> (smallest data type in C).</td>
-<td>%c <br> (char)</td>
-<td>1 byte</td>
+<td>Cell A</td>
+<td>Cell B</td>
+<td>Cell C</td>
 </tr>
 <tr>
-<td><code class="language-c">int</code></td>
-<td>A basic integer type used to store <strong>whole numbers</strong>.</td>
-<td>%d <br> (decimal)</td>
-<td>2 - 4 bytes<span class="float-trigger" data-float-id="intSize">
-            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 28"><g fill="none" stroke="currentColor" stroke-width="2"><rect width="14" height="14" x="5" y="5" rx="4"/><path stroke-linecap="round" d="M12 15.52v-.01m-1.998-5.533C10.157 9.019 11 8.5 12 8.5s1.686.672 1.87 1.207c.183.535.144 1.344-.363 1.809s-.773.316-1.229.8a1.8 1.8 0 0 0-.278.432"/></g></svg>
-        </span></td>
-</tr>
-<tr>
-<td><code class="language-c">long</code></td>
-<td>An extended integer type used to store larger whole numbers than  <code class="language-c">int</code>.</td>
-<td>%ld <br> (long decimal)</td>
-<td>Typically 8 bytes</td>
-</tr>
-<tr>
-<td><code class="language-c">float</code></td>
-<td>A floating-point type used to store single-precision decimal numbers.</td>
-<td>%f <br> (float)</td>
-<td>4 bytes</td>
-</tr>
-<tr>
-<td><code class="language-c">double</code></td>
-<td>A <strong>floating-point type</strong> used to store precision decimal numbers. <em>(The name means that it is double as precise as a  <code class="language-c">float</code> type.)</em></td>
-<td>%lf <br> (long float)</td>
-<td>8 bytes</td>
+<td>Cell D</td>
+<td>Cell E</td>
+<td>Cell F</td>
 </tr>
 </tbody></table>
-<div class="float-container" id="float-chartipe"><button class="float-close">×</button>
+<h3 id="section-0-item-4">Embedded Iframe</h3><div class="iframe-container"><iframe src="https://example.com" frameborder="0" allowfullscreen ></iframe><button class="iframe-expand-button" title="Expand"><span class="expand-icon"><svg width="16" height="16" viewBox="0 0 24 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path fill="currentColor" d="M3 21v-5h2v3h3v2zm13 0v-2h3v-3h2v5zM3 8V3h5v2H5v3zm16 0V5h-3V3h5v5z"/>
+                        </svg></span><span class="contract-icon" style="display: none;"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M3 3L13 13M3 13V7M3 13H9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg></span></button></div>
 
-<p>The char type need to be implemented with single quotes, for example:<div class="code-block-wrapper"><button class="code-copy-button">
-                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M13 13H7a2 2 0 01-2-2V5a2 2 0 012-2h6a2 2 0 012 2v6a2 2 0 01-2 2z" stroke="currentColor" stroke-width="2"/>
-                    <path d="M3 11V3a2 2 0 012-2h6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-                </svg>
-            </button><pre><code class="language-c">if (char_variable == &quot;c&quot;) {
-    // ❌ Incorrect: &quot;c&quot; is a string literal, not a character
-}</code></pre></div>   <div class="code-block-wrapper"><button class="code-copy-button">
-                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M13 13H7a2 2 0 01-2-2V5a2 2 0 012-2h6a2 2 0 012 2v6a2 2 0 01-2 2z" stroke="currentColor" stroke-width="2"/>
-                    <path d="M3 11V3a2 2 0 012-2h6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-                </svg>
-            </button><pre><code class="language-c">if (char_variable == &#039;c&#039;) {
-    // ✅ Correct: &#039;c&#039; is a character literal
-}</code></pre></div></p>
+<h3 id="section-0-item-5">Blockquote</h3><blockquote>
+<p>This is a<br>blockquote</p>
+</blockquote>
+<h3 id="section-0-item-6">Note Callout</h3><div class="note-callout">
+<div class="callout-header">
+<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 20H7.197c-1.118 0-1.678 0-2.105-.218a2 2 0 0 1-.874-.874C4 18.48 4 17.92 4 16.8V7.2c0-1.12 0-1.68.218-2.108c.192-.377.497-.682.874-.874C5.52 4 6.08 4 7.2 4h9.6c1.12 0 1.68 0 2.107.218c.377.192.683.497.875.874c.218.427.218.987.218 2.105V13m-7 7c.286-.003.466-.014.639-.055q.308-.075.578-.24c.202-.124.375-.296.72-.642l4.126-4.125c.346-.346.518-.52.642-.721q.165-.271.24-.579c.04-.172.051-.352.054-.638M13 20v-5.4c0-.56 0-.84.109-1.054a1 1 0 0 1 .437-.437C13.76 13 14.04 13 14.6 13H20"/></svg>
+<span>Note</span>
+</div>
+<div class="callout-content">
+
+<p>This is a note callout with important information.<br>You can include <strong>formatted text</strong> here.</p>
+</div>
 </div>
 
-
-<h3 id="section-3-item-0">Get the memory address where a variable is stored</h3><p>You can use  <code class="language-c">&amp;</code> on variables or objects that take up memory to get that memory address<div class="code-block-wrapper"><button class="code-copy-button">
-                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M13 13H7a2 2 0 01-2-2V5a2 2 0 012-2h6a2 2 0 012 2v6a2 2 0 01-2 2z" stroke="currentColor" stroke-width="2"/>
-                    <path d="M3 11V3a2 2 0 012-2h6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-                </svg>
-            </button><pre><code class="language-c">#include &lt;stdio.h&gt;
-
-int main() {
-    int x = 42;
-    printf(&quot;x = %d\n&quot;, x); // This prints the variable content
-    printf(&quot;&amp;x = %p\n&quot;, &amp;x); // This prints the address of the variable.
-    return 0;
-}</code></pre></div></p>
-<div class="float-container" id="float-intSize"><button class="float-close">×</button>
-
-<p>use  <code class="language-c">#include &lt;limits.h&gt;</code> and  <code class="language-c">printf(&quot;%d\n&quot;, INT_MAX);</code> for sure</p>
+<h3 id="section-0-item-7">Warning Callout</h3><div class="warning-callout">
+<div class="callout-header">
+<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24"><path fill="currentColor" d="M12 12.5ZM2.725 21q-.575 0-.85-.537T1.8 19.4l9.2-16q.275-.5.75-.7t.95 0t.75.7l9.2 16q.275.5.075 1.063T21.9 21zm1.85-2h14.85L12 5zm7.425-1q.425 0 .713-.288T13 17q0-.425-.288-.713T12 16q-.425 0-.713.288T11 17q0 .425.288.713T12 18m0-3q.425 0 .713-.288T13 14v-3q0-.425-.288-.713T12 10q-.425 0-.713.288T11 11v3q0 .425.288.713T12 15"></path></svg>
+<span>Warning</span>
 </div>
+<div class="callout-content">
 
+<p>This is a warning callout to highlight potential issues or important alerts.<br>Be careful with this action!</p>
+</div>
+</div><script id="entry-script">
 
-<h2 id="section-4">Arithmetic operators</h2><p>Used for basic math operations<div class="code-block-wrapper"><button class="code-copy-button">
-                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M13 13H7a2 2 0 01-2-2V5a2 2 0 012-2h6a2 2 0 012 2v6a2 2 0 01-2 2z" stroke="currentColor" stroke-width="2"/>
-                    <path d="M3 11V3a2 2 0 012-2h6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-                </svg>
-            </button><pre><code class="language-c">int a = 5 + 3;  // addition
-int a = 10 - 7; // subtraction
-int a = 4 * 3;  // multiplication
-float b = 10.0 / 3; // division
-int a = 10 % 3; // modulus (remainder)</code></pre></div></p>
-<h2 id="section-5">Casting</h2><p>Casting is the process of explicitly converting a value from one data type to another. It tells the compiler to treat a variable or expression as if it were of a different type.</p>
-<p><div class="code-block-wrapper"><button class="code-copy-button">
-                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M13 13H7a2 2 0 01-2-2V5a2 2 0 012-2h6a2 2 0 012 2v6a2 2 0 01-2 2z" stroke="currentColor" stroke-width="2"/>
-                    <path d="M3 11V3a2 2 0 012-2h6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-                </svg>
-            </button><pre><code class="language-c">int x = 10;
-double y = (double)x; // converts int 10 to double 10.0</code></pre></div></p>
-<p>For example, in this code it is necessary to have a casting to obtain a suitable result:</p>
-<p><div class="code-block-wrapper"><button class="code-copy-button">
-                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M13 13H7a2 2 0 01-2-2V5a2 2 0 012-2h6a2 2 0 012 2v6a2 2 0 01-2 2z" stroke="currentColor" stroke-width="2"/>
-                    <path d="M3 11V3a2 2 0 012-2h6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-                </svg>
-            </button><pre><code class="language-c">#include &lt;stdio.h&gt;
+                if (document.getElementById("page1")){
+                window.zoomContainer1 = svgPanZoom("#page1");
+                    
+                    let viewer1 = document.getElementById('SVGiewer1');
+                    let rectElement1 = viewer1.querySelector('svg>g>rect');
+                    let lastWidth1 = window.innerWidth;
 
-int main() {
-    double quotient;
-        
-    quotient = (double)5/2; // The (double) is needed to convert an int type to a double type and have all decimal places
-    printf(&quot;quotient = %lf\n&quot;, quotient);
-    return 0;
-}</code></pre></div></p>
-<h2 id="section-6">Conditionals</h2><p>The  <code class="language-c">if</code> condition in c is exactly the same as in javascript:<div class="code-block-wrapper"><button class="code-copy-button">
-                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M13 13H7a2 2 0 01-2-2V5a2 2 0 012-2h6a2 2 0 012 2v6a2 2 0 01-2 2z" stroke="currentColor" stroke-width="2"/>
-                    <path d="M3 11V3a2 2 0 012-2h6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-                </svg>
-            </button><pre><code class="language-c">int nota = 15;
+                    function proper_height1(){
+                        rectElement1 = viewer1.querySelector('svg>g>rect');
+                        if (rectElement1) {
+                            // Get the dimensions of the rect
+                            const rectWidth = rectElement1.getAttribute('width') || rectElement1.width.baseVal.value;
+                            const rectHeight = rectElement1.getAttribute('height') || rectElement1.height.baseVal.value;
+                            
+                            // Calculate the ratio (height/width)
+                            const aspectRatio = rectHeight / rectWidth;
+                            
+                            // Get the current width of the SVG-viewer
+                            const viewerWidth = viewer1.offsetWidth;
+                            
+                            if (viewerWidth > 0) {
+                                // Calculate the proportional height
+                                const proportionalHeight = viewerWidth * aspectRatio;
+                                
+                                // Calculate 80vh in pixels
+                                const maxHeight = window.innerHeight * 0.8;
+                                
+                                // Apply proportional height with limit of 80vh
+                                const finalHeight = Math.min(proportionalHeight, maxHeight);
+                                viewer1.style.height = finalHeight + 'px';
+                            }
+                        }
+                    }
+                    
+                    let resizeTimeout1;
+                    window.addEventListener("resize", function () {
+                        const currentWidth = window.innerWidth;
+                        
+                        // Only execute if width has changed
+                        if (currentWidth !== lastWidth1) {
+                            lastWidth1 = currentWidth;
+                            
+                            clearTimeout(resizeTimeout1); // Cancel any previous timeout
+                            resizeTimeout1 = setTimeout(function () {
+                                viewer1 = document.getElementById('SVGiewer1');
+                                if (window.zoomContainer1) {
+                                    window.zoomContainer1.destroy();
+                                }
+                                proper_height1();
+                                viewer1.querySelectorAll('.svg-pan-zoom_viewport').forEach(viewport => {
+                                    viewport.replaceWith(...viewport.childNodes);
+                                });
+                                window.zoomContainer1 = svgPanZoom("#page1");
+                                center_svg1();
+                            }, 280); // 280ms after it finishes
+                        }
+                    });
+                    
+                    proper_height1();
 
-if (nota &gt;= 18) {
-    printf(&quot;Excellent&quot;);
-} else if (nota &gt;= 11) {
-    printf(&quot;Approved&quot;);
-} else {
-    printf(&quot;Disapproved&quot;);
-}</code></pre></div></p>
-<h3 id="section-6-item-0">Ternary Operator</h3><p>A shorthand for simple if ... else statements, exactly the same as in javascript:<br>  <code class="language-javascript">variable = condition ? value_if_true: value_if_false;</code></p>
-<div style="height: 8px"></div>
+                    // Button listeners
+                    document.getElementById('zoom-in1').addEventListener('click', function(ev){
+                        ev.preventDefault()
+                        window.zoomContainer1.zoomIn()
+                    });
 
-<h2 id="section-7">Loops</h2><p>The  <code class="language-c">while</code> loop in c is exactly the same as in javascript:<div class="code-block-wrapper"><button class="code-copy-button">
-                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M13 13H7a2 2 0 01-2-2V5a2 2 0 012-2h6a2 2 0 012 2v6a2 2 0 01-2 2z" stroke="currentColor" stroke-width="2"/>
-                    <path d="M3 11V3a2 2 0 012-2h6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-                </svg>
-            </button><pre><code class="language-c">while (condition) {
-    // code to execute
-}</code></pre></div></p>
-<h2 id="section-8">Functions</h2><p>If functions are declared after the main function, then they must have a <strong>prototype</strong>, which is simply the function header, before the main function.<div class="code-block-wrapper"><button class="code-copy-button">
-                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M13 13H7a2 2 0 01-2-2V5a2 2 0 012-2h6a2 2 0 012 2v6a2 2 0 01-2 2z" stroke="currentColor" stroke-width="2"/>
-                    <path d="M3 11V3a2 2 0 012-2h6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-                </svg>
-            </button><pre><code class="language-c">int functionName(int argument1); // Prototype, this is necessary if the function is called before implementation because otherwise the compiler does not know what the structure of the function looks like when it is called in the main function and cannot compile the C program.
+                    document.getElementById('zoom-out1').addEventListener('click', function(ev){
+                        ev.preventDefault()
+                        window.zoomContainer1.zoomOut()
+                    });
+                    
+                    function center_svg1(){
+                        const zoomContainer = window.zoomContainer1;
+                        rectElement1 = viewer1.querySelector('svg>g>rect');
+                        
+                        if (zoomContainer && rectElement1) {
+                            zoomContainer.zoom(1);
+                            zoomContainer.pan({
+                                x: (viewer1.offsetWidth - (zoomContainer.getSizes().viewBox.width * zoomContainer.getSizes().realZoom))/2, 
+                                y: (viewer1.offsetHeight - (zoomContainer.getSizes().viewBox.height * zoomContainer.getSizes().realZoom))/2 
+                            });
+                        }else{
+                            window.zoomContainer1.resetZoom();
+                            window.zoomContainer1.fit();
+                            window.zoomContainer1.center();
+                        }
+                    }
 
-int main() {
-    functionName(100);
-    return 0;
-}
-
-int functionName(int argument1) { // Implementation
-    // Function code
-    return 1;
-}</code></pre></div></p>
-<ul>
-<li>Functions must have the return type in their header  <code class="language-c">func_type functionName(type_arg1 arg1)</code>, if you don&#39;t want to return a value simply use  <code class="language-c">void</code>.</li>
-<li>Arguments must have their type in their header, you can pass a variable memory address using  <code class="language-c">functionName(&amp;variable);</code> and receive it using  <code class="language-c">functionName(int *variable_adress)</code>, the  <code class="language-c">*</code> in the argument is because it gets the value from the variable address:<div class="code-block-wrapper"><button class="code-copy-button">
-                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M13 13H7a2 2 0 01-2-2V5a2 2 0 012-2h6a2 2 0 012 2v6a2 2 0 01-2 2z" stroke="currentColor" stroke-width="2"/>
-                    <path d="M3 11V3a2 2 0 012-2h6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-                </svg>
-            </button><pre><code class="language-c">void functionName(int *variable_adress); // Prototype
-
-int main() {
-    int variable;
-    functionName(&amp;variable);
-    // variable now has other value
-    return 0;
-}
-
-void functionName(int *variable_adress) { // Implementation
-    *variable_adress = 10 // If you change *variable_address the changes will also have an effect on the variable in the main function.
-}</code></pre></div></li>
-<li>In general, when you use  <code class="language-c">int *ptr = &amp;variable;</code> it means: &quot;Put the address of <strong>variable</strong> in <strong>ptr</strong> and the value in that address is <strong>int</strong> type&quot;</li>
-</ul>
-<script id="entry-script">
-
+                    document.getElementById('reset_zoom1').addEventListener('click', function(ev){
+                        ev.preventDefault()
+                        center_svg1();
+                    });
+                    
+                    center_svg1();
+                }
+        //Center SVG inside SVG-viewer
+        document.querySelectorAll('.SVG-viewer').forEach((viewer) => {
+            const viewerId = viewer.id;
+            const containerNumber = viewerId.replace('SVGiewer', '');
+            const zoomContainer = window[`zoomContainer${containerNumber}`];
+            
+            if (zoomContainer) {
+                const rectElement = viewer.querySelector('svg>g>rect');
+                
+                if (rectElement) {
+                    zoomContainer.zoom(1);
+                    zoomContainer.pan({
+                        x:
+                            (viewer.offsetWidth -
+                                zoomContainer.getSizes().viewBox.width *
+                                    zoomContainer.getSizes().realZoom) /
+                            2,
+                        y:
+                            (viewer.offsetHeight -
+                                zoomContainer.getSizes().viewBox.height *
+                                    zoomContainer.getSizes().realZoom) /
+                            2,
+                    });
+                } else {
+                    zoomContainer.resetZoom();
+                    zoomContainer.fit();
+                    zoomContainer.center();
+                }
+            }
+        });
         /* Make it scroll slowly with special functionalities */
         document.querySelectorAll("a").forEach((link) => {
             link.addEventListener("click", function (e) {
@@ -643,21 +611,14 @@ void functionName(int *variable_adress) { // Implementation
     
 </script><script id="sidebar-data" type="application/json">
 [
-    "## Directives",
-    "### Define",
-    "### Librarys",
-    "####  <code class=\"language-c\">stdio.h</code>:",
-    "####  <code class=\"language-c\">stdlib.h</code>:",
-    "####  <code class=\"language-c\">math.h</code>:",
-    "## Main",
-    "## Comments",
-    "## Data types",
-    "### Get the memory address where a variable is stored",
-    "## Arithmetic operators",
-    "## Casting",
-    "## Conditionals",
-    "### Ternary Operator",
-    "## Loops",
-    "## Functions"
+    "## Feature List",
+    "### This item is open by default",
+    "### SVG Container",
+    "### Code Block",
+    "### Example Table",
+    "### Embedded Iframe",
+    "### Blockquote",
+    "### Note Callout",
+    "### Warning Callout"
 ]
 </script>
