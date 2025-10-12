@@ -28,12 +28,6 @@
       ]
     },
     {
-      "title": "Create a Preact Web App with Parcel (Deprecated xd)",
-      "summary": "gfdbdfbdfbfbd",
-      "path": "./posts/pRUEBA.md",
-      "tags": []
-    },
-    {
       "title": "Git",
       "summary": "Git commands",
       "path": "https://s4mc.github.io/Files/Blog-Code/posts/Git.md",
@@ -55,17 +49,6 @@
         "markdown",
         "guide",
         "writing"
-      ]
-    },
-    {
-      "title": "How to Use Iframes",
-      "summary": "Learn how to embed external content using the special iframe syntax.",
-      "path": "https://s4mc.github.io/Files/Blog-Code/posts/how-to-use-iframes.md",
-      "date": "2025-01-17",
-      "tags": [
-        "iframes",
-        "embedded",
-        "tutorial"
       ]
     }
   ]
