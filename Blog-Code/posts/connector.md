@@ -14,6 +14,16 @@
 :::
 
 
+- hoka file.txt
+- 📄 File with
+    super long name.bat
+- 📂 Open folder
+    - 📄 file inside.txt  
+    - 📄 other file.txt
+- 📁 folder
+- \📃 escaped icon file.txt
+
+
 :::connector
     1. 📄 hola
     1. 📁 dwqdqwdqwd
