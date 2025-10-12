@@ -1,6 +1,12 @@
 {
   "entries": [
     {
+      "title": "Testing connector",
+      "summary": "Testing the connector's functionality",
+      "path": "./posts/connector.md",
+      "tags": []
+    },
+    {
       "title": "Test grid",
       "summary": "Test of the grid nesting capacity",
       "path": "./posts/Test grid.md",
