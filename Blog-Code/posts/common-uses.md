@@ -380,10 +380,10 @@ Creates a `<div>` with the specified height.
     # Add 50px horizontal space
     Before (w=50px) After
 
-    # Add 2em vertical space
+    # Add 1em vertical space
     Top paragraph
 
-    (h=2em)
+    (h=1em)
 
     Bottom paragraph
 
