@@ -12,7 +12,7 @@ This document explains all the custom Markdown blocks and syntax extensions avai
 2. [Grid System](#h2=grid system)
 3. [Float Elements](#h2=float elements)
 4. [Callouts (Note & Warning)](#h2=callouts)
-5. [Details/Summary](#h2=details summary)
+5. [Details/Summary](#h2=Details/Summary)
 6. [Iframe Embedding](#h2=iframe embedding)
 7. [Spacing Elements](#h2=spacing elements)
 8. [Relative navigation link](#h2=Relative navigation link)
@@ -213,18 +213,18 @@ This is some text with a question mark (?=myid) that opens more info.
 ### Complete Example:
 
 ```markdown
-# My Article
+    # My Article
 
-This is a paragraph with more information available (?=details).
+    This is a paragraph with more information available (?=details).
 
-:::float-details
-    ### Additional Details
+    :::float-details
+        ### Additional Details
 
-    Here's some extra information that doesn't fit in the main text:
-    - Point 1
-    - Point 2
-    - Point 3
-:::
+        Here's some extra information that doesn't fit in the main text:
+        - Point 1
+        - Point 2
+        - Point 3
+    :::
 ```
 
 
@@ -238,29 +238,29 @@ Callouts are styled boxes to highlight important information. Two types are avai
 ### Note Callout:
 
 :::note
-This is important information that readers should be aware of.
-You can include any markdown content here.
+    This is important information that readers should be aware of.
+    You can include any markdown content here.
 :::
 
 ```markdown
-:::note
-This is important information that readers should be aware of.
-You can include any markdown content here.
-:::
+    :::note
+        This is important information that readers should be aware of.
+        You can include any markdown content here.
+    :::
 ```
 
 ### Warning Callout:
 
 :::warning
-This is a critical warning that requires attention.
-Be careful with this information!
+    This is a critical warning that requires attention.
+    Be careful with this information!
 :::
 
 ```markdown
-:::warning
-This is a critical warning that requires attention.
-Be careful with this information!
-:::
+    :::warning
+        This is a critical warning that requires attention.
+        Be careful with this information!
+    :::
 ```
 
 ### Features:
@@ -280,23 +280,23 @@ Collapsible sections that hide content until clicked.
 ### Basic Details:
 
 ```markdown
-:::details Click to expand
-    This content is hidden by default and will show when clicked.
+    :::details Click to expand
+        This content is hidden by default and will show when clicked.
 
-    You can include:
-    - Lists
-    - **Formatted text**
-    - Code blocks
-    - Anything else
-:::
+        You can include:
+        - Lists
+        - **Formatted text**
+        - Code blocks
+        - Anything else
+    :::
 ```
 
 ### Open by Default:
 
 ```markdown
-:::details -open Already expanded
-    This content is visible by default but can be collapsed.
-:::
+    :::details -open Already expanded
+        This content is visible by default but can be collapsed.
+    :::
 ```
 
 ### Features:
@@ -317,9 +317,9 @@ Embed external content with an expandable viewer.
 ### Syntax:
 
 ```markdown
-:::iframe width="100%" height="500px"
-https://example.com
-:::
+    :::iframe width="100%" height="500px"
+    https://example.com
+    :::
 ```
 
 ### Features:
@@ -331,9 +331,9 @@ https://example.com
 ### Example with Multiple Attributes:
 
 ```markdown
-:::iframe width="800px" height="600px" allow="fullscreen"
-https://www.youtube.com/embed/VIDEO_ID
-:::
+    :::iframe width="800px" height="600px" allow="fullscreen"
+    https://www.youtube.com/embed/VIDEO_ID
+    :::
 ```
 
 
@@ -349,7 +349,7 @@ Add precise spacing to your content.
 Adds horizontal spacing:
 
 ```markdown
-Text before (w=2em) text after
+    Text before (w=2em) text after
 ```
 
 Creates a `<div>` with the specified width.
@@ -359,11 +359,11 @@ Creates a `<div>` with the specified width.
 Adds vertical spacing:
 
 ```markdown
-Paragraph 1
+    Paragraph 1
 
-(h=3rem)
+    (h=3rem)
 
-Paragraph 2
+    Paragraph 2
 ```
 
 Creates a `<div>` with the specified height.
@@ -377,22 +377,22 @@ Creates a `<div>` with the specified height.
 ### Examples:
 
 ```markdown
-# Add 50px horizontal space
-Before (w=50px) After
+    # Add 50px horizontal space
+    Before (w=50px) After
 
-# Add 2em vertical space
-Top paragraph
+    # Add 2em vertical space
+    Top paragraph
 
-(h=2em)
+    (h=2em)
 
-Bottom paragraph
+    Bottom paragraph
 
-# Add 1 line-height space
-Content
+    # Add 1 line-height space
+    Content
 
-(h=1lh)
+    (h=1lh)
 
-More content
+    More content
 ```
 
 
@@ -428,27 +428,27 @@ Put where it leads (makes focus) using:
 You can chain multiple directions together:
 
 ```markdown
-# Go out twice then down
-(go-out-out-bellow=section-name)
+    # Go out twice then down
+    (go-out-out-bellow=section-name)
 
-# Go out, then to previous sibling
-(go-out-above=header-title)
+    # Go out, then to previous sibling
+    (go-out-above=header-title)
 
-# Enter first child
-(go-in=first-item)
+    # Enter first child
+    (go-in=first-item)
 ```
 
 ### Examples:
 
 ```markdown
-[Navigate to parent's next sibling with](#goto=next-topic)
-See the next section (go-out-bellow=next-topic)
+    [Navigate to parent's next sibling with](#goto=next-topic)
+    See the next section (go-out-bellow=next-topic)
 
-[Navigate up one level then to previous](#goto=previous-section)
-Go back to previous (go-out-above=previous-section)
+    [Navigate up one level then to previous](#goto=previous-section)
+    Go back to previous (go-out-above=previous-section)
 
-[Navigate to first child of next sibling](#goto=item-list)
-Check the first item (go-bellow-in=item-list)
+    [Navigate to first child of next sibling](#goto=item-list)
+    Check the first item (go-bellow-in=item-list)
 ```
 
 
