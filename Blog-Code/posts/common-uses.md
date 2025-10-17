@@ -534,12 +534,12 @@ All block contents are processed for markdown, so you can use:
 |------------|--------|---------|
 | Connector | `:::connector` | File/folder trees |
 | Grid | `:::grid cols-N gap-N` | Multi-column layouts |
-| Float | `:::float-id` + `(?=id)` | Floating panels/tooltips |
+| Float | `:::float-<id>` + `(?=<id>)` | Floating panels/tooltips |
 | Note | `:::note` | Information callouts |
 | Warning | `:::warning` | Warning callouts |
-| Details | `:::details Title` | Collapsible sections |
+| Details | `:::details <Title>` | Collapsible sections |
 | Iframe | `:::iframe` | Embedded content |
-| Width spacing | `(w=<UNIT>)` | Horizontal space |
-| Height spacing | `(h=<UNIT>)` | Vertical space |
-| Navigation | `(go-DIR=name)` | Relative navigation |
-| Internal links | `[text](#link)` | Auto-encoded links |
+| Width spacing | `(w=<AMOUNT><UNIT>)` | Horizontal space |
+| Height spacing | `(h=<AMOUNT><UNIT>)` | Vertical space |
+| Navigation | `(go-<DIR>=<name>)` | Relative navigation |
+| Internal links | `[<text>](<#link>)` | Auto-encoded links |
