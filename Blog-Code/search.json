@@ -2,6 +2,12 @@
   "entries": [
     {
       "title": "Common uses",
+      "summary": "g",
+      "path": "./posts/Common uses.html",
+      "tags": []
+    },
+    {
+      "title": "Common uses",
       "summary": "Interesting custom markdown uses",
       "path": "./posts/common-uses.md",
       "tags": []
