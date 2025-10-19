@@ -1,0 +1,698 @@
+<h1 id="common-uses">Common uses</h1><p>This document explains all the custom Markdown blocks and syntax extensions available in this blog system.</p>
+<br>
+
+<hr>
+<br>
+
+<h2 id="section-0">Table of Contents</h2><ol start="1">
+<li><p><a href="#h2=connector%20block" >Connector Block</a></p>
+</li>
+<li><p><a href="#h2=grid%20system" >Grid System</a></p>
+</li>
+<li><p><a href="#h2=float%20elements" >Float Elements</a></p>
+</li>
+<li><p><a href="#h2=callouts" >Callouts (Note & Warning)</a></p>
+</li>
+<li><p><a href="#h2=Details/Summary" >Details/Summary</a></p>
+</li>
+<li><p><a href="#h2=iframe%20embedding" >Iframe Embedding</a></p>
+</li>
+<li><p><a href="#h2=spacing%20elements" >Spacing Elements</a></p>
+</li>
+<li><p><a href="#h2=Relative%20navigation%20link" >Relative navigation link</a></p>
+</li>
+</ol>
+<br>
+
+<hr>
+<br>
+
+<h2 id="section-1">Connector Block</h2><p>The <code class="language-">:::connector</code> block creates a visual file/folder tree structure with connecting lines, perfect for displaying hierarchical content like file systems.</p>
+<h3 id="section-1-item-0">Features:</h3><ul>
+<li><p>Nested lists with visual connectors</p>
+</li>
+<li><p>Support for emojis as icons</p>
+</li>
+<li><p>Escape icons with backslash if needed</p>
+</li>
+<li><p>Maintains indentation for nested items</p>
+</li>
+<li><p>Custom attributes support</p>
+</li>
+</ul>
+<h3 id="section-1-item-1">Example:</h3><div class="content-connector" >
+
+<ul>
+<li data-icon="📄"><p>file.txt</p>
+</li>
+<li data-icon="📄"><p>File with<br>  super long name.bat</p>
+</li>
+<li data-icon="📂"><p>Open folder</p>
+  <div class="content-connector" >
+  
+<ul>
+<li data-icon="📄"><p>file inside.txt  </p>
+</li>
+<li data-icon="📄"><p>other file.txt</p>
+</li>
+</ul>
+  </div>
+  </li>
+<li data-icon="📁"><p>folder</p>
+</li>
+<li><p>📃 escaped icon file.txt</p>
+</li>
+</ul>
+</div>
+
+
+<h3 id="section-1-item-2">Syntax:</h3><p><div class="code-block-wrapper"><button class="code-copy-button">
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M13 13H7a2 2 0 01-2-2V5a2 2 0 012-2h6a2 2 0 012 2v6a2 2 0 01-2 2z" stroke="currentColor" stroke-width="2"/>
+                    <path d="M3 11V3a2 2 0 012-2h6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                </svg>
+            </button><pre><code class="language-markdown">:::connector
+    - 📄 file.txt
+    - 📄 File with
+        super long name.bat
+    - 📂 Open folder
+        :::connector
+            - 📄 file inside.txt  
+            - 📄 other file.txt
+        :::
+    - 📁 folder
+    - \📃 escaped icon file.txt
+:::</code></pre></div></p>
+<h3 id="section-1-item-3">With Custom Attributes:</h3><p><div class="code-block-wrapper"><button class="code-copy-button">
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M13 13H7a2 2 0 01-2-2V5a2 2 0 012-2h6a2 2 0 012 2v6a2 2 0 01-2 2z" stroke="currentColor" stroke-width="2"/>
+                    <path d="M3 11V3a2 2 0 012-2h6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                </svg>
+            </button><pre><code class="language-markdown">:::connector style=&quot;max-width: 500px;&quot;
+    - 📄 Your content here
+:::</code></pre></div></p>
+<br>
+
+<hr>
+<br>
+
+<h2 id="section-2">Grid System</h2><p>The <code class="language-">:::grid</code> block creates responsive grid layouts for organizing content in columns.</p>
+<h3 id="section-2-item-0">Features:</h3><ul>
+<li><p>Customizable number of columns</p>
+</li>
+<li><p>Adjustable gap spacing</p>
+</li>
+<li><p>Responsive design options</p>
+</li>
+<li><p>Auto-fit capabilities</p>
+</li>
+<li><p>Equal height items option</p>
+</li>
+<li><p>Custom styling support</p>
+</li>
+</ul>
+<h3 id="section-2-item-1">Basic Grid:</h3><div class="markdown-grid grid-cols-2 gap-2" style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem; ">
+<div class="grid-item">
+
+<h3 id="section-2-item-2">Element 1</h3><p>Content for element 1. Replace with your own content.</p>
+</div>
+<div class="grid-item">
+
+<h3 id="section-2-item-3">Element 2</h3><p>Content for element 2. Replace with your own content.</p>
+<div class="markdown-grid grid-cols-2 gap-2" style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem; ">
+<div class="grid-item">
+
+<h3 id="section-2-item-4">Nested Element 1</h3><p>Content for nested element 1.</p>
+</div>
+<div class="grid-item">
+
+<h3 id="section-2-item-5">Nested Element 2</h3><p>Content for nested element 2.</p>
+</div>
+</div>
+
+</div>
+</div>
+
+<h3 id="section-2-item-6">Syntax:</h3><p><div class="code-block-wrapper"><button class="code-copy-button">
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M13 13H7a2 2 0 01-2-2V5a2 2 0 012-2h6a2 2 0 012 2v6a2 2 0 01-2 2z" stroke="currentColor" stroke-width="2"/>
+                    <path d="M3 11V3a2 2 0 012-2h6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                </svg>
+            </button><pre><code class="language-markdown">:::grid cols-2 gap-2
+    ### Element 1
+
+    Content for element 1. Replace with your own content.
+    ---
+    ### Element 2
+
+    Content for element 2. Replace with your own content.
+
+    :::grid cols-2 gap-2
+        ### Nested Element 1
+
+        Content for nested element 1.
+        ---
+        ### Nested Element 2
+
+        Content for nested element 2.
+    :::
+:::</code></pre></div></p>
+<h3 id="section-2-item-7">Configuration Options:</h3><ul>
+<li><p><strong><code class="language-">cols-N</code></strong>: Number of columns (e.g., <code class="language-">cols-2</code>, <code class="language-">cols-3</code>, <code class="language-">cols-4</code>)</p>
+</li>
+<li><p><strong><code class="language-">gap-N</code></strong>: Gap size between items (e.g., <code class="language-">gap-2</code>, <code class="language-">gap-4</code>)</p>
+</li>
+<li><p><strong><code class="language-">responsive</code></strong>: Makes grid responsive to screen size</p>
+</li>
+<li><p><strong><code class="language-">auto-fit</code></strong>: Automatically fits columns based on content</p>
+</li>
+<li><p><strong><code class="language-">min-N</code></strong>: Minimum width for auto-fit (e.g., <code class="language-">min-250</code>)</p>
+</li>
+<li><p><strong><code class="language-">equal-height</code></strong>: Makes all grid items equal height</p>
+</li>
+<li><p><strong><code class="language-">style=&quot;...&quot;</code></strong>: Add custom CSS styles</p>
+</li>
+</ul>
+<h3 id="section-2-item-8">Examples:</h3><p><div class="code-block-wrapper"><button class="code-copy-button">
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M13 13H7a2 2 0 01-2-2V5a2 2 0 012-2h6a2 2 0 012 2v6a2 2 0 01-2 2z" stroke="currentColor" stroke-width="2"/>
+                    <path d="M3 11V3a2 2 0 012-2h6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                </svg>
+            </button><pre><code class="language-markdown"># Responsive grid with auto-fit
+:::grid auto-fit min-300 gap-3 responsive
+    Content 1
+    ---
+    Content 2
+    ---
+    Content 3
+:::
+
+# 3-column grid with custom styles
+:::grid cols-3 gap-4 style=&quot;padding: 20px; background: #f0f0f0;&quot;
+    Column 1
+    ---
+    Column 2
+    ---
+    Column 3
+:::
+
+# Equal height items
+:::grid cols-2 gap-2 equal-height
+    Short content
+    ---
+    Much longer content that would normally make this item taller
+:::</code></pre></div></p>
+<br>
+
+<hr>
+<br>
+
+<h2 id="section-3">Float Elements</h2><p>Float elements are floating panels that can be triggered anywhere in the content, perfect for tooltips, additional information, or expandable content.</p>
+<h3 id="section-3-item-0">Creating a Float Element:</h3><p><div class="code-block-wrapper"><button class="code-copy-button">
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M13 13H7a2 2 0 01-2-2V5a2 2 0 012-2h6a2 2 0 012 2v6a2 2 0 01-2 2z" stroke="currentColor" stroke-width="2"/>
+                    <path d="M3 11V3a2 2 0 012-2h6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                </svg>
+            </button><pre><code class="language-markdown">:::float-myid
+    This is the content that will appear in the floating panel.
+
+    You can include **any markdown** here, including:
+    - Lists
+    - Images
+    - Code blocks
+    - etc.
+:::</code></pre></div></p>
+<h3 id="section-3-item-1">Triggering the Float Element:</h3><p>Use the syntax <code class="language-">(?=id)</code> anywhere in your content to create a trigger button:</p>
+<p><div class="code-block-wrapper"><button class="code-copy-button">
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M13 13H7a2 2 0 01-2-2V5a2 2 0 012-2h6a2 2 0 012 2v6a2 2 0 01-2 2z" stroke="currentColor" stroke-width="2"/>
+                    <path d="M3 11V3a2 2 0 012-2h6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                </svg>
+            </button><pre><code class="language-markdown">This is some text with a question mark (?=myid) that opens more info.</code></pre></div></p>
+<h3 id="section-3-item-2">Features:</h3><ul>
+<li><p>Click trigger to open/close</p>
+</li>
+<li><p>Click close button (×) to dismiss</p>
+</li>
+<li><p>Click outside to close</p>
+</li>
+<li><p>Multiple float elements per page</p>
+</li>
+<li><p>Supports full markdown inside</p>
+</li>
+</ul>
+<h3 id="section-3-item-3">Complete Example:</h3><p><div class="code-block-wrapper"><button class="code-copy-button">
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M13 13H7a2 2 0 01-2-2V5a2 2 0 012-2h6a2 2 0 012 2v6a2 2 0 01-2 2z" stroke="currentColor" stroke-width="2"/>
+                    <path d="M3 11V3a2 2 0 012-2h6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                </svg>
+            </button><pre><code class="language-markdown"># My Article
+
+This is a paragraph with more information available (?=details).
+
+:::float-details
+    ### Additional Details
+
+    Here&#039;s some extra information that doesn&#039;t fit in the main text:
+    - Point 1
+    - Point 2
+    - Point 3
+:::</code></pre></div></p>
+<br>
+
+<hr>
+<br>
+
+<h2 id="section-4">Callouts</h2><p>Callouts are styled boxes to highlight important information. Two types are available: <strong>Note</strong> and <strong>Warning</strong>.</p>
+<h3 id="section-4-item-0">Note Callout:</h3><div class="note-callout">
+<div class="callout-header">
+<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 20H7.197c-1.118 0-1.678 0-2.105-.218a2 2 0 0 1-.874-.874C4 18.48 4 17.92 4 16.8V7.2c0-1.12 0-1.68.218-2.108c.192-.377.497-.682.874-.874C5.52 4 6.08 4 7.2 4h9.6c1.12 0 1.68 0 2.107.218c.377.192.683.497.875.874c.218.427.218.987.218 2.105V13m-7 7c.286-.003.466-.014.639-.055q.308-.075.578-.24c.202-.124.375-.296.72-.642l4.126-4.125c.346-.346.518-.52.642-.721q.165-.271.24-.579c.04-.172.051-.352.054-.638M13 20v-5.4c0-.56 0-.84.109-1.054a1 1 0 0 1 .437-.437C13.76 13 14.04 13 14.6 13H20"/></svg>
+<span>Note</span>
+</div>
+<div class="callout-content">
+
+<p>This is important information that readers should be aware of.<br>You can include any markdown content here.</p>
+</div>
+</div>
+
+<p><div class="code-block-wrapper"><button class="code-copy-button">
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M13 13H7a2 2 0 01-2-2V5a2 2 0 012-2h6a2 2 0 012 2v6a2 2 0 01-2 2z" stroke="currentColor" stroke-width="2"/>
+                    <path d="M3 11V3a2 2 0 012-2h6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                </svg>
+            </button><pre><code class="language-markdown">:::note
+This is important information that readers should be aware of.
+You can include any markdown content here.
+:::</code></pre></div></p>
+<h3 id="section-4-item-1">Warning Callout:</h3><div class="warning-callout">
+<div class="callout-header">
+<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24"><path fill="currentColor" d="M12 12.5ZM2.725 21q-.575 0-.85-.537T1.8 19.4l9.2-16q.275-.5.75-.7t.95 0t.75.7l9.2 16q.275.5.075 1.063T21.9 21zm1.85-2h14.85L12 5zm7.425-1q.425 0 .713-.288T13 17q0-.425-.288-.713T12 16q-.425 0-.713.288T11 17q0 .425.288.713T12 18m0-3q.425 0 .713-.288T13 14v-3q0-.425-.288-.713T12 10q-.425 0-.713.288T11 11v3q0 .425.288.713T12 15"></path></svg>
+<span>Warning</span>
+</div>
+<div class="callout-content">
+
+<p>This is a critical warning that requires attention.<br>Be careful with this information!</p>
+</div>
+</div>
+
+<p><div class="code-block-wrapper"><button class="code-copy-button">
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M13 13H7a2 2 0 01-2-2V5a2 2 0 012-2h6a2 2 0 012 2v6a2 2 0 01-2 2z" stroke="currentColor" stroke-width="2"/>
+                    <path d="M3 11V3a2 2 0 012-2h6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                </svg>
+            </button><pre><code class="language-markdown">:::warning
+This is a critical warning that requires attention.
+Be careful with this information!
+:::</code></pre></div></p>
+<h3 id="section-4-item-2">Features:</h3><ul>
+<li><p>Icon and header automatically added</p>
+</li>
+<li><p>Supports nested markdown</p>
+</li>
+<li><p>Distinct styling for each type</p>
+</li>
+<li><p>Can contain any markdown content</p>
+</li>
+</ul>
+<br>
+
+<hr>
+<br>
+
+<h2 id="section-5">Details/Summary</h2><p>Collapsible sections that hide content until clicked.</p>
+<h3 id="section-5-item-0">Basic Details:</h3><p><div class="code-block-wrapper"><button class="code-copy-button">
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M13 13H7a2 2 0 01-2-2V5a2 2 0 012-2h6a2 2 0 012 2v6a2 2 0 01-2 2z" stroke="currentColor" stroke-width="2"/>
+                    <path d="M3 11V3a2 2 0 012-2h6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                </svg>
+            </button><pre><code class="language-markdown">:::details Click to expand
+    This content is hidden by default and will show when clicked.
+
+    You can include:
+    - Lists
+    - **Formatted text**
+    - Code blocks
+    - Anything else
+:::</code></pre></div></p>
+<h3 id="section-5-item-1">Open by Default:</h3><p><div class="code-block-wrapper"><button class="code-copy-button">
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M13 13H7a2 2 0 01-2-2V5a2 2 0 012-2h6a2 2 0 012 2v6a2 2 0 01-2 2z" stroke="currentColor" stroke-width="2"/>
+                    <path d="M3 11V3a2 2 0 012-2h6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                </svg>
+            </button><pre><code class="language-markdown">:::details -open Already expanded
+    This content is visible by default but can be collapsed.
+:::</code></pre></div></p>
+<h3 id="section-5-item-2">Features:</h3><ul>
+<li><p>Collapsible content sections</p>
+</li>
+<li><p>Custom summary text</p>
+</li>
+<li><p>Option to start expanded with <code class="language-">-open</code></p>
+</li>
+<li><p>Supports full markdown inside</p>
+</li>
+<li><p>Nested details supported</p>
+</li>
+</ul>
+<br>
+
+<hr>
+<br>
+
+<h2 id="section-6">Iframe Embedding</h2><p>Embed external content with an expandable viewer.</p>
+<h3 id="section-6-item-0">Syntax:</h3><p><div class="code-block-wrapper"><button class="code-copy-button">
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M13 13H7a2 2 0 01-2-2V5a2 2 0 012-2h6a2 2 0 012 2v6a2 2 0 01-2 2z" stroke="currentColor" stroke-width="2"/>
+                    <path d="M3 11V3a2 2 0 012-2h6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                </svg>
+            </button><pre><code class="language-markdown">:::iframe width=&quot;100%&quot; height=&quot;500px&quot;
+https://example.com
+:::</code></pre></div></p>
+<h3 id="section-6-item-1">Features:</h3><ul>
+<li><p>Custom width and height attributes</p>
+</li>
+<li><p>Expand/contract button automatically added</p>
+</li>
+<li><p>Fullscreen capability</p>
+</li>
+<li><p>Any valid iframe attributes supported</p>
+</li>
+</ul>
+<h3 id="section-6-item-2">Example with Multiple Attributes:</h3><p><div class="code-block-wrapper"><button class="code-copy-button">
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M13 13H7a2 2 0 01-2-2V5a2 2 0 012-2h6a2 2 0 012 2v6a2 2 0 01-2 2z" stroke="currentColor" stroke-width="2"/>
+                    <path d="M3 11V3a2 2 0 012-2h6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                </svg>
+            </button><pre><code class="language-markdown">:::iframe width=&quot;800px&quot; height=&quot;600px&quot; allow=&quot;fullscreen&quot;
+https://www.youtube.com/embed/VIDEO_ID
+:::</code></pre></div></p>
+<br>
+
+<hr>
+<br>
+
+<h2 id="section-7">Spacing Elements</h2><p>Add precise spacing to your content.</p>
+<h3 id="section-7-item-0">Width Spacing:</h3><p>Adds horizontal spacing:</p>
+<p><div class="code-block-wrapper"><button class="code-copy-button">
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M13 13H7a2 2 0 01-2-2V5a2 2 0 012-2h6a2 2 0 012 2v6a2 2 0 01-2 2z" stroke="currentColor" stroke-width="2"/>
+                    <path d="M3 11V3a2 2 0 012-2h6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                </svg>
+            </button><pre><code class="language-markdown">Text before (w=2em) text after</code></pre></div></p>
+<p>Creates a <code class="language-">&lt;div&gt;</code> with the specified width.</p>
+<h3 id="section-7-item-1">Height Spacing:</h3><p>Adds vertical spacing:</p>
+<p><div class="code-block-wrapper"><button class="code-copy-button">
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M13 13H7a2 2 0 01-2-2V5a2 2 0 012-2h6a2 2 0 012 2v6a2 2 0 01-2 2z" stroke="currentColor" stroke-width="2"/>
+                    <path d="M3 11V3a2 2 0 012-2h6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                </svg>
+            </button><pre><code class="language-markdown">Paragraph 1
+
+(h=3rem)
+
+Paragraph 2</code></pre></div></p>
+<p>Creates a <code class="language-">&lt;div&gt;</code> with the specified height.</p>
+<h3 id="section-7-item-2">Supported Units:</h3><ul>
+<li><p><code class="language-">px</code> - pixels</p>
+</li>
+<li><p><code class="language-">em</code> - relative to font size</p>
+</li>
+<li><p><code class="language-">rem</code> - relative to root font size</p>
+</li>
+<li><p><code class="language-">lh</code> - line height</p>
+</li>
+</ul>
+<h3 id="section-7-item-3">Examples:</h3><p><div class="code-block-wrapper"><button class="code-copy-button">
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M13 13H7a2 2 0 01-2-2V5a2 2 0 012-2h6a2 2 0 012 2v6a2 2 0 01-2 2z" stroke="currentColor" stroke-width="2"/>
+                    <path d="M3 11V3a2 2 0 012-2h6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                </svg>
+            </button><pre><code class="language-markdown"># Add 50px horizontal space
+Before (w=50px) After
+
+    # Add 1em vertical space
+Top paragraph
+
+    (h=1em)
+
+Bottom paragraph
+
+# Add 1 line-height space
+Content
+
+(h=1lh)
+
+More content</code></pre></div></p>
+<br>
+
+<hr>
+<br>
+
+<h2 id="section-8">Relative navigation link</h2><p>Special navigation elements that create relative links with directional movement.</p>
+<h3 id="section-8-item-0">Syntax:</h3><p>Put the link using:<div class="code-block-wrapper"><button class="code-copy-button">
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M13 13H7a2 2 0 01-2-2V5a2 2 0 012-2h6a2 2 0 012 2v6a2 2 0 01-2 2z" stroke="currentColor" stroke-width="2"/>
+                    <path d="M3 11V3a2 2 0 012-2h6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                </svg>
+            </button><pre><code class="language-markdown">[Link Name](#goto=&lt;DIRECTION&gt;)</code></pre></div></p>
+<p>Put where it leads (makes focus) using:<div class="code-block-wrapper"><button class="code-copy-button">
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M13 13H7a2 2 0 01-2-2V5a2 2 0 012-2h6a2 2 0 012 2v6a2 2 0 01-2 2z" stroke="currentColor" stroke-width="2"/>
+                    <path d="M3 11V3a2 2 0 012-2h6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                </svg>
+            </button><pre><code class="language-markdown">(go-&lt;DIRECTION&gt;=element-name)</code></pre></div></p>
+<h3 id="section-8-item-1">Available Directions:</h3><ul>
+<li><p><strong><code class="language-">out</code></strong>: Navigate to parent element</p>
+</li>
+<li><p><strong><code class="language-">above</code></strong>: Navigate to previous sibling</p>
+</li>
+<li><p><strong><code class="language-">below</code></strong>: Navigate to next sibling</p>
+</li>
+<li><p><strong><code class="language-">in</code></strong>: Navigate to first child</p>
+</li>
+<li><p><strong><code class="language-">inl</code></strong>: Navigate to last child</p>
+</li>
+</ul>
+<h3 id="section-8-item-2">Stacking Directions:</h3><p>You can chain multiple directions together:</p>
+<p><div class="code-block-wrapper"><button class="code-copy-button">
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M13 13H7a2 2 0 01-2-2V5a2 2 0 012-2h6a2 2 0 012 2v6a2 2 0 01-2 2z" stroke="currentColor" stroke-width="2"/>
+                    <path d="M3 11V3a2 2 0 012-2h6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                </svg>
+            </button><pre><code class="language-markdown"># Go out twice then down
+(go-out-out-bellow=section-name)
+
+# Go out, then to previous sibling
+(go-out-above=header-title)
+
+# Enter first child
+(go-in=first-item)</code></pre></div></p>
+<h3 id="section-8-item-3">Examples:</h3><p><div class="code-block-wrapper"><button class="code-copy-button">
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M13 13H7a2 2 0 01-2-2V5a2 2 0 012-2h6a2 2 0 012 2v6a2 2 0 01-2 2z" stroke="currentColor" stroke-width="2"/>
+                    <path d="M3 11V3a2 2 0 012-2h6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                </svg>
+            </button><pre><code class="language-markdown">[Navigate to parent&#039;s next sibling with](#goto=next-topic)
+See the next section (go-out-bellow=next-topic)
+
+[Navigate up one level then to previous](#goto=previous-section)
+Go back to previous (go-out-above=previous-section)
+
+[Navigate to first child of next sibling](#goto=item-list)
+Check the first item (go-bellow-in=item-list)</code></pre></div></p>
+<br>
+
+<hr>
+<br>
+
+<h2 id="section-9">Additional Notes</h2><h3 id="section-9-item-0">Nesting Blocks:</h3><p>Most blocks support nesting. Common patterns:</p>
+<p><div class="code-block-wrapper"><button class="code-copy-button">
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M13 13H7a2 2 0 01-2-2V5a2 2 0 012-2h6a2 2 0 012 2v6a2 2 0 01-2 2z" stroke="currentColor" stroke-width="2"/>
+                    <path d="M3 11V3a2 2 0 012-2h6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                </svg>
+            </button><pre><code class="language-markdown"># Grid inside Note
+:::note
+    Important grid layout:
+    :::grid cols-2 gap-2
+        Item 1
+        ---
+        Item 2
+    :::
+:::
+
+# Connector inside Grid
+:::grid cols-2
+    :::connector
+        - File 1
+        - File 2
+    :::
+    ---
+    Other content
+:::
+
+# Details with Float triggers
+:::details More Information
+    Click here for details (?=extra-info)
+
+    :::float-extra-info
+        Even more detailed information
+    :::
+:::</code></pre></div></p>
+<h3 id="section-9-item-1">Indentation:</h3><p>The system automatically removes common indentation from block content, so you can indent for readability in your source files without affecting the output.<br>In some cases, such as lists and connectors within lists, indentation is mandatory for correct operation.</p>
+<h3 id="section-9-item-2">Markdown Processing:</h3><p>All block contents are processed for markdown, so you can use:</p>
+<ul>
+<li><p><strong>Bold</strong>, <em>italic</em>, <code class="language-">code</code></p>
+</li>
+<li><p>Lists and sublists</p>
+</li>
+<li><p>Links and images</p>
+</li>
+<li><p>Code blocks</p>
+</li>
+<li><p>Other custom blocks</p>
+</li>
+</ul>
+<br>
+
+<hr>
+<br>
+
+<h2 id="section-10">Tips and Best Practices</h2><ol start="1">
+<li><p><strong>Use semantic names</strong>: When creating float IDs or navigation targets, use descriptive names like <code class="language-">detailed-explanation</code> instead of <code class="language-">float1</code>.</p>
+</li>
+<li><p><strong>Grid responsiveness</strong>: For mobile-friendly layouts, use <code class="language-">responsive</code> and <code class="language-">auto-fit</code> options with reasonable <code class="language-">min-</code> values.</p>
+</li>
+<li><p><strong>Callout usage</strong>: Use <code class="language-">:::note</code> for helpful information and <code class="language-">:::warning</code> for critical warnings or potential issues.</p>
+</li>
+<li><p><strong>Spacing consistency</strong>: Use <code class="language-">rem</code> or <code class="language-">em</code> units for spacing to maintain consistency with your design system.</p>
+</li>
+<li><p><strong>Navigation links</strong>: Test your navigation links thoroughly as they depend on the rendered HTML structure.</p>
+</li>
+<li><p><strong>Float elements position</strong>: Float elements work best with short, clickable trigger text. Don&#39;t overuse them in a single paragraph.</p>
+</li>
+</ol>
+<br>
+
+<hr>
+<br>
+
+<h2 id="section-11">Quick Reference</h2><table>
+<thead>
+<tr>
+<th>Block Type</th>
+<th>Syntax</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Connector</td>
+<td><code class="language-">:::connector</code></td>
+<td>File/folder trees</td>
+</tr>
+<tr>
+<td>Grid</td>
+<td><code class="language-">:::grid cols-N gap-N</code></td>
+<td>Multi-column layouts</td>
+</tr>
+<tr>
+<td>Float</td>
+<td><code class="language-">:::float-&lt;id&gt;</code> + <code class="language-">(?=&lt;id&gt;)</code></td>
+<td>Floating panels/tooltips</td>
+</tr>
+<tr>
+<td>Note</td>
+<td><code class="language-">:::note</code></td>
+<td>Information callouts</td>
+</tr>
+<tr>
+<td>Warning</td>
+<td><code class="language-">:::warning</code></td>
+<td>Warning callouts</td>
+</tr>
+<tr>
+<td>Details</td>
+<td><code class="language-">:::details &lt;Title&gt;</code></td>
+<td>Collapsible sections</td>
+</tr>
+<tr>
+<td>Iframe</td>
+<td><code class="language-">:::iframe</code></td>
+<td>Embedded content</td>
+</tr>
+<tr>
+<td>Width spacing</td>
+<td><code class="language-">(w=&lt;AMOUNT&gt;&lt;UNIT&gt;)</code></td>
+<td>Horizontal space</td>
+</tr>
+<tr>
+<td>Height spacing</td>
+<td><code class="language-">(h=&lt;AMOUNT&gt;&lt;UNIT&gt;)</code></td>
+<td>Vertical space</td>
+</tr>
+<tr>
+<td>Navigation</td>
+<td><code class="language-">(go-&lt;DIR&gt;=&lt;name&gt;)</code></td>
+<td>Relative navigation</td>
+</tr>
+<tr>
+<td>Internal links</td>
+<td><code class="language-">[&lt;text&gt;](&lt;#link&gt;)</code></td>
+<td>Auto-encoded links</td>
+</tr>
+</tbody></table>
+<script id="entry-script">
+(function setupCustomScrollLinks(){document.querySelectorAll("a").forEach(e=>{e.addEventListener("click",function(e){const t=this.getAttribute("href")||this.getAttribute("xlink:href");if(t&&t.startsWith("#")){e.preventDefault();let n=null;const o=document.querySelector(".entry-content");let s=t.substring(1);if(s=decodeURIComponent(s),s.includes("=")){{const i=s.indexOf("="),t=s.substring(0,i),e=s.substring(i+1);if(t.match(/^h[1-6]$/)){{const s=parseInt(t.substring(1));if(s>=1&&s<=6){const t=o?o.querySelectorAll(`h${s}`):document.querySelectorAll(`h${s}`);if(isNaN(e)){const s=decodeURIComponent(e);n=Array.from(t).find(e=>e.textContent.toLowerCase().includes(s.toLowerCase()))}else{const s=parseInt(e)-1;s>=0&&t.length>s&&(n=t[s])}}}}else if(t==="text"){{const s=decodeURIComponent(e),i=o||document,a=Array.from(i.querySelectorAll("*"));let t=null;for(const e of a)if(e.textContent.includes(s)){t=e;break}if(n=t,t){const e=t=>{for(const n of t.children)if(n.textContent.includes(s))return e(n);return t};n=e(t)}}}else if(t==="query")try{const t=decodeURIComponent(e);n=eval(t)}catch(e){console.warn("Error executing query selector:",e),n=null}else if(t==="goto"){const s=decodeURIComponent(e),t=e=>{if(!e)return!1;const t=window.getComputedStyle(e),n=e.getBoundingClientRect();return t.display!=="none"&&t.visibility!=="hidden"&&t.opacity!=="0"&&n.width>0&&n.height>0},o=e=>{let s=e.parentElement;for(;s;){if(t(s))return s;s=s.parentElement}let n=e.parentNode;if(n&&n.nodeType===Node.ELEMENT_NODE)for(let t of n.childNodes)if(t!==e&&t.nodeType===Node.TEXT_NODE&&t.textContent.trim()){const e=document.createElement("div");for(e.style.display="inline-block";n.firstChild;)e.appendChild(n.firstChild);return n.appendChild(e),e}return null},i=e=>{let n=e.previousSibling;for(;n;){if(n.nodeType===Node.TEXT_NODE&&n.textContent.trim()){const e=document.createElement("span");return e.textContent=n.textContent,n.parentNode.replaceChild(e,n),e}if(n.nodeType===Node.ELEMENT_NODE&&t(n))return n;n=n.previousSibling}return null},a=e=>{let n=e.nextSibling;for(;n;){if(n.nodeType===Node.TEXT_NODE&&n.textContent.trim()){const e=document.createElement("span");return e.textContent=n.textContent,n.parentNode.replaceChild(e,n),e}if(n.nodeType===Node.ELEMENT_NODE&&t(n))return n;n=n.nextSibling}return null},r=e=>{let n=e.firstChild;for(;n;){if(n.nodeType===Node.TEXT_NODE&&n.textContent.trim()){const e=document.createElement("span");return e.textContent=n.textContent,n.parentNode.replaceChild(e,n),e}if(n.nodeType===Node.ELEMENT_NODE&&t(n))return n;n=n.nextSibling}return null},c=e=>{let n=e.lastChild;for(;n;){if(n.nodeType===Node.TEXT_NODE&&n.textContent.trim()){const e=document.createElement("span");return e.textContent=n.textContent,n.parentNode.replaceChild(e,n),e}if(n.nodeType===Node.ELEMENT_NODE&&t(n))return n;n=n.previousSibling}return null},l=(e,t)=>{switch(t){case"out":return o(e);case"above":return i(e);case"below":return a(e);case"in":return r(e);case"inl":return c(e);default:return console.warn("Unknown direction:",t),null}},d=document.querySelectorAll(".go-navigate");for(const e of d)if(e.getAttribute("data-name")===s){const s=e.getAttribute("data-directions"),o=s.split("-");let t=e;for(const e of o)if(t=l(t,e),!t){console.warn("Navigation failed at direction:",e);break}if(t){n=t;break}}n||console.warn("No visible target found for goto:",s)}}}else n=document.getElementById(s);if(n){const o=document.getElementsByClassName("entry-content")[0];let e=null,t=!1;if(o){const t=o.scrollHeight>o.clientHeight,n=window.getComputedStyle(o).overflowY!=="visible";t&&n&&(e=o)}if(e||(e=document.scrollingElement||document.documentElement,t=!0),e){const s=n.getBoundingClientRect();let o;if(t){const e=s.top+window.scrollY,t=window.innerHeight;o=e-t/2+s.height/2}else{const t=e.getBoundingClientRect(),n=s.top-t.top+e.scrollTop;o=n-e.clientHeight/2+s.height/2}e.scrollTo({top:Math.max(0,o),behavior:"smooth"})}const r=()=>{window.highlightTargetTimeoutOut&&clearTimeout(window.highlightTargetTimeoutOut),document.querySelectorAll('[style*="animation"]').forEach(e=>{e.style.animation.includes("targetZoom")&&(e.style.animation="")}),void n.offsetWidth,n.style.animation="targetZoom 1.5s ease-out",window.highlightTargetTimeoutOut=setTimeout(()=>{n.style.animation=""},1500)};let i,a;const s=o=>{a&&clearTimeout(a),i?.disconnect();const l=n.getBoundingClientRect();let c;t?c={top:0,bottom:window.innerHeight}:c=e.getBoundingClientRect();const d=l.top<c.bottom&&l.bottom>c.top;d?(o&&(t?window.removeEventListener(o,s):e.removeEventListener(o,s)),r()):(o&&(t?window.removeEventListener(o,s):e.removeEventListener(o,s)),i=new IntersectionObserver(e=>{e.forEach(e=>{e.isIntersecting&&(i.disconnect(),r())})},{root:t?null:e,threshold:.1}),i.observe(n),a=setTimeout(()=>{i?.disconnect()},5e3))};if(e){const n=t?window:e;"onscrollend"in document.documentElement?n.addEventListener("scrollend",s("scrollend")):n.addEventListener("scroll",s("scroll")),s()}}}})})})();(function setupDetailsAnimation(){window.detailsClickHandler&&document.removeEventListener("click",window.detailsClickHandler),window.detailsClickHandler=function(e){const n=e.target.closest("details");if(!n)return;const s=e.target.closest("summary");if(!s)return;const t=n.querySelector(".content-wrapper-details");if(!t)return;e.preventDefault(),n.open?(t.classList.add("animating"),t.classList.remove("opening"),setTimeout(()=>{n.open=!1,t.classList.remove("animating")},400)):(n.open=!0,t.classList.add("animating"),t.offsetHeight,t.classList.add("opening"),setTimeout(()=>{t.classList.remove("animating")},400))},document.addEventListener("click",window.detailsClickHandler),document.querySelectorAll("details[open]").forEach(e=>{const t=e.querySelector(".content-wrapper-details");t.classList.add("opening")})})();(function setupFloatingElements(){window.floatEventListeners&&(window.floatEventListeners.triggerClick&&window.floatEventListeners.triggerClick.forEach(e=>{e.element.removeEventListener("click",e.handler)}),window.floatEventListeners.documentClick&&document.removeEventListener("click",window.floatEventListeners.documentClick),window.floatEventListeners.documentKeydown&&document.removeEventListener("keydown",window.floatEventListeners.documentKeydown)),window.floatEventListeners={triggerClick:[],documentClick:null,documentKeydown:null,activeFloats:new Set},document.querySelectorAll(".float-trigger").forEach(e=>{const t=function(){const c=this.getAttribute("data-float-id"),e=document.getElementById("float-"+c);if(!e)return;if(e.classList.contains("visible")){e.classList.remove("visible"),window.floatEventListeners.activeFloats.delete(c);return}document.querySelectorAll(".float-container.visible").forEach(e=>{e.classList.remove("visible");const t=e.id.replace("float-","");window.floatEventListeners.activeFloats.delete(t)}),e.classList.add("visible"),void e.offsetWidth,window.floatEventListeners.activeFloats.add(c);const a=this.getBoundingClientRect(),o=e.offsetParent.getBoundingClientRect();let t=this.closest(".entry-content");t||(t=this.closest('[style*="overflow"]')||document.documentElement);const f=t.scrollLeft||0,s=t.scrollTop||0;let i=a.left-o.left+f,n=a.bottom-o.top+s+10;const u=e.offsetWidth,r=e.offsetHeight,h=e.offsetParent.clientWidth,y=e.offsetParent.clientHeight;i+u>h-10&&(i=h-u-10),i<0&&(i=0);const j=t.getBoundingClientRect(),b=a.bottom-j.top,p=t.clientHeight-b,g=window.innerHeight-a.bottom,v=t.scrollHeight>t.clientHeight,l=v&&t!==document.documentElement;let d=!1;l?d=p<r+50:d=g<r+50,d&&(n=a.top-o.top+s-r-10);const m=l?s+10:10;if(n<m&&(n=m),!l){const e=window.innerHeight-r-20,t=n-s+o.top;t>e&&(n=e+s-o.top)}e.style.left=i+"px",e.style.top=n+"px"};e.addEventListener("click",t),window.floatEventListeners.triggerClick.push({element:e,handler:t})});const e=function(e){if(e.target.classList.contains("float-close")){{const t=e.target.closest(".float-container");if(t){t.classList.remove("visible");const e=t.id.replace("float-","");window.floatEventListeners.activeFloats.delete(e)}}}else!e.target.closest(".float-container")&&!e.target.closest(".float-trigger")&&document.querySelectorAll(".float-container.visible").forEach(e=>{e.classList.remove("visible");const t=e.id.replace("float-","");window.floatEventListeners.activeFloats.delete(t)})};document.addEventListener("click",e),window.floatEventListeners.documentClick=e;const t=function(e){e.key==="Escape"&&document.querySelectorAll(".float-container.visible").forEach(e=>{e.classList.remove("visible");const t=e.id.replace("float-","");window.floatEventListeners.activeFloats.delete(t)})};document.addEventListener("keydown",t),window.floatEventListeners.documentKeydown=t,window.closeAllFloats=function(){document.querySelectorAll(".float-container.visible").forEach(e=>{e.classList.remove("visible")}),window.floatEventListeners.activeFloats.clear()}})();(function executeEntryContentScripts(){const e=document.querySelector(".entry-content");if(e){const t=e.querySelectorAll("script");t.forEach(e=>{try{const t=document.createElement("script");Array.from(e.attributes).forEach(e=>{t.setAttribute(e.name,e.value)}),e.textContent&&(t.textContent=e.textContent),e.parentNode.replaceChild(t,e)}catch(t){console.log("Error executing script:",t,e)}})}})();
+</script><script id="sidebar-data" type="application/json">
+[
+    "## Table of Contents",
+    "## Connector Block",
+    "### Features:",
+    "### Example:",
+    "### Syntax:",
+    "### With Custom Attributes:",
+    "## Grid System",
+    "### Features:",
+    "### Basic Grid:",
+    "### Element 1",
+    "### Element 2",
+    "### Nested Element 1",
+    "### Nested Element 2",
+    "### Syntax:",
+    "### Configuration Options:",
+    "### Examples:",
+    "## Float Elements",
+    "### Creating a Float Element:",
+    "### Triggering the Float Element:",
+    "### Features:",
+    "### Complete Example:",
+    "## Callouts",
+    "### Note Callout:",
+    "### Warning Callout:",
+    "### Features:",
+    "## Details/Summary",
+    "### Basic Details:",
+    "### Open by Default:",
+    "### Features:",
+    "## Iframe Embedding",
+    "### Syntax:",
+    "### Features:",
+    "### Example with Multiple Attributes:",
+    "## Spacing Elements",
+    "### Width Spacing:",
+    "### Height Spacing:",
+    "### Supported Units:",
+    "### Examples:",
+    "## Relative navigation link",
+    "### Syntax:",
+    "### Available Directions:",
+    "### Stacking Directions:",
+    "### Examples:",
+    "## Additional Notes",
+    "### Nesting Blocks:",
+    "### Indentation:",
+    "### Markdown Processing:",
+    "## Tips and Best Practices",
+    "## Quick Reference"
+]
+</script>
