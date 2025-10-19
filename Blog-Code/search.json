@@ -9,7 +9,7 @@
     {
       "title": "Common uses",
       "summary": "Interesting custom markdown uses",
-      "path": "./posts/common-uses.md",
+      "path": "./common-uses.md",
       "tags": []
     },
     {
@@ -29,7 +29,7 @@
     {
       "title": "Markdown Guide",
       "summary": "Everything you need to know about Markdown syntax for writing in the blog.",
-      "path": "./posts/markdown-guide.md",
+      "path": "./markdown-guide.md",
       "tags": [
         "markdown",
         "guide",
