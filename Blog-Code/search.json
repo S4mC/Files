@@ -1,30 +1,6 @@
 {
   "entries": [
     {
-      "title": "C language",
-      "summary": "1111111",
-      "path": "prubea/C language.md",
-      "tags": []
-    },
-    {
-      "title": "12345",
-      "summary": "123",
-      "path": "12345.md",
-      "tags": []
-    },
-    {
-      "title": "211111111111111",
-      "summary": "133",
-      "path": "211111111111111.md",
-      "tags": []
-    },
-    {
-      "title": "Common uses",
-      "summary": "g",
-      "path": "Common uses.html",
-      "tags": []
-    },
-    {
       "title": "Common uses",
       "summary": "Interesting custom markdown uses",
       "path": "common-uses.md",
