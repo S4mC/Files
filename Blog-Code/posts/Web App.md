@@ -1,4 +1,5 @@
-# Create a Preact Web App with Vite
+# Web App
+Create a Preact Web App with Vite
 
 ## Tools
 - Vite:
@@ -20,7 +21,37 @@
 
 ## Configuration
 1. Install the tools, in Vite create a vanilla JS proyect
-2. Create green`util.js` for easy access to tools:
+2. Create green`vite.config.js` in the root folder for compile all html and put relative paths
+    ```javascript
+        import { defineConfig } from "vite";
+        import { resolve } from "path";
+        import { readdirSync } from "fs";
+
+        // Automatically find all HTML files in the root directory
+        const htmlFiles = readdirSync(".").filter((file) => file.endsWith(".html"));
+        const input = Object.fromEntries(
+            htmlFiles.map((file) => [
+                file.replace(".html", ""), // Use filename without extension as the key
+                resolve(__dirname, file),
+            ])
+        );
+
+        export default defineConfig({
+            base: "./", // Use relative paths in build output
+            build: {
+                rollupOptions: {
+                    input,
+                },
+            },
+        });
+    ```
+3. Create green`commands.md` in the root folder for save and run the commands:
+    ```markdown
+        Commands in the proyect:
+        run `npx vite`(Run preview)
+        run `npx vite build`(Build)
+    ```
+4. Create green`util.js` in the purple`components` folder for easy access to tools:
     ```javascript
         // utils.js - Common utilities for Preact with HTM
         import { h } from 'preact';
@@ -37,7 +68,7 @@
         export default html;
         export { html, $, useState, useEffect, useRef, render };
     ```
-3. Create or edit green`style.css` for a global style and themes:
+5. Create or edit green`style.css` in the purple`styles` folder for a global style and themes:
     ```javascript
         :root {
             /* Common variables for all themes */
@@ -138,5 +169,85 @@
             background-color: var(--bg-dark);
         }
     ```
-4. AÑADIR COMO PONER UN SELECTOR DE IDIOMA Y DE TEMA
+6. Modify the green`index.html` and put:
+    ```html 
+        <!DOCTYPE html>
+        <html lang="en">
+            <head>
+                <meta charset="UTF-8" />
+                <link rel="icon" type="image/svg+xml" href="/icon.svg" />
+                <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+                <title>Title</title>
+            </head>
+            <body>
+                <div id="app"></div>
+                <!-- You can also import the js code from another file -->
+                <!-- <script type="module" src="/src/main.js"></script> -->
+                <script type="module">
+                    import "./styles/style.css";
+                    import { html, $, render } from "./components/utils.js";
+                    import Counter from './components/counter.js';
+                    function App() {
+                        return html`
+                            <h1>Hello world</h1>
+                            <${Counter} />
+                        `;
+                    }
+                    render(html`<${App} />`, $("#app"));
+                </script>
+            </body>
+        </html>
+    ```
+    The green`counter.js` component used is:
+    ```js
+        import {html, useState } from './utils.js';
+
+        export default function Counter() {
+        const [count, setCount] = useState(0);
+        return html`
+            <div class="counter">
+            <p>Contador: ${count}</p>
+            <button onClick=${() => setCount(count + 1)}>+1</button>
+            </div>
+        `;
+        }
+    ```
+7. If you are going to use github create green`.gitignore` in the root folder and put:
+    ```markdown -min
+        # Logs
+        logs
+        *.log
+        npm-debug.log*
+        yarn-debug.log*
+        yarn-error.log*
+        pnpm-debug.log*
+        lerna-debug.log*
+
+        node_modules
+        dist
+        docs
+        dist-ssr
+        *.local
+
+        # Editor directories and files
+        .vscode/*
+        .github/*
+        !.vscode/settings.json
+        !.vscode/tasks.json
+        !.vscode/launch.json
+        !.vscode/extensions.json
+        .idea
+        .DS_Store
+        *.suo
+        *.ntvs*
+        *.njsproj
+        *.sln
+        *.sw?
+    ```
+8. If you are going to use copilot create green`copilot-instructions.md` in the purple`.github` folder, you can put things like:
+    ```markdown -min
+        Always write comments in English.
+        Ignore the /dist folder.
+    ```
+9. AÑADIR COMO PONER UN SELECTOR DE IDIOMA Y DE TEMA
 
