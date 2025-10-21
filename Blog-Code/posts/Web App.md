@@ -1,5 +1,5 @@
 # Web App
-Create a Preact Web App with Vite
+Create a Preact Web App with Vite and htm<br>
 
 ## Tools
 - Vite:
