@@ -1,6 +1,13 @@
 {
   "entries": [
     {
+      "title": "Web App",
+      "summary": "Create a Preact Web App with Vite",
+      "path": "Web App",
+      "tags": [],
+      "hidden": false
+    },
+    {
       "title": "11322132321123",
       "summary": "sdaadsads",
       "path": "hola/pro/siuu/ddwwdqdwqwd",
