@@ -44,8 +44,8 @@ The `:::connector` block creates a visual file/folder tree structure with connec
             - 📄 other file.txt
         :::
     - 📁 folder
-    - ... You can add more things here
     - \📃 escaped icon file.txt
+    - ... You can add more things here
 :::
 
 ### Syntax:
@@ -61,8 +61,8 @@ The `:::connector` block creates a visual file/folder tree structure with connec
             - 📄 other file.txt
         :::
     - 📁 folder
-    - ... You can add more things here
     - \📃 escaped icon file.txt
+    - ... You can add more things here
 :::
 ```
 
