@@ -1,6 +1,13 @@
 {
   "entries": [
     {
+      "title": "Web App minified test",
+      "summary": "Web App minified test",
+      "path": "Web App minified test",
+      "tags": [],
+      "hidden": false
+    },
+    {
       "title": "Web App",
       "summary": "Create a Preact Web App with Vite",
       "path": "Web App",
