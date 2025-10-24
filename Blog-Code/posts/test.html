@@ -1,0 +1,293 @@
+<h1 id="web-app">Web App</h1><p>Create a Preact Web App with Vite and htm<br></p>
+<h2 id="section-0">Tools</h2><ul>
+<li><p>Vite:<br>  It helps to compile the code, minify it, put together the node modules.<br>  run:<br>   bash <code class="language-">npm create vite@latest my-preact-htm-site -- --template vanilla</code></p>
+</li>
+<li><p>Preact:<br>  Helps keep code in components.<br>  run:<div class="code-block-wrapper"><button class="code-copy-button">
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M13 13H7a2 2 0 01-2-2V5a2 2 0 012-2h6a2 2 0 012 2v6a2 2 0 01-2 2z" stroke="currentColor" stroke-width="2"/>
+                    <path d="M3 11V3a2 2 0 012-2h6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                </svg>
+            </button><pre class=""><code class="language-bash">npm init -y
+npm install preact</code></pre></div></p>
+</li>
+<li><p>Htm:<br>  Helps write the HTML of the components without using JSX, using template strings<br>  run:<br>   bash <code class="language-">npm install preact htm</code></p>
+</li>
+</ul>
+<h2 id="section-1">Configuration</h2><ol start="1">
+<li><p>Install the tools, in Vite create a vanilla JS proyect</p>
+</li>
+<li><p>Create <code class="language-green">vite.config.js</code> in the root folder for compile all html and put relative paths<div class="code-block-wrapper"><button class="code-copy-button">
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M13 13H7a2 2 0 01-2-2V5a2 2 0 012-2h6a2 2 0 012 2v6a2 2 0 01-2 2z" stroke="currentColor" stroke-width="2"/>
+                    <path d="M3 11V3a2 2 0 012-2h6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                </svg>
+            </button><pre class=""><code class="language-javascript">import { defineConfig } from &quot;vite&quot;;
+import { resolve } from &quot;path&quot;;
+import { readdirSync } from &quot;fs&quot;;
+
+// Automatically find all HTML files in the root directory
+const htmlFiles = readdirSync(&quot;.&quot;).filter((file) =&gt; file.endsWith(&quot;.html&quot;));
+const input = Object.fromEntries(
+    htmlFiles.map((file) =&gt; [
+        file.replace(&quot;.html&quot;, &quot;&quot;), // Use filename without extension as the key
+        resolve(__dirname, file),
+    ])
+);
+
+export default defineConfig({
+    base: &quot;./&quot;, // Use relative paths in build output
+    build: {
+        rollupOptions: {
+            input,
+        },
+    },
+});</code></pre></div></p>
+</li>
+<li><p>Create <code class="language-green">commands.md</code> in the root folder for save and run the commands:<div class="code-block-wrapper"><button class="code-copy-button">
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M13 13H7a2 2 0 01-2-2V5a2 2 0 012-2h6a2 2 0 012 2v6a2 2 0 01-2 2z" stroke="currentColor" stroke-width="2"/>
+                    <path d="M3 11V3a2 2 0 012-2h6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                </svg>
+            </button><pre class=""><code class="language-markdown">Commands in the proyect:
+run `npx vite`(Run preview)
+run `npx vite build`(Build)</code></pre></div></p>
+</li>
+<li><p>Create <code class="language-green">util.js</code> in the <code class="language-purple">components</code> folder for easy access to tools:<div class="code-block-wrapper"><button class="code-copy-button">
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M13 13H7a2 2 0 01-2-2V5a2 2 0 012-2h6a2 2 0 012 2v6a2 2 0 01-2 2z" stroke="currentColor" stroke-width="2"/>
+                    <path d="M3 11V3a2 2 0 012-2h6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                </svg>
+            </button><pre class=""><code class="language-javascript">// utils.js - Common utilities for Preact with HTM
+import { h } from &#039;preact&#039;;
+import htm from &#039;htm&#039;;
+import { useState, useEffect, useRef } from &#039;preact/hooks&#039;;
+import { render } from &#039;preact&#039;;
+
+// html - To use JSX syntax with htm
+const html = htm.bind(h);
+
+// querySelector
+const $ = (selector) =&gt; document.querySelector(selector);
+
+export default html;
+export { html, $, useState, useEffect, useRef, render };</code></pre></div></p>
+</li>
+<li><p>Create or edit <code class="language-green">style.css</code> in the <code class="language-purple">styles</code> folder for a global style and themes:<div class="code-block-wrapper"><button class="code-copy-button">
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M13 13H7a2 2 0 01-2-2V5a2 2 0 012-2h6a2 2 0 012 2v6a2 2 0 01-2 2z" stroke="currentColor" stroke-width="2"/>
+                    <path d="M3 11V3a2 2 0 012-2h6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                </svg>
+            </button><pre class=""><code class="language-javascript">:root {
+    /* Common variables for all themes */
+    --border-radius: 8px;
+    --spacing-xs: 4px;
+    --spacing-sm: 8px;
+    --spacing-md: 16px;
+    --spacing-lg: 24px;
+    --spacing-xl: 32px;
+    --spacing-2xl: 48px;
+
+    /* Font */
+    --font-family: &quot;Ubuntu&quot;, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, Roboto, Oxygen, Cantarell,
+        &quot;Helvetica Neue&quot;, sans-serif;
+}
+
+/* Themes */
+:root,
+[data-theme=&quot;dark&quot;] {
+    /* Dark theme style */
+    --chroma: 0.01; /* 0.0 to 0.2 */
+    --hue: 126; /* 20 to 340 */
+
+    --primary-color: #a5c14f;
+    --accent-color: #238636;
+    --error-color: #ef4444;
+
+    --bg: oklch(0.15 var(--chroma) var(--hue));
+    --bg-dark: oklch(0.1 var(--chroma) var(--hue));
+    --bg-light: oklch(0.2 var(--chroma) var(--hue));
+    --bg-highlight: oklch(0.25 var(--chroma) var(--hue));
+    --bg-hover: oklch(0.5 0.03 246);
+
+    --color: oklch(0.96 0.03 246);
+    --color-secondary: oklch(0.76 0.03 246);
+    --color-muted: #a1a1aa;
+
+    --border: oklch(0.4 0.03 246);
+    --border-muted: oklch(0.3 0.03 246);
+
+    --scroll-bar: var(--color-muted) var(--bg-highlight);
+}
+
+[data-theme=&quot;dark-green&quot;] {
+    /* Dark Green theme style */
+    --chroma: 0.015; /* 0.0 to 0.2 */
+    --hue: 150; /* 20 to 340 */
+}
+
+[data-theme=&quot;dark-blue&quot;] {
+    /* Dark Blue theme style */
+    --chroma: 0.015; /* 0.0 to 0.2 */
+    --hue: 246; /* 20 to 340 */
+}
+
+[data-theme=&quot;light&quot;] {
+    /* Light theme by default */
+    --chroma: 0; /* 0.0 to 0.2 */
+    --hue: 110; /* 20 to 340 */
+
+    --primary-color: oklch(0.4 0.1 126);
+    --accent-color: #f59e0b;
+    --error-color: #ef4444;
+
+    --bg: oklch(0.98 var(--chroma) var(--hue));
+    --bg-dark: oklch(1 var(--chroma) var(--hue));
+    --bg-light: oklch(0.96 var(--chroma) var(--hue));
+    --bg-highlight: oklch(0.9 var(--chroma) var(--hue));
+    --bg-hover: oklch(0.86 0.01 var(--hue));
+
+    --color: oklch(0.1 0.02 var(--hue));
+    --color-secondary: oklch(0.2 0.02 var(--hue));
+    --color-muted: #94a3b8;
+
+    --border: oklch(0.7 0.01 var(--hue));
+    --border-muted: oklch(0.8 0.01 var(--hue));
+
+    --scroll-bar: var(--color-muted) var(--bg-highlight);
+}
+
+/* Global styles */
+* {
+    margin: 0;
+    padding: 0;
+    outline: none;
+    box-sizing: border-box;
+}
+
+html {
+    scrollbar-width: thin;
+    scrollbar-color: var(--scroll-bar);
+}
+
+body {
+    font-family: var(--font-family);
+    line-height: 1.6;
+    color: var(--color-secondary);
+    background-color: var(--bg-dark);
+}</code></pre></div></p>
+</li>
+<li><p>Modify the <code class="language-green">index.html</code> and put:<div class="code-block-wrapper"><button class="code-copy-button">
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M13 13H7a2 2 0 01-2-2V5a2 2 0 012-2h6a2 2 0 012 2v6a2 2 0 01-2 2z" stroke="currentColor" stroke-width="2"/>
+                    <path d="M3 11V3a2 2 0 012-2h6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                </svg>
+            </button><pre class=""><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;en&quot;&gt;
+    &lt;head&gt;
+        &lt;meta charset=&quot;UTF-8&quot; /&gt;
+        &lt;link rel=&quot;icon&quot; type=&quot;image/svg+xml&quot; href=&quot;/icon.svg&quot; /&gt;
+        &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot; /&gt;
+        &lt;title&gt;Title&lt;/title&gt;
+    &lt;/head&gt;
+    &lt;body&gt;
+        &lt;div id=&quot;app&quot;&gt;&lt;/div&gt;
+        &lt;!-- You can also import the js code from another file --&gt;
+        &lt;!-- &lt;script type=&quot;module&quot; src=&quot;/src/main.js&quot;&gt;&lt;/script&gt; --&gt;
+        &lt;script type=&quot;module&quot;&gt;
+            import &quot;./styles/style.css&quot;;
+            import { html, $, render } from &quot;./components/utils.js&quot;;
+            import Counter from &#039;./components/counter.js&#039;;
+            function App() {
+                return html`
+                    &lt;h1&gt;Hello world&lt;/h1&gt;
+                    &lt;${Counter} /&gt;
+                `;
+            }
+            render(html`&lt;${App} /&gt;`, $(&quot;#app&quot;));
+        &lt;/script&gt;
+    &lt;/body&gt;
+&lt;/html&gt;</code></pre></div> The <code class="language-green">counter.js</code> component used is:<div class="code-block-wrapper"><button class="code-copy-button">
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M13 13H7a2 2 0 01-2-2V5a2 2 0 012-2h6a2 2 0 012 2v6a2 2 0 01-2 2z" stroke="currentColor" stroke-width="2"/>
+                    <path d="M3 11V3a2 2 0 012-2h6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                </svg>
+            </button><pre class=""><code class="language-js">import {html, useState } from &#039;./utils.js&#039;;
+
+export default function Counter() {
+const [count, setCount] = useState(0);
+return html`
+    &lt;div class=&quot;counter&quot;&gt;
+    &lt;p&gt;Contador: ${count}&lt;/p&gt;
+    &lt;button onClick=${() =&gt; setCount(count + 1)}&gt;+1&lt;/button&gt;
+    &lt;/div&gt;
+`;
+}</code></pre></div></p>
+</li>
+<li><p>If you are going to use github create <code class="language-green">.gitignore</code> in the root folder and put:<div class="code-block-wrapper min"><button class="code-copy-button">
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M13 13H7a2 2 0 01-2-2V5a2 2 0 012-2h6a2 2 0 012 2v6a2 2 0 01-2 2z" stroke="currentColor" stroke-width="2"/>
+                    <path d="M3 11V3a2 2 0 012-2h6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                </svg>
+            </button><pre class=""><code class="language-markdown"># Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+node_modules
+dist
+docs
+dist-ssr
+*.local
+
+# Editor directories and files
+.vscode/*
+.github/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+.idea
+.DS_Store
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?</code></pre></div></p>
+</li>
+<li><p>If you are going to use copilot create <code class="language-green">copilot-instructions.md</code> in the <code class="language-purple">.github</code> folder, you can put things like:<div class="code-block-wrapper min"><button class="code-copy-button">
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M13 13H7a2 2 0 01-2-2V5a2 2 0 012-2h6a2 2 0 012 2v6a2 2 0 01-2 2z" stroke="currentColor" stroke-width="2"/>
+                    <path d="M3 11V3a2 2 0 012-2h6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                </svg>
+            </button><pre class=""><code class="language-markdown">Always write comments in English.
+Ignore the /dist folder.</code></pre></div></p>
+</li>
+</ol>
+<h2 id="section-2">How to set a language selector</h2><p>Run:<div class="code-block-wrapper"><button class="code-copy-button">
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M13 13H7a2 2 0 01-2-2V5a2 2 0 012-2h6a2 2 0 012 2v6a2 2 0 01-2 2z" stroke="currentColor" stroke-width="2"/>
+                    <path d="M3 11V3a2 2 0 012-2h6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                </svg>
+            </button><pre class=""><code class="language-bash">npm install i18next</code></pre></div></p>
+<p>In <code class="language-javascript">defineConfig({</code> in <code class="language-green">vite.config.js</code> add:<div class="code-block-wrapper"><button class="code-copy-button">
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M13 13H7a2 2 0 01-2-2V5a2 2 0 012-2h6a2 2 0 012 2v6a2 2 0 01-2 2z" stroke="currentColor" stroke-width="2"/>
+                    <path d="M3 11V3a2 2 0 012-2h6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                </svg>
+            </button><pre class=""><code class="language-bash">define: {
+    __BUILD_NUMBER__: JSON.stringify(Date.now()),
+},</code></pre></div></p>
+<p>COMO PONER UN SELECTOR DE TEMA</p>
+<script id="entry-script">
+(function setupCustomScrollLinks(){document.querySelectorAll("a").forEach(e=>{e.addEventListener("click",function(e){const t=this.getAttribute("href")||this.getAttribute("xlink:href");if(t&&t.startsWith("#")){e.preventDefault();let n=null;const o=document.querySelector(".entry-content");let s=t.substring(1);if(s=decodeURIComponent(s),s.includes("=")){{const i=s.indexOf("="),t=s.substring(0,i),e=s.substring(i+1);if(t.match(/^h[1-6]$/)){{const s=parseInt(t.substring(1));if(s>=1&&s<=6){const t=o?o.querySelectorAll(`h${s}`):document.querySelectorAll(`h${s}`);if(isNaN(e)){const s=decodeURIComponent(e);n=Array.from(t).find(e=>e.textContent.toLowerCase().includes(s.toLowerCase()))}else{const s=parseInt(e)-1;s>=0&&t.length>s&&(n=t[s])}}}}else if(t==="text"){{const s=decodeURIComponent(e),i=o||document,a=Array.from(i.querySelectorAll("*"));let t=null;for(const e of a)if(e.textContent.includes(s)){t=e;break}if(n=t,t){const e=t=>{for(const n of t.children)if(n.textContent.includes(s))return e(n);return t};n=e(t)}}}else if(t==="query")try{const t=decodeURIComponent(e);n=eval(t)}catch(e){console.warn("Error executing query selector:",e),n=null}else if(t==="goto"){const s=decodeURIComponent(e),t=e=>{if(!e)return!1;const t=window.getComputedStyle(e),n=e.getBoundingClientRect();return t.display!=="none"&&t.visibility!=="hidden"&&t.opacity!=="0"&&n.width>0&&n.height>0},o=e=>{let s=e.parentElement;for(;s;){if(t(s))return s;s=s.parentElement}let n=e.parentNode;if(n&&n.nodeType===Node.ELEMENT_NODE)for(let t of n.childNodes)if(t!==e&&t.nodeType===Node.TEXT_NODE&&t.textContent.trim()){const e=document.createElement("div");for(e.style.display="inline-block";n.firstChild;)e.appendChild(n.firstChild);return n.appendChild(e),e}return null},i=e=>{let n=e.previousSibling;for(;n;){if(n.nodeType===Node.TEXT_NODE&&n.textContent.trim()){const e=document.createElement("span");return e.textContent=n.textContent,n.parentNode.replaceChild(e,n),e}if(n.nodeType===Node.ELEMENT_NODE&&t(n))return n;n=n.previousSibling}return null},a=e=>{let n=e.nextSibling;for(;n;){if(n.nodeType===Node.TEXT_NODE&&n.textContent.trim()){const e=document.createElement("span");return e.textContent=n.textContent,n.parentNode.replaceChild(e,n),e}if(n.nodeType===Node.ELEMENT_NODE&&t(n))return n;n=n.nextSibling}return null},r=e=>{let n=e.firstChild;for(;n;){if(n.nodeType===Node.TEXT_NODE&&n.textContent.trim()){const e=document.createElement("span");return e.textContent=n.textContent,n.parentNode.replaceChild(e,n),e}if(n.nodeType===Node.ELEMENT_NODE&&t(n))return n;n=n.nextSibling}return null},c=e=>{let n=e.lastChild;for(;n;){if(n.nodeType===Node.TEXT_NODE&&n.textContent.trim()){const e=document.createElement("span");return e.textContent=n.textContent,n.parentNode.replaceChild(e,n),e}if(n.nodeType===Node.ELEMENT_NODE&&t(n))return n;n=n.previousSibling}return null},l=(e,t)=>{switch(t){case"out":return o(e);case"above":return i(e);case"below":return a(e);case"in":return r(e);case"inl":return c(e);default:return console.warn("Unknown direction:",t),null}},d=document.querySelectorAll(".go-navigate");for(const e of d)if(e.getAttribute("data-name")===s){const s=e.getAttribute("data-directions"),o=s.split("-");let t=e;for(const e of o)if(t=l(t,e),!t){console.warn("Navigation failed at direction:",e);break}if(t){n=t;break}}n||console.warn("No visible target found for goto:",s)}}}else n=document.getElementById(s);if(n){const o=document.getElementsByClassName("entry-content")[0];let e=null,t=!1;if(o){const t=o.scrollHeight>o.clientHeight,n=window.getComputedStyle(o).overflowY!=="visible";t&&n&&(e=o)}if(e||(e=document.scrollingElement||document.documentElement,t=!0),e){const s=n.getBoundingClientRect();let o;if(t){const e=s.top+window.scrollY,t=window.innerHeight;o=e-t/2+s.height/2}else{const t=e.getBoundingClientRect(),n=s.top-t.top+e.scrollTop;o=n-e.clientHeight/2+s.height/2}e.scrollTo({top:Math.max(0,o),behavior:"smooth"})}const r=()=>{window.highlightTargetTimeoutOut&&clearTimeout(window.highlightTargetTimeoutOut),document.querySelectorAll('[style*="animation"]').forEach(e=>{e.style.animation.includes("targetZoom")&&(e.style.animation="")}),void n.offsetWidth,n.style.animation="targetZoom 1.5s ease-out",window.highlightTargetTimeoutOut=setTimeout(()=>{n.style.animation=""},1500)};let i,a;const s=o=>{a&&clearTimeout(a),i?.disconnect();const l=n.getBoundingClientRect();let c;t?c={top:0,bottom:window.innerHeight}:c=e.getBoundingClientRect();const d=l.top<c.bottom&&l.bottom>c.top;d?(o&&(t?window.removeEventListener(o,s):e.removeEventListener(o,s)),r()):(o&&(t?window.removeEventListener(o,s):e.removeEventListener(o,s)),i=new IntersectionObserver(e=>{e.forEach(e=>{e.isIntersecting&&(i.disconnect(),r())})},{root:t?null:e,threshold:.1}),i.observe(n),a=setTimeout(()=>{i?.disconnect()},5e3))};if(e){const n=t?window:e;"onscrollend"in document.documentElement?n.addEventListener("scrollend",s("scrollend")):n.addEventListener("scroll",s("scroll")),s()}}}})})})();(function setupDetailsAnimation(){window.detailsClickHandler&&document.removeEventListener("click",window.detailsClickHandler),window.detailsClickHandler=function(e){const n=e.target.closest("details");if(!n)return;const s=e.target.closest("summary");if(!s)return;const t=n.querySelector(".content-wrapper-details");if(!t)return;e.preventDefault(),n.open?(t.classList.add("animating"),t.classList.remove("opening"),setTimeout(()=>{n.open=!1,t.classList.remove("animating")},400)):(n.open=!0,t.classList.add("animating"),t.offsetHeight,t.classList.add("opening"),setTimeout(()=>{t.classList.remove("animating")},400))},document.addEventListener("click",window.detailsClickHandler),document.querySelectorAll("details[open]").forEach(e=>{const t=e.querySelector(".content-wrapper-details");t.classList.add("opening")})})();(function setupFloatingElements(){window.floatEventListeners&&(window.floatEventListeners.triggerClick&&window.floatEventListeners.triggerClick.forEach(e=>{e.element.removeEventListener("click",e.handler)}),window.floatEventListeners.documentClick&&document.removeEventListener("click",window.floatEventListeners.documentClick),window.floatEventListeners.documentKeydown&&document.removeEventListener("keydown",window.floatEventListeners.documentKeydown)),window.floatEventListeners={triggerClick:[],documentClick:null,documentKeydown:null,activeFloats:new Set},document.querySelectorAll(".float-trigger").forEach(e=>{const t=function(){const c=this.getAttribute("data-float-id"),e=document.getElementById("float-"+c);if(!e)return;if(e.classList.contains("visible")){e.classList.remove("visible"),window.floatEventListeners.activeFloats.delete(c);return}document.querySelectorAll(".float-container.visible").forEach(e=>{e.classList.remove("visible");const t=e.id.replace("float-","");window.floatEventListeners.activeFloats.delete(t)}),e.classList.add("visible"),void e.offsetWidth,window.floatEventListeners.activeFloats.add(c);const a=this.getBoundingClientRect(),o=e.offsetParent.getBoundingClientRect();let t=this.closest(".entry-content");t||(t=this.closest('[style*="overflow"]')||document.documentElement);const f=t.scrollLeft||0,s=t.scrollTop||0;let i=a.left-o.left+f,n=a.bottom-o.top+s+10;const u=e.offsetWidth,r=e.offsetHeight,h=e.offsetParent.clientWidth,y=e.offsetParent.clientHeight;i+u>h-10&&(i=h-u-10),i<0&&(i=0);const j=t.getBoundingClientRect(),b=a.bottom-j.top,p=t.clientHeight-b,g=window.innerHeight-a.bottom,v=t.scrollHeight>t.clientHeight,l=v&&t!==document.documentElement;let d=!1;l?d=p<r+50:d=g<r+50,d&&(n=a.top-o.top+s-r-10);const m=l?s+10:10;if(n<m&&(n=m),!l){const e=window.innerHeight-r-20,t=n-s+o.top;t>e&&(n=e+s-o.top)}e.style.left=i+"px",e.style.top=n+"px"};e.addEventListener("click",t),window.floatEventListeners.triggerClick.push({element:e,handler:t})});const e=function(e){if(e.target.classList.contains("float-close")){{const t=e.target.closest(".float-container");if(t){t.classList.remove("visible");const e=t.id.replace("float-","");window.floatEventListeners.activeFloats.delete(e)}}}else!e.target.closest(".float-container")&&!e.target.closest(".float-trigger")&&document.querySelectorAll(".float-container.visible").forEach(e=>{e.classList.remove("visible");const t=e.id.replace("float-","");window.floatEventListeners.activeFloats.delete(t)})};document.addEventListener("click",e),window.floatEventListeners.documentClick=e;const t=function(e){e.key==="Escape"&&document.querySelectorAll(".float-container.visible").forEach(e=>{e.classList.remove("visible");const t=e.id.replace("float-","");window.floatEventListeners.activeFloats.delete(t)})};document.addEventListener("keydown",t),window.floatEventListeners.documentKeydown=t,window.closeAllFloats=function(){document.querySelectorAll(".float-container.visible").forEach(e=>{e.classList.remove("visible")}),window.floatEventListeners.activeFloats.clear()}})();
+</script><script id="sidebar-data" type="application/json">
+[
+    "## Tools",
+    "## Configuration",
+    "## How to set a language selector"
+]
+</script>
