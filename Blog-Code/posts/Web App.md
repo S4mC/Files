@@ -431,14 +431,13 @@ Create a green`languages` folder with this structure:
                         :::connector
                             - 📄 component.json
                         :::
-                        <li data-icon="" style=" margin-left: -22px"><p>Other translation files..</p></li>
+                    - ... Other translation files
                 :::
             - 📁 en
             - 📁 de
-                <li data-icon="" style=" margin-left: -22px"><p>Others languages folder...</p></li>
+            - ... Others languages folder
         :::
 :::
-
 
 The translation files must have this structure:
 ```json
