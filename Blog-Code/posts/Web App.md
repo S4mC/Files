@@ -18,7 +18,6 @@ Create a Preact Web App with Vite and htm<br>
     run:
      bash `npm install preact htm`
 
-
 ## Configuration
 1. Install the tools, in Vite create a vanilla JS proyect
 2. Create green`vite.config.js` in the root folder for compile all html and put relative paths
