@@ -1,6 +1,13 @@
 {
   "entries": [
     {
+      "title": "test.html",
+      "summary": "test.html",
+      "path": "test.html",
+      "tags": [],
+      "hidden": false
+    },
+    {
       "title": "Web App minified test.html",
       "summary": "Web App minified test.html",
       "path": "Web App minified test.html",
