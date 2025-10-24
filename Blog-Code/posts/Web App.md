@@ -22,7 +22,7 @@ Create a Preact Web App with Vite and htm<br>
 ## Configuration
 1. Install the tools, in Vite create a vanilla JS proyect
 2. Create green`vite.config.js` in the root folder for compile all html and put relative paths
-    ```javascript
+    ```javascript -folded
         import { defineConfig } from "vite";
         import { resolve } from "path";
         import { readdirSync } from "fs";
@@ -52,7 +52,7 @@ Create a Preact Web App with Vite and htm<br>
         run `npx vite build`(Build)
     ```
 4. Create green`util.js` in the purple`components` folder for easy access to tools:
-    ```javascript
+    ```javascript -folded
         // utils.js - Common utilities for Preact with HTM
         import { h } from 'preact';
         import htm from 'htm';
@@ -69,7 +69,7 @@ Create a Preact Web App with Vite and htm<br>
         export { html, $, useState, useEffect, useRef, render };
     ```
 5. Create or edit green`style.css` in the purple`styles` folder for a global style and themes:
-    ```javascript
+    ```javascript -folded
         :root {
             /* Common variables for all themes */
             --border-radius: 8px;
@@ -170,7 +170,7 @@ Create a Preact Web App with Vite and htm<br>
         }
     ```
 6. Modify the green`index.html` and put:
-    ```html 
+    ```html -folded
         <!DOCTYPE html>
         <html lang="en">
             <head>
@@ -199,7 +199,7 @@ Create a Preact Web App with Vite and htm<br>
         </html>
     ```
     The green`counter.js` component used is:
-    ```js
+    ```js -folded
         import {html, useState } from './utils.js';
 
         export default function Counter() {
@@ -213,7 +213,7 @@ Create a Preact Web App with Vite and htm<br>
         }
     ```
 7. If you are going to use github create green`.gitignore` in the root folder and put:
-    ```markdown -min
+    ```markdown -min -folded
         # Logs
         logs
         *.log
@@ -249,5 +249,257 @@ Create a Preact Web App with Vite and htm<br>
         Always write comments in English.
         Ignore the /dist folder.
     ```
-9. AÑADIR COMO PONER UN SELECTOR DE IDIOMA Y DE TEMA
 
+## How to set a language selector
+
+Run:
+```bash
+    npm install i18next
+```
+
+In green`vite.config.js` in javascript`defineConfig({` add:
+```bash
+    define: {
+        __BUILD_NUMBER__: JSON.stringify(Date.now()),
+    },
+```
+
+Create green`components/languages.js` and inside put **(Don't forget to change AVAILABLE_LANGUAGES to put the languages you are going to accept)**:
+```javascript -folded
+    // Simple i18n system with i18next
+    import i18next from "i18next";
+
+    const LANG_KEY = "i18nextLng";
+    const CACHE_KEY_PREFIX = "i18n_cache_";
+    const BUILD_KEY = "i18n_build";
+
+    // Available languages with native names
+    export const AVAILABLE_LANGUAGES = [
+        { code: "en", name: "English" },
+        { code: "es", name: "Español" },
+        { code: "fr", name: "Français" },
+        { code: "de", name: "Deutsch" },
+        { code: "it", name: "Italiano" },
+        { code: "pt", name: "Português" },
+        { code: "zh", name: "中文" },
+        { code: "ja", name: "日本語" },
+    ];
+
+    const SUPPORTED_LANGS = AVAILABLE_LANGUAGES.map(lang => lang.code);
+
+    // Track all namespaces that are used
+    const registeredNamespaces = new Set();
+
+    // Get language from localStorage or browser
+    function detectLanguage() {
+        const saved = localStorage.getItem(LANG_KEY);
+        if (saved && SUPPORTED_LANGS.includes(saved)) return saved;
+        
+        const browser = navigator.language.split("-")[0];
+        return SUPPORTED_LANGS.includes(browser) ? browser : "en";
+    }
+
+    // Load translation file with cache busting
+    async function loadTranslations(lang, namespace) {
+        const isDev = import.meta.env.DEV;
+        const cacheKey = `${CACHE_KEY_PREFIX}_${lang}_${namespace}`;
+        const storedBuild = localStorage.getItem(BUILD_KEY);
+        const currentBuild = String(__BUILD_NUMBER__);
+        
+        // In development, skip cache - always fetch fresh
+        if (!isDev && storedBuild === currentBuild) {
+            const cached = localStorage.getItem(cacheKey);
+            if (cached) {
+                try {
+                    return JSON.parse(cached);
+                } catch (e) {
+                    console.warn(`Failed to parse cached translations for ${namespace}`, e);
+                }
+            }
+        }
+        
+        // Fetch from server
+        const url = `./languages/${lang}/${namespace}.json?v=${currentBuild}`;
+        const response = await fetch(url);
+        if (!response.ok) throw new Error(`Failed to load ${lang} translations`);
+        
+        const data = await response.json();
+        
+        // Cache the data only in production
+        if (!isDev) {
+            try {
+                localStorage.setItem(cacheKey, JSON.stringify(data));
+                localStorage.setItem(BUILD_KEY, currentBuild);
+            } catch (e) {
+                console.warn('Failed to cache translations (localStorage might be full)', e);
+            }
+        }
+        
+        return data;
+    }
+
+    // Initialize i18next - automatically loads all registered namespaces
+    export async function initLanguages() {
+        const lang = detectLanguage();
+        const resources = { [lang]: {} };
+        
+        // Get first namespace as default (usually the page namespace)
+        const namespaces = Array.from(registeredNamespaces);
+        const defaultNS = namespaces[0] || 'index';
+        
+        // Load all registered translations
+        for (const ns of registeredNamespaces) {
+            const translations = await loadTranslations(lang, ns);
+            resources[lang][ns] = translations;
+        }
+        
+        await i18next.init({
+            lng: lang,
+            resources,
+            ns: namespaces,
+            defaultNS: defaultNS,
+            fallbackLng: false,
+            interpolation: { escapeValue: false },
+        });
+        
+        localStorage.setItem(LANG_KEY, lang);
+        document.documentElement.setAttribute("lang", lang);
+        
+        return i18next;
+    }
+
+    // Simple function to get translator for a namespace
+    // Automatically registers the namespace for loading
+    export function useTranslation(namespace) {
+        if (namespace) {
+            registeredNamespaces.add(namespace);
+        }
+        
+        return {
+            t: (key) => namespace ? i18next.t(key, { ns: namespace }) : i18next.t(key)
+        };
+    }
+
+    // Get current language
+    export function getCurrentLanguage() {
+        return i18next.language || detectLanguage();
+    }
+
+    // Change language and reload page
+    export function changeLanguage(lng) {
+        if (!SUPPORTED_LANGS.includes(lng)) {
+            console.warn(`Language ${lng} is not supported`);
+            return;
+        }
+        
+        localStorage.setItem(LANG_KEY, lng);
+        window.location.reload();
+    }
+
+    export default i18next;
+```
+
+Create green`components/languageSelector.js` and inside put:
+```javascript -folded
+    // Language selector dropdown
+    import { html } from "./utils.ts";
+    import { getCurrentLanguage, changeLanguage, AVAILABLE_LANGUAGES } from "./languages.js";
+
+    export default function LanguageSelector() {
+        const language = getCurrentLanguage();
+
+        return html`
+            <div class="language-selector">
+                <select value=${language} onChange=${(e) => changeLanguage(e.target.value)}>
+                    ${AVAILABLE_LANGUAGES.map(
+                        (lang) => html`<option value=${lang.code}>${lang.name}</option>`
+                    )}
+                </select>
+            </div>
+        `;
+    }
+```
+
+Create a green`languages` folder with this structure:
+:::connector
+    - 📂 languages
+        :::connector
+            - 📂 es
+                :::connector
+                    - 📄 index.json
+                    - 📁 components
+                        :::connector
+                            - 📄 component.json
+                        :::
+                        <li data-icon="" style=" margin-left: -22px"><p>Other translation files..</p></li>
+                :::
+            - 📁 en
+            - 📁 de
+                <li data-icon="" style=" margin-left: -22px"><p>Others languages folder...</p></li>
+        :::
+:::
+
+
+The translation files must have this structure:
+```json
+    {
+      "welcome": "Text that will be replaced where t('welcome') is in the html",
+      "description": "Text that will be replaced where t('description') is in the html"
+    }
+```
+
+To use the languages in the html you must first add the blue`LanguageSelector` component in some html to be able to change the language and try:
+```javascript
+    // Import the LanguageSelector.js component
+    import LanguageSelector from './components/languageSelector.js';
+    
+    // Code...
+
+    // Call to the language selector and render it in the <div id="app"></div> element
+    function App() {
+        return html`
+            <h1>Language Selector</h1>
+            <${LanguageSelector} />
+        `;
+    }
+    render(html`<${App} />`, $("#app"));
+```
+
+Then in the html where you want to have different texts as languages you can put something like this structure:
+```javascript
+    // Import the languages.js component
+    import { useTranslation, initLanguages } from "./components/languages.js";
+
+    // Initialize the translation from the index.json file, you can also use something like "components/component"
+    const { t } = useTranslation("index");
+
+    // Where you want to put a text you must put the function t("NameOfText") so inside an html`` you must put ${t("NameOfText")}
+    function App() {
+        return html`
+            <div>
+                <h1>${t("welcome")}</h1>
+                <p>${t("description")}</p>
+            </div>
+        `;
+    }
+
+    // Initialize languages first, then render
+    initLanguages().then(() => {
+        render(html`<${App} />`, $("#app"));
+    });
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+COMO PONER UN SELECTOR DE TEMA
