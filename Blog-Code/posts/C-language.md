@@ -24,14 +24,14 @@ Use c`#include "myfile.h"` to include a library of files in your program(?=custo
     #### c`<stdio.h>`:
     Acronym of *standard input-output header* contains all the basic input and output tools in C, both for working with the console and with files.
     - c`printf("content"); // print formatted`:
-    It print data in a specific format to the console. 
-    For floating-point numbers (float or double), you can print a certain number of decimal places with the syntax:
-    ```c
-        printf("%.3f", num); // 3 decimal places
-        printf("%.2lf", num); // 2 decimal places
-    ```
+        It print data in a specific format to the console. 
+        For floating-point numbers (float or double), you can print a certain number of decimal places with the syntax:
+        ```c
+            printf("%.3f", num); // 3 decimal places
+            printf("%.2lf", num); // 2 decimal places
+        ```
     - (h=8px) c`scanf("%d", &x); // scan formatted`:<br>
-    Gets data from the console in the address parameter in a specific format.
+        Gets data from the console in the address parameter in a specific format.
 
     #### c`<stdlib.h>`:
     Provides functions for performing general-purpose operations.
