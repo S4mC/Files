@@ -1,6 +1,15 @@
 {
   "entries": [
     {
+      "title": "Document 7",
+      "summary": "wqdwdq",
+      "path": "Document 7",
+      "tags": [
+        "wqdwqwd"
+      ],
+      "hidden": true
+    },
+    {
       "title": "Web App",
       "summary": "Create a Preact Web App with Vite",
       "path": "Web App",
