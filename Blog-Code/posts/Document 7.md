@@ -8,6 +8,14 @@
         :::connector
             - 📄 file inside.txt  
             - 📄 other file.txt
+                :::connector
+                    - 📄 file inside.txt  
+                    - 📄 other file.txt
+                        :::connector
+                            - 📄 file inside.txt  
+                            - 📄 other file.txt
+                        :::
+                :::
         :::
     - 📁 folder
     - \📃 escaped icon file.txt
