@@ -5,7 +5,7 @@ Create a Preact Web App with Vite and htm<br>
 - Vite:
     It helps to compile the code, minify it, put together the node modules.
     run:
-     bash `npm create vite@latest my-preact-htm-site -- --template vanilla`
+    bash`npm create vite@latest my-preact-htm-site -- --template vanilla`
 - Preact:
     Helps keep code in components.
     run:
@@ -16,7 +16,7 @@ Create a Preact Web App with Vite and htm<br>
 - Htm:
     Helps write the HTML of the components without using JSX, using template strings
     run:
-     bash `npm install preact htm`
+     bash`npm install preact htm`
 
 ## Configuration
 1. Install the tools, in Vite create a vanilla JS proyect
@@ -68,7 +68,7 @@ Create a Preact Web App with Vite and htm<br>
         export { html, $, useState, useEffect, useRef, render };
     ```
 5. Create or edit green`style.css` in the purple`styles` folder for a global style and themes:
-    ```javascript -folded
+    ```css -folded
         :root {
             /* Common variables for all themes */
             --border-radius: 8px;
