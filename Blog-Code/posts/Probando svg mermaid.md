@@ -1,36 +1,7 @@
 # Probando svg mermaid
 
-:::svg style="aspect-ratio: 1.2 / 1;" -flowchartTB
-	(markdown) ✅ This **is** *Markdown*
-		- hola a trfeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeodos 4 (newLines)
-		- hola a todos 43r 43 (Holatodos)
 
-	(newLines) ❌ newlines1 o yea
-	Line 1221
-	32241234563432
-	123456
-		- Por esta razin debe de e¿ir a (newLines2)
-
-	(newLines2) 📄 Li1
-	24654165
-	56165e1f65e
-		- hola a trfeeeeeeeeeeeerfeeeeeeeeeeeeeeeod4 43os (newLines3)
-
-	(newLines3) ▶️ Li9ne1
-	Line 2
-	Line 3
-		- hola a rfeeeeeeeeeeeeeeeeeeeeeetod 43o (newLines)
-		- hola a refffffffffffffffffffffffftod 43os (newLines)
-		- hola a tod 43os (newLines)
-		- hola a 15666666666666666666666666666666666666666666666666666666666666666666tod 43os (newLines)
-		- hola a tod 43os (newLines)
-		
-	(Holatodos) 🌉 Hola esdedewedwedwedwewdto es markdown
-		- hola a todo4 34tggtrgtgtrtrgtgr3 rs (newLines)
-:::
-
-
-:::svg -kanban style="height:10em;"
+:::svg -NoB -kanban
 	Todo
 		! Create Documentation
 		!! Create Blog about the new diagram
@@ -54,9 +25,68 @@
 :::
 
 
+:::svg -flowchartTB style="aspect-ratio: 1.25907 / 1;"
+	(markdown) ✅ This **is** *Markdown*
+		- <--> hola a trfeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeodos 4 (newLines)
+		- hola a todos 43r 43 (Holatodos)
+
+	(newLines) ❌ newlines1 o yea
+	Line 1221
+	32241234563432
+	123456
+		- Por esta razin debe de e¿ir a (newLines2)
+
+	(newLines2) 📄 Li1
+	24654165
+	56165e1f65e
+		- hola a trfeeeeeeeeeeeerfeeeeeeeeeeeeeeeod4 43os (newLines3)
+
+	(newLines3) ▶️ Li9ne1
+	Line 2
+	Line 3
+		- hola a rfeeeeeeeeeeeeeeeeeeeeeetod 43o (newLines)
+		- hola a refffffffffffffffffffffffftod 43os (newLines)
+		- hola a tod 43os (newLines)
+		- hola a 15666666666666666666666666666666666666666666666666666666666666666666tod 43os (newLines)
+		- hola a tod 43os (newLines)
+		
+	(Holatodos) 🌉 Hola esdedewedwedwedwewdto es markdown
+		- <-> hola a todo4 34tggtrgtgtrtrgtgr3 rs (newLines)
+:::
+
+
+:::svg -mermaid
+	---
+	config:
+		look: handDrawn
+	---
+	flowchart LR
+		markdown["`This **is** _Markdown_`"]
+		newLines["`Line1
+		Line 2
+		Line 3`"]
+		newLines2["`Line1
+		Line 2
+		Line 3`"]
+		newLines3["`Line1
+		Line 2
+		Line 3`"]
+		Holatodos["Hola esdedewedwedwedwewdto es markdown"]
+		markdown --> |⠀hola a todos 4⠀| newLines
+		markdown --> |⠀hola a todos 43r 43⠀| Holatodos
+		Holatodos --> |⠀hola a todo4 34tggtrgtgtrtrgtgr3 rs⠀| newLines
+		newLines2 --> |⠀hola a tod4 43os⠀| newLines3
+		newLines3 --> |⠀hola a tod 43os⠀| newLines
+		newLines3 --> |⠀hola a tod 43os⠀| newLines
+		newLines3 --> |⠀hola a tod 43os⠀| newLines
+		newLines3 --> |⠀hola a tod 43os⠀| newLines
+		newLines3 --> |⠀hola a tod 43os⠀| newLines
+:::
+
+
 :::svg -pie style="height:20em;" Pets adopted by volunteers
-	Dogs jijiji wnqdionqwiodnowqind: 1
-	Cats: 90
+	"Dogs jijiji wnqdionqwiodnowqind": 1
+	"Cat": 90
 	Rats: 9
 :::
 
