@@ -1,69 +1,77 @@
-# Document 5
+# Probando svg mermaid
 
-:::svg style="aspect-ratio: 1.2 / 1;" -flowchartTB
-	(markdown) ✅ This **is** *Markdown*
-		- hola a trfeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeodos 4 (newLines)
-		- hola a todos 43r 43 (Holatodos)
 
-	(newLines) ❌ newlines1 o yea
-	Line 1221
-	32241234563432
-	123456
-		- Por esta razin debe de e¿ir a (newLines2)
 
-	(newLines2) 📄 Li1
-	24654165
-	56165e1f65e
-		- hola a trfeeeeeeeeeeeerfeeeeeeeeeeeeeeeod4 43os (newLines3)
-
-	(newLines3) ▶️ Li9ne1
-	Line 2
-	Line 3
-		- hola a rfeeeeeeeeeeeeeeeeeeeeeetod 43o (newLines)
-		- hola a refffffffffffffffffffffffftod 43os (newLines)
-		- hola a tod 43os (newLines)
-		- hola a 15666666666666666666666666666666666666666666666666666666666666666666tod 43os (newLines)
-		- hola a tod 43os (newLines)
-		
-	(Holatodos) 🌉 Hola esdedewedwedwedwewdto es markdown
-		- hola a todo4 34tggtrgtgtrtrgtgr3 rs (newLines)
+:::svg style="height:15em;"
+	<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24"><path fill="currentColor" d="M6 15h1.5V9H5v1.5h1zm3.5 0H12q.425 0 .713-.288T13 14v-4q0-.425-.288-.712T12 9H9.5q-.425 0-.712.288T8.5 10v4q0 .425.288.713T9.5 15m.5-1.5v-3h1.5v3zm4 1.5h1.5v-2.25L17.25 15H19l-2.25-3L19 9h-1.75l-1.75 2.25V9H14zm-9 6q-.825 0-1.412-.587T3 19V5q0-.825.588-1.412T5 3h14q.825 0 1.413.588T21 5v14q0 .825-.587 1.413T19 21z"/></svg>
 :::
 
 
-:::svg -kanban style="height:10em;"
-	Todo
-		! Create Documentation
-		!! Create Blog about the new diagram
+:::grid cols-4 gap-2 auto-fit
+	### Element 1
 
-	In progress
-		!!! Create renderer so that it works in all cases. We also add some extra text here for testing purposes. And some more just for the extra flare.
+	Content for element 1. Replace with your own content.
 
-	Ready for deploy
-		!!!! Design grammar
-	
-	Ready for test
-		Create parsing testsewfewfewfewfewfewfewf (K.Sveidqevist, )
-		last item ( , gg)
-	Done
-		define getData
-		Title of diagram is more than 100 chars when user duplicates diagram with 100 char
-		Update DB function
+	---
 
-	Can't reproduce
-		Weird flickering in Firefox grgr reg re reg erg r egr egreg reg g ererggerregregger end fewedwqdwqqwdwqdd 5615
+	### Element 2
+
+	Content for element 2. Replace with your own content.
+
+	---
+
+	### Element 3
+
+	Content for element 3. Replace with your own content.
+
+	---
+
+	### Element 4
+
+	Content for element 4. Replace with your own content.
+
+	---
+
+	### Element 5
+
+	Content for element 5. Replace with your own content.
+
+	---
+
+	### Element 6
+
+	Content for element 6. Replace with your own content.
+
+	---
+
+	### Element 7
+
+	Content for element 7. Replace with your own content.
+
+	---
+
+	### Element 8
+
+	Content for element 8. Replace with your own content.
+
 :::
 
 
-:::svg -pie style="height:20em;" Pets adopted by volunteers
-	Dogs jijiji wnqdionqwiodnowqind: 1
-	Cats: 90
-	Rats: 9
+:::svg style="height:15em;"
+	- Hola a todos
+	    - (Razón 1) Hola a dos
+	    - (Porque si) feqfdewf
+	        - (Porque a todos funoqeindfoqw)
+                wqdwqdwqdwqfqwidjwqopdw wqqwdwqd
+	        - dqwdwqdwqd
+	        - qdwdqwdqwd
+	    - ewfewfewfew
+	        - qwdqwdqwdwqdw
+            - wqdwqdwqddwq
+            - dwqdwqdwqdqwd
 :::
 
 
-:::svg -xychart style="height:20em;" Sales Revenue
-	x-axis "Months" [jan, feb, jiji]
-	y-axis "Revenue (in $)" 4000 --> 8000
-	bar [5000, 6000, 7900]
-	line [5000, 6000, 7900]
+:::warning
+	rfffffffffffffffffffffffff
 :::
