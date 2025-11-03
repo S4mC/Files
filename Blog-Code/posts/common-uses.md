@@ -16,7 +16,7 @@ This document explains all the custom Markdown blocks and syntax extensions avai
 6. [Iframe Embedding](#h2=iframe embedding)
 7. [Spacing Elements](#h2=spacing elements)
 8. [Relative navigation link](#h2=Relative navigation link)
-
+9. [SVG and Mermaid Diagrams](#h2=svg and mermaid diagrams)
 
 ---
 
@@ -215,18 +215,18 @@ This is some text with a question mark (?=myid) that opens more info.
 ### Complete Example:
 
 ```markdown
-    # My Article
+# My Article
 
-    This is a paragraph with more information available (?=details).
+This is a paragraph with more information available (?=details).
 
-    :::float-details
-        ### Additional Details
+:::float-details
+    ### Additional Details
 
-        Here's some extra information that doesn't fit in the main text:
-        - Point 1
-        - Point 2
-        - Point 3
-    :::
+    Here's some extra information that doesn't fit in the main text:
+    - Point 1
+    - Point 2
+    - Point 3
+:::
 ```
 
 
@@ -245,10 +245,10 @@ Callouts are styled boxes to highlight important information. Two types are avai
 :::
 
 ```markdown
-    :::note
-        This is important information that readers should be aware of.
-        You can include any markdown content here.
-    :::
+:::note
+    This is important information that readers should be aware of.
+    You can include any markdown content here.
+:::
 ```
 
 ### Warning Callout:
@@ -259,10 +259,10 @@ Callouts are styled boxes to highlight important information. Two types are avai
 :::
 
 ```markdown
-    :::warning
-        This is a critical warning that requires attention.
-        Be careful with this information!
-    :::
+:::warning
+    This is a critical warning that requires attention.
+    Be careful with this information!
+:::
 ```
 
 ### Features:
@@ -282,23 +282,23 @@ Collapsible sections that hide content until clicked.
 ### Basic Details:
 
 ```markdown
-    :::details Click to expand
-        This content is hidden by default and will show when clicked.
+:::details Click to expand
+    This content is hidden by default and will show when clicked.
 
-        You can include:
-        - Lists
-        - **Formatted text**
-        - Code blocks
-        - Anything else
-    :::
+    You can include:
+    - Lists
+    - **Formatted text**
+    - Code blocks
+    - Anything else
+:::
 ```
 
 ### Open by Default:
 
 ```markdown
-    :::details -open Already expanded
-        This content is visible by default but can be collapsed.
-    :::
+:::details -open Already expanded
+    This content is visible by default but can be collapsed.
+:::
 ```
 
 ### Features:
@@ -319,9 +319,9 @@ Embed external content with an expandable viewer.
 ### Syntax:
 
 ```markdown
-    :::iframe width="100%" height="500px"
-    https://example.com
-    :::
+:::iframe width="100%" height="500px"
+https://example.com
+:::
 ```
 
 ### Features:
@@ -333,9 +333,9 @@ Embed external content with an expandable viewer.
 ### Example with Multiple Attributes:
 
 ```markdown
-    :::iframe width="800px" height="600px" allow="fullscreen"
-    https://www.youtube.com/embed/VIDEO_ID
-    :::
+:::iframe width="800px" height="600px" allow="fullscreen"
+https://www.youtube.com/embed/VIDEO_ID
+:::
 ```
 
 
@@ -351,7 +351,7 @@ Add precise spacing to your content.
 Adds horizontal spacing:
 
 ```markdown
-    Text before (w=2em) text after
+Text before (w=2em) text after
 ```
 
 Creates a `<div>` with the specified width.
@@ -361,11 +361,11 @@ Creates a `<div>` with the specified width.
 Adds vertical spacing:
 
 ```markdown
-    Paragraph 1
+Paragraph 1
 
-    (h=3rem)
+(h=3rem)
 
-    Paragraph 2
+Paragraph 2
 ```
 
 Creates a `<div>` with the specified height.
@@ -379,22 +379,22 @@ Creates a `<div>` with the specified height.
 ### Examples:
 
 ```markdown
-    # Add 50px horizontal space
-    Before (w=50px) After
+# Add 50px horizontal space
+Before (w=50px) After
 
-    # Add 1em vertical space
-    Top paragraph
+# Add 1em vertical space
+Top paragraph
 
-    (h=1em)
+(h=1em)
 
-    Bottom paragraph
+Bottom paragraph
 
-    # Add 1 line-height space
-    Content
+# Add 1 line-height space
+Content
 
-    (h=1lh)
+(h=1lh)
 
-    More content
+More content
 ```
 
 
@@ -409,12 +409,12 @@ Special navigation elements that create relative links with directional movement
 
 Put the link using:
 ```markdown
-    [Link Name](#goto=<DIRECTION>)
+[Link Name](#goto=<DIRECTION>)
 ```
 
 Put where it leads (makes focus) using:
 ```markdown
-    (go-<DIRECTION>=element-name)
+(go-<DIRECTION>=element-name)
 ```
 
 ### Available Directions:
@@ -430,14 +430,14 @@ Put where it leads (makes focus) using:
 You can chain multiple directions together:
 
 ```markdown
-    # Go out twice then down
-    (go-out-out-bellow=section-name)
+# Go out twice then down
+(go-out-out-bellow=section-name)
 
-    # Go out, then to previous sibling
-    (go-out-above=header-title)
+# Go out, then to previous sibling
+(go-out-above=header-title)
 
-    # Enter first child
-    (go-in=first-item)
+# Enter first child
+(go-in=first-item)
 ```
 
 ### Examples:
@@ -451,6 +451,215 @@ You can chain multiple directions together:
 
     [Navigate to first child of next sibling](#goto=item-list)
     Check the first item (go-bellow-in=item-list)
+```
+
+
+---
+
+
+## SVG and Mermaid Diagrams
+
+The `:::svg` block enables creation of various diagram types using simplified syntax or direct Mermaid code.
+
+### Kanban Boards:
+
+Create kanban-style boards with importance indicators:
+
+:::svg -kanban style="aspect-ratio:4.3/1;"
+	Todo
+		! One exclamation for low importance
+		!! Two for medium importance
+
+	In progress
+		!!! Three for high importance
+
+	Another Column
+        !!!! Four exclamations for very high
+	
+	Another Column name
+		Content with no indicator
+:::
+
+**Syntax:**
+
+```markdown
+    :::svg -kanban style="aspect-ratio:4.3/1;"
+        Todo
+            ! One exclamation for low importance
+            !! Two for medium importance
+
+        In progress
+            !!! Three for high importance
+
+        Another Column
+            !!!! Four exclamations for very high
+        
+        Another Column name
+            Content with no indicator
+    :::
+```
+
+**Features:**
+- Multiple columns for workflow stages
+- Importance levels with `!` to `!!!!`
+- Custom aspect ratios
+- Task cards with automatic layout
+
+### Flowcharts:
+
+Create flowcharts with two orientations:
+
+- **`-flowchartTB`**: Top to bottom (vertical)
+- **`-flowchartLR`**: Left to right (horizontal)
+
+:::svg -flowchartLR style="aspect-ratio:4/1;"
+	(start) ✅ Start Node
+		- Link to (process)
+
+	(process) 📄 Process Step
+		- Arrow label text (parentheses) (decision)
+
+	(decision) ▶️ Decision Point
+		- No path (process)
+		- Yes path (end)
+		
+	(end) 🌉 End Node
+        - <-> 123465 (start)
+:::
+
+**Syntax:**
+
+```markdown
+    :::svg -flowchartLR style="aspect-ratio:4/1;"
+        (start) ✅ Start Node
+            - Link to (process)
+
+        (process) 📄 Process Step
+            - Arrow label text (parentheses) (decision)
+
+        (decision) ▶️ Decision Point
+            - No path (process)
+            - Yes path (end)
+            
+        (end) 🌉 End Node
+            - <-> 123465 (start)
+    :::
+```
+
+**Features:**
+- Markdown support inside nodes (bold, italic, etc.)
+- Multiline node content
+- Labeled arrows/connections
+- Bidirectional arrows with `<->`, `<-->`, or `<=>`
+- Node IDs in parentheses, labels after
+- List items create connections to other nodes
+
+### Pie Charts:
+
+Create percentage-based pie charts:
+
+:::svg -pie style="aspect-ratio:1.7/1;" Chart Title
+	"Dogs": 40
+	"Cats": 35
+	Rats: 25
+:::
+
+**Syntax:**
+
+```markdown
+:::svg -pie style="aspect-ratio:1.7/1;" Chart Title
+	"Dogs": 40
+	"Cats": 35
+	Rats: 25
+:::
+```
+
+**Features:**
+- Optional quotes around labels
+- Automatic percentage calculation
+- Custom title after style attributes
+
+### XY Charts:
+
+Create bar and line charts with axes:
+
+:::svg -xychart style="aspect-ratio:1.4/1;" Revenue Chart
+	x-axis "Months" [jan, feb, mar, apr]
+	y-axis "Revenue (in $)" 4000 --> 8000
+	bar [5000, 6000, 7500, 7900]
+	line [5000, 6000, 7500, 7900]
+:::
+
+**Syntax:**
+
+```markdown
+:::svg -xychart style="aspect-ratio:1.4/1;" Chart Title
+	x-axis "Label" [value1, value2, value3]
+	y-axis "Label" minValue --> maxValue
+	bar [data1, data2, data3]
+	line [data1, data2, data3]
+:::
+```
+
+**Features:**
+- Custom axis labels and ranges
+- Multiple data series (bar, line)
+- Automatic scaling
+- Combined bar and line charts
+
+### Direct Mermaid Code:
+
+Use Mermaid syntax directly with `-mermaid`:
+
+:::svg -mermaid style="aspect-ratio:2.9/1;"
+	---
+	config:
+		look: handDrawn
+	---
+	flowchart LR
+		A[Start] --> B{Decision}
+		B --> |Yes| C[Option 1]
+		B --> |No| D[Option 2]
+:::
+
+**Syntax:**
+
+```markdown
+    :::svg -mermaid style="aspect-ratio:2.9/1;"
+        ---
+        config:
+            look: handDrawn
+        ---
+        flowchart LR
+            A[Start] --> B{Decision}
+            B --> |Yes| C[Option 1]
+            B --> |No| D[Option 2]
+    :::
+```
+
+**Features:**
+- Full Mermaid.js syntax support
+- Configuration options (themes, styles)
+- All Mermaid diagram types supported
+
+### Global Options:
+
+- **`-NoB`**: Removes control buttons from SVG container (works with all diagram types)
+- **`style="..."`**: Add custom CSS (aspect-ratio, background-color, etc.)
+- **Title**: Add diagram title after style attributes
+
+**Example with No Buttons:**
+
+:::svg -pie -NoB style="height:15em; background-color: transparent;" Dark Pie Chart
+	"Option A": 60
+	"Option B": 40
+:::
+
+```markdown
+:::svg -pie -NoB style="height:15em; background-color: transparent;" Dark Pie Chart
+	"Option A": 60
+	"Option B": 40
+:::
 ```
 
 
@@ -526,6 +735,10 @@ All block contents are processed for markdown, so you can use:
 
 6. **Float elements position**: Float elements work best with short, clickable trigger text. Don't overuse them in a single paragraph.
 
+7. **Diagram sizing**: Use `aspect-ratio` in style attributes to maintain proper proportions across different screen sizes.
+
+8. **Mermaid complexity**: For complex diagrams, consider using direct `-mermaid` syntax for more control.
+
 
 ---
 
@@ -545,3 +758,8 @@ All block contents are processed for markdown, so you can use:
 | Height spacing | `(h=<AMOUNT><UNIT>)` | Vertical space |
 | Navigation | `(go-<DIR>=<name>)` | Relative navigation |
 | Internal links | `[<text>](<#link>)` | Auto-encoded links |
+| Kanban | `:::svg -kanban` | Kanban boards |
+| Flowchart | `:::svg -flowchartTB/LR` | Flow diagrams |
+| Mermaid | `:::svg -mermaid` | Direct Mermaid code |
+| Pie chart | `:::svg -pie` | Percentage charts |
+| XY chart | `:::svg -xychart` | Bar/line charts |
