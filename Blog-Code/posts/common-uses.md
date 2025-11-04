@@ -471,13 +471,13 @@ Create kanban-style boards with importance indicators:
 		!! Two for medium importance
 
 	In progress
-		!!! Three for high importance
+		!!! Three for high importance (Start text, Final text)
 
 	Another Column
-        !!!! Four exclamations for very high
+        !!!! Four exclamations for very high ( , Only final)
 	
 	Another Column name
-		Content with no indicator
+		Content with no indicator (Only start, )
 :::
 
 **Syntax:**
@@ -489,13 +489,13 @@ Create kanban-style boards with importance indicators:
             !! Two for medium importance
 
         In progress
-            !!! Three for high importance
+            !!! Three for high importance (Start text, Final text)
 
         Another Column
-            !!!! Four exclamations for very high
+            !!!! Four exclamations for very high ( , Only final)
         
         Another Column name
-            Content with no indicator
+            Content with no indicator (Only start, )
     :::
 ```
 
