@@ -134,6 +134,7 @@ For example, in this code it is necessary to have a casting to obtain a suitable
     }
 ```
 
+
 ## Conditionals
 The c`if` condition in c is exactly the same as in javascript:
 ```c
@@ -152,15 +153,44 @@ The c`if` condition in c is exactly the same as in javascript:
 A shorthand for simple if ... else statements, exactly the same as in javascript:
  javascript`variable = condition ? value_if_true: value_if_false;`
 
-(h=8px)
 
 ## Loops
+Loops in c can be used for execute a code several times, to jump to the next iteration you can use c`continue;`, exit them immediately you can use c`break;`
 The c`while` loop in c is exactly the same as in javascript:
 ```c
     while (condition) {
         // code to execute
     }
 ```
+:::details -compact While example
+    ```c
+        int i = 1;
+        while (i < 10) {
+            printf("%d", i);
+            i++;
+        }
+    ```
+:::
+
+
+The c`for` loop in c is almost exactly the same sintaxis as in javascript:
+```c
+    // In older C compilers you must initialize the variable before: int i;
+    // And in initialization only something like: i=0;
+    for (initialization; condition; increment) {
+        // code that repeats
+    }
+```
+
+:::details -compact For example
+    ```c
+        int i;
+        for (i = 1; i < 10; i++) {
+            printf("%d", i);
+        }
+    ```
+:::
+
 
 ## Functions
 If functions are declared after the main function, then they must have a **prototype**, which is simply the function header, before the main function.
