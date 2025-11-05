@@ -1,29 +1,6 @@
 {
   "entries": [
     {
-      "title": "Probando svg mermaid",
-      "summary": "Probando svg mermaid",
-      "path": "Probando svg mermaid",
-      "tags": [],
-      "hidden": false
-    },
-    {
-      "title": "Document 4",
-      "summary": "2",
-      "path": "Document 4",
-      "tags": [],
-      "hidden": false
-    },
-    {
-      "title": "Document 7",
-      "summary": "wqdwdq",
-      "path": "Document 7",
-      "tags": [
-        "wqdwqwd"
-      ],
-      "hidden": false
-    },
-    {
       "title": "Web App",
       "summary": "Create a Preact Web App with Vite",
       "path": "Web App",
