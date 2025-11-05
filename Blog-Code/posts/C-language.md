@@ -149,6 +149,42 @@ The c`if` condition in c is exactly the same as in javascript:
     }
 ```
 
+The conditional c`switch` in c is exactly the same as in javascript but in c it only allows integer types (int, char, enum) while in js it allows almost any type.
+```c
+    switch (variable) {
+        case 1:
+            // Code if variable == 1
+            break;
+
+        case 2: {
+            // Code if variable == 2
+            // The use of curly braces only serves to limit the scope of variables if you declare one within the case, but does not affect sequential execution.
+            break;
+        }
+
+        default:
+            // Code if no case matches
+            break;
+    }
+```
+:::details Why is it necessary to put a break after each case in c`switch`?
+	It's a landmark design decision in C, maintained for compatibility and flexibility. Not setting break is useful in cases where several cases need to execute the same code (If there is no break, the code executes the content of the cases below until it finds a break or exits the c`switch`) like:
+    ```c
+        switch (letra) {
+            case 'A':
+            case 'E':
+            case 'I':
+            case 'O':
+            case 'U':
+                printf("It is a capital vowel");
+                break;
+            default:
+                printf("It is not a capital vowel");
+        }
+    ```
+:::
+
+
 ### Ternary Operator
 A shorthand for simple if ... else statements, exactly the same as in javascript:
  javascript`variable = condition ? value_if_true: value_if_false;`
@@ -158,7 +194,7 @@ A shorthand for simple if ... else statements, exactly the same as in javascript
 Loops in c can be used for execute a code several times, to jump to the next iteration you can use c`continue;`, exit them immediately you can use c`break;` exactly the same as in javascript.
 
 
-The c`while` loop in c is exactly the same as in javascript:
+The loop c`while` in c is exactly the same as in javascript:
 ```c
     while (condition) {
         // code to execute
@@ -175,7 +211,7 @@ The c`while` loop in c is exactly the same as in javascript:
 :::
 
 
-The c`for` loop in c is almost exactly the same sintaxis as in javascript:
+The loop c`for` in c is almost exactly the same sintaxis as in javascript:
 ```c
     // In older C compilers you must initialize the variable before: int i;
     // And in initialization only something like: i=0;
@@ -193,7 +229,7 @@ The c`for` loop in c is almost exactly the same sintaxis as in javascript:
 :::
 
 
-The c`do while` loop in c is almost exactly the same sintaxis as in javascript:
+The loop c`do while` in c is almost exactly the same sintaxis as in javascript:
 ```c
     // The only difference with a normal while is that the first iteration is performed without having verified the condition, but all the others are exactly the same as a while loop
     do {
