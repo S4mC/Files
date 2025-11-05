@@ -155,7 +155,7 @@ A shorthand for simple if ... else statements, exactly the same as in javascript
 
 
 ## Loops
-Loops in c can be used for execute a code several times, to jump to the next iteration you can use c`continue;`, exit them immediately you can use c`break;`
+Loops in c can be used for execute a code several times, to jump to the next iteration you can use c`continue;`, exit them immediately you can use c`break;` exactly the same as in javascript.
 
 
 The c`while` loop in c is exactly the same as in javascript:
