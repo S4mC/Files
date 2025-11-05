@@ -183,13 +183,30 @@ The c`for` loop in c is almost exactly the same sintaxis as in javascript:
         // code that repeats
     }
 ```
-
 :::details -compact For example
     ```c
         int i;
         for (i = 1; i < 10; i++) {
             printf("%d", i);
         }
+    ```
+:::
+
+
+The c`do while` loop in c is almost exactly the same sintaxis as in javascript:
+```c
+    // The only difference with a normal while is that the first iteration is performed without having verified the condition, but all the others are exactly the same as a while loop
+    do {
+        // code block
+    } while (condition);
+```
+:::details -compact Do while example
+    ```c
+        int i = 1;
+        do {
+            printf("%d", i);
+            i++;
+        } while (i < 10);
     ```
 :::
 
