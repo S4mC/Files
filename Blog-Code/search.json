@@ -1,6 +1,13 @@
 {
   "entries": [
     {
+      "title": "Web App React",
+      "summary": "Web App with React, Vite and TypeScript",
+      "path": "Web App React",
+      "tags": [],
+      "hidden": false
+    },
+    {
       "title": "Web App",
       "summary": "Create a Preact Web App with Vite",
       "path": "Web App",
