@@ -497,15 +497,18 @@ Create a green`languages` folder in the root folder with this structure:
         :::connector
             - 📂 es
                 :::connector
-                    - 📂 index
+                    - 📂 src
                         :::connector
-                            - ... Here you can organize .js files with the translations that you can then import from the main file (like index.js in this case)
-                            - 📁 components
+                            - 📂 index
                                 :::connector
-                                    - 📄 component.js
+                                    - ... Here you can organize .js files with the translations that you can then import from the main file (like index.js in this case)
+                                    - 📁 components
+                                        :::connector
+                                            - 📄 component.js
+                                        :::
                                 :::
+                            - ... Other translation folders
                         :::
-                    - ... Other translation folders
                     - 📄 index.js
                     - ... Other translation files
                 :::
@@ -517,7 +520,7 @@ Create a green`languages` folder in the root folder with this structure:
 
 The translation files must have this structure:
 ```js
-    import {component} from "./index/components/component.js";
+    import {component} from "./src/index/components/component.js";
 
     export const index = {
         language: "language",
@@ -528,7 +531,7 @@ The translation files must have this structure:
 ```
 :::details -compact Example of the translation content of a component
     ```javascript
-        // languages/es/index/components/component.js
+        // languages/es/src/index/components/component.js
         export const component = {
             componentName: "Hola soy un componente",
             textTittle: "Titulo",
