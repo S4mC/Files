@@ -275,7 +275,7 @@ Create a React Web App with Vite
     ```
 
 
-## How to set a language selector
+## How to make an application with multiple languages and a language selector
 
 Run:
 ```bash
@@ -605,7 +605,7 @@ To use the languages in the html you must first add the blue`LanguageSelector` c
 :::
 
 
-In the html that calls green`App.tsx` you must initialize the languages for it to work, for that you must put:
+In the **HTML** that calls green`App.tsx` you must initialize the languages for it to work, for that you must put:
 ```html
     <!-- Other HTML -->
     <div id="root" style="height: 100%; width: 100%; position: absolute;"></div>
