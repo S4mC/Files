@@ -752,9 +752,7 @@ In the **HTML** that calls green`App.tsx` you must initialize the languages for 
     <!-- Other HTML -->
     <div id="root" style="height: 100%; width: 100%; position: absolute;"></div>
     <script type="module">
-        import { StrictMode } from "react";
-        import { createRoot } from "react-dom/client";
-        import App from "./src/index/App.tsx"; // Your main App component
+        // Others import like App from "./src/index/App.tsx"
 
         import { initLanguages } from "./src/utils/languages.ts"; // Import initLanguages
 
