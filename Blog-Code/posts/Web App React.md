@@ -32,14 +32,34 @@ Create a React Web App with Vite
                             :::
                         - 📂 utils
                             :::connector
-                                - ... Pure functions or helpers that do not depend on React
+                                - ... Functions or helpers that do not depend on React
                             :::
                         - 📄 App.css
                         - 📄 App.tsx
                     :::
             - ... Folders containing React content from another HTMLs
-            - 📄 style.css
-            - 📄 util.ts
+            - 📂 assets
+                :::connector
+                    - ... Global static files such as: Images (.png, .svg, .jpg), Icons, etc
+                :::
+            - 📂 components
+                :::connector
+                    - ... Global reusable and small components: buttons, cards, modals, headers, etc
+                :::
+            - 📂 hooks
+                :::connector
+                    - ... Global custom hooks, that is, functions with reusable logic based on React Hooks (useState, useEffect, etc.)
+                :::
+            - 📂 utils
+                :::connector
+                    - 📄 util.ts
+                     - ... Global functions or helpers that do not depend on React
+                :::
+            - 📂 styles
+                :::connector
+                    - 📄 style.css
+                    - ... Global css styles (from various HTML)
+                :::
         :::
     - 📄 index.html
     - ... Other HTMLs
@@ -83,14 +103,14 @@ Create a React Web App with Vite
          run `npx vite`(Run preview)
          run build`npx vite build`(Build)
     ```
-4. Create green`util.ts` in the purple`src` folder for easy access to tools:
+4. Create green`util.ts` in the purple`src/utils` folder for easy access to tools:
     ```typescript -folded
         // querySelector
         const $ = (selector: string) => document.querySelector(selector);
 
         export { $ };
     ```
-5. Create or edit green`style.css` in the purple`src` folder for a global style and themes:
+5. Create or edit green`style.css` in the purple`src/styles` folder for a global style and themes:
     ```css -folded
         :root {
             /* Common variables for all themes */
@@ -206,7 +226,7 @@ Create a React Web App with Vite
                 <script type="module">
                     import React from "react";
                     import { createRoot } from "react-dom/client";
-                    import "./src/style.css";
+                    import "./src/styles/style.css";
                     import App from "./src/index/App.tsx";
 
                     const root = createRoot(document.getElementById("root"));
@@ -289,7 +309,7 @@ In green`vite.config.ts` in typescript`defineConfig({` add:
     },
 ```
 
-Create green`src/languages.ts` and inside put **(Don't forget to change AVAILABLE_LANGUAGES to put the languages you are going to accept)**:
+Create green`src/utils/languages.ts` and inside put **(Don't forget to change AVAILABLE_LANGUAGES to put the languages you are going to accept)**:
 ```typescript -folded
     // Simple i18n system with i18next
     import i18next from "i18next";
@@ -322,7 +342,7 @@ Create green`src/languages.ts` and inside put **(Don't forget to change AVAILABL
         const saved = localStorage.getItem(LANG_KEY);
         if (saved && SUPPORTED_LANGS.includes(saved)) {
             // Verify the language has translation files available
-            const testPath = `../languages/${saved}/index.js`;
+            const testPath = `/languages/${saved}/index.js`;
             if (translationModules[testPath]) {
                 return saved;
             }
@@ -337,7 +357,7 @@ Create green`src/languages.ts` and inside put **(Don't forget to change AVAILABL
     // Pre-register all translation modules with Vite (this lets Vite know about them at build time)
     // but we only load the specific one we need at runtime
     // Only register root-level files (not nested in folders) so Vite bundles imports together
-    const translationModules = import.meta.glob<Record<string, Record<string, string>>>('../languages/*/*.js', { eager: false });
+    const translationModules = import.meta.glob<Record<string, Record<string, string>>>('/languages/*/*.js', { eager: false });
 
     // Flatten nested objects into dot notation keys
     function flattenTranslations(obj: Record<string, unknown>, prefix = ""): Record<string, string> {
@@ -384,7 +404,7 @@ Create green`src/languages.ts` and inside put **(Don't forget to change AVAILABL
         }
 
         // Always load from root-level files only (index.js, hola.js, etc.)
-        const moduleLoader = translationModules[`../languages/${lang}/${namespace}.js`];
+        const moduleLoader = translationModules[`/languages/${lang}/${namespace}.js`];
         
         if (!moduleLoader) {
             throw new Error(`Translation module not found for ${lang}/${namespace}.js`);
@@ -488,7 +508,6 @@ Create green`src/languages.ts` and inside put **(Don't forget to change AVAILABL
     }
 
     export default i18next;
-
 ```
 
 Create a green`languages` folder in the root folder with this structure:
@@ -543,7 +562,7 @@ The translation files must have this structure:
 
 Create green`components/languageSelector.tsx` inside the contents folder of the HTML to have a language selector and inside put:
 ```typescript -folded
-    import { getCurrentLanguage, changeLanguage, AVAILABLE_LANGUAGES } from "../../languages.ts";
+    import { getCurrentLanguage, changeLanguage, AVAILABLE_LANGUAGES } from "../../utils/languages.ts";
 
     export default function LanguageSelector() {
         const language = getCurrentLanguage();
@@ -569,7 +588,7 @@ To use the languages in the html you must first add the blue`LanguageSelector` c
 ```typescript
     // Import the LanguageSelector.tsx component
     import LanguageSelector from "./components/languageSelector.tsx";
-    import { translation } from "../languages.ts";
+    import { translation } from "../utils/languages.ts";
 
     const { t } = translation("index"); // This has to be the name of the main translation file from which the translations will be obtained
     
@@ -591,7 +610,7 @@ To use the languages in the html you must first add the blue`LanguageSelector` c
 
 :::details -compact Example of how translation works in a component
     ```typescript
-        import { translation } from "../../languages.ts";
+        import { translation } from "../../utils/languages.ts";
 
         // Get translator for "index" namespace and scope it to "component"
         const { t } = translation("index").scope("component");
@@ -615,7 +634,7 @@ In the **HTML** that calls green`App.tsx` you must initialize the languages for 
     <script type="module">
         // Others import like App from "./src/index/App.tsx"
 
-        import { initLanguages } from "./src/languages.ts"; // Import initLanguages
+        import { initLanguages } from "./src/utils/languages.ts"; // Import initLanguages
 
         // Before rendering the application in root we must wait for the languages ​​to be initialized
         const root = createRoot(document.getElementById("root"));
