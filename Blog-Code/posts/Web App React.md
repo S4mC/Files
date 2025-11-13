@@ -20,11 +20,15 @@ Create a React Web App with Vite
                     :::connector
                         - 📂 assets
                             :::connector
-                                - ... Static files such as: Images (.png, .svg, .jpg), Icons, etc
+                                - ... Static files (.png, .svg, .jpg, Icons, etc.)
                             :::
                         - 📂 components
                             :::connector
-                                - ... Reusable and small components: buttons, cards, modals, headers, etc
+                                - ... Reusable and small components (buttons, cards, modals, headers, etc.)
+                            :::
+                        - 📂 layouts
+                            :::connector
+                                - ... Design structures (sidebar, navigation bar, etc.)
                             :::
                         - 📂 hooks
                             :::connector
@@ -40,11 +44,15 @@ Create a React Web App with Vite
             - ... Folders containing React content from another HTMLs
             - 📂 assets
                 :::connector
-                    - ... Global static files such as: Images (.png, .svg, .jpg), Icons, etc
+                    - ... Global static files (.png, .svg, .jpg, Icons, etc.)
                 :::
             - 📂 components
                 :::connector
-                    - ... Global reusable and small components: buttons, cards, modals, headers, etc
+                    - ... Global  Reusable and small components (buttons, cards, modals, headers, etc.)
+                :::
+            - 📂 layouts
+                :::connector
+                    - ... Global design structures (sidebar, navigation bar, etc.)
                 :::
             - 📂 hooks
                 :::connector
