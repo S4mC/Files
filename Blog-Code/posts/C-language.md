@@ -79,13 +79,13 @@ You can use two types of comments.
 
 ## Data types
 
-| Data type | Description | Format | Size |
-|----------|----------|----------|----------|
-| c`char` | An integer type representing a single **character in the ASCII table**(?=chartipe) (smallest data type in C). | %c <br> (char) | 1 byte |
-| c`int` | A basic integer type used to store **whole numbers**. | %d <br> (decimal) | 2 - 4 bytes(?=intSize)|
-| c`long` | An extended integer type used to store larger whole numbers than c`int`. | %ld <br> (long decimal) | Typically 8 bytes |
-| c`float` | A floating-point type used to store single-precision decimal numbers. | %f <br> (float)| 4 bytes |
-| c`double` | A **floating-point type** used to store precision decimal numbers. *(The name means that it is double as precise as a c`float` type.)* | %lf <br> (long float) | 8 bytes |
+| Data type |                                                                          Description                                                   |          Format         |          Size         |
+|-----------|----------------------------------------------------------------------------------------------------------------------------------------|-------------------------|-----------------------|
+| c`char`   | An integer type representing a single **character in the ASCII table**(?=chartipe) (smallest data type in C).                          | %c <br> (char)          | 1 byte                |
+| c`int`    | A basic integer type used to store **whole numbers**.                                                                                  | %d <br> (decimal)       | 2 - 4 bytes(?=intSize)|
+| c`long`   | An extended integer type used to store larger whole numbers than c`int`.                                                               | %ld <br> (long decimal) | Typically 8 bytes     |
+| c`float`  | A floating-point type used to store single-precision decimal numbers.                                                                  | %f <br> (float)         | 4 bytes               |
+| c`double` | A **floating-point type** used to store precision decimal numbers. *(The name means that it is double as precise as a c`float` type.)* | %lf <br> (long float)   | 8 bytes               |
 
 :::float-chartipe
 	The char type need to be implemented with single quotes, for example:
