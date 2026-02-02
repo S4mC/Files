@@ -1,6 +1,13 @@
 {
   "entries": [
     {
+      "title": "Next Cloud",
+      "summary": "Configuraciones y demás de nextcloud en debiam",
+      "path": "Next Cloud",
+      "tags": [],
+      "hidden": false
+    },
+    {
       "title": "Web App React",
       "summary": "Web App with React, Vite and TypeScript",
       "path": "Web App React",
