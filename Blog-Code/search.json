@@ -2,7 +2,7 @@
   "entries": [
     {
       "title": "Next Cloud",
-      "summary": "Next Cloud debiam linux",
+      "summary": "Next Cloud",
       "path": "Next Cloud",
       "tags": [],
       "hidden": false
@@ -16,7 +16,14 @@
     },
     {
       "title": "Next Cloud",
-      "summary": "Configuraciones y demÃÂÃÂ¡s de nextcloud en debiam",
+      "summary": "Next Cloud debiam linux",
+      "path": "Next Cloud",
+      "tags": [],
+      "hidden": false
+    },
+    {
+      "title": "Next Cloud",
+      "summary": "Configuraciones y demÃÂÃÂÃÂÃÂ¡s de nextcloud en debiam",
       "path": "Next Cloud",
       "tags": [],
       "hidden": false
