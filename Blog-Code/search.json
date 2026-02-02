@@ -9,7 +9,14 @@
     },
     {
       "title": "Next Cloud",
-      "summary": "Configuraciones y demÃÂ¡s de nextcloud en debiam",
+      "summary": "Next Cloud debiam linux",
+      "path": "Next Cloud",
+      "tags": [],
+      "hidden": false
+    },
+    {
+      "title": "Next Cloud",
+      "summary": "Configuraciones y demÃÂÃÂ¡s de nextcloud en debiam",
       "path": "Next Cloud",
       "tags": [],
       "hidden": false
