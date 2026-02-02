@@ -1,6 +1,13 @@
 {
   "entries": [
     {
+      "title": "Next Cloud",
+      "summary": "Next Cloud",
+      "path": "NextCloud",
+      "tags": [],
+      "hidden": false
+    },
+    {
       "title": "NextCloud",
       "summary": "NextCloud",
       "path": "Next Cloud",
@@ -23,7 +30,7 @@
     },
     {
       "title": "Next Cloud",
-      "summary": "Configuraciones y demÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ¡s de nextcloud en debiam",
+      "summary": "Configuraciones y demÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ¡s de nextcloud en debiam",
       "path": "Next Cloud",
       "tags": [],
       "hidden": false
