@@ -34,7 +34,10 @@
             ```bash
                 sudo mkdir /mnt/data
                 sudo mount /dev/md0 /mnt/data
-                sudo mdadm --detail --scan | sudo tee -a /etc/mdadm/mdadm.conf
+            ```
+        - Guardar la raid en green`/etc/mdadm/mdadm.conf`, ejecuta:
+            ```bash
+                sudo mdadm --detail --scan | grep -v -f /etc/mdadm/mdadm.conf | sudo tee -a /etc/mdadm/mdadm.conf
                 sudo update-initramfs -u
             ```
         - Hacer el montaje permanente, obtén el uuid del raid: `lsblk -f /dev/md0`, luego ejecuta:
