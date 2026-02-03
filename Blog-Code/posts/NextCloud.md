@@ -34,11 +34,11 @@
             ```bash
                 sudo mkdir /mnt/data
                 sudo mount /dev/md0 /mnt/data
+                sudo mdadm --detail --scan | sudo tee -a /etc/mdadm/mdadm.conf
+                sudo update-initramfs -u
             ```
         - Hacer el montaje permanente, obtén el uuid del raid: `lsblk -f /dev/md0`, luego ejecuta:
             ```bash
-                sudo mdadm --detail --scan | sudo tee -a /etc/mdadm/mdadm.conf
-                sudo update-initramfs -u
                 sudo nano /etc/fstab
             ```
             En el editor nano que se abre escribe esta linea al final: `UUID=xxxx-xxxx  /mnt/data  ext4  defaults  0  2` 
