@@ -104,6 +104,7 @@
           environment:
             - NEXTCLOUD_URL=https://nextcloud.tudominio.com
             - JWT_SECRET_KEY=TuClaveSecretaJWT
+            - MAX_UPLOAD_FILE_SIZE=10485760
 
     volumes:
       pgdata:
@@ -278,7 +279,7 @@
   ```bash
       # Configuración para el WebSocket de la Pizarra
       location /whiteboard/ {
-          proxy_pass http://127.0.0.1:3002/; # Importante el "/" al final
+          proxy_pass http://localhost:3002/; # Importante el "/" al final
           
           # Cabeceras necesarias para WebSockets
           proxy_http_version 1.1;
