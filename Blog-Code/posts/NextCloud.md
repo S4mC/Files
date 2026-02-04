@@ -61,35 +61,42 @@
 - Dentro pega:
   ```bash
     services:
-        db:
-            container_name: nextcloud-postgres
-            image: postgres:16
-            restart: always
-            volumes:
-              - pgdata:/var/lib/postgresql/data
-            environment:
-              POSTGRES_DB: nextcloud
-              POSTGRES_USER: postgre
-              POSTGRES_PASSWORD: password
-
-        app:
-            container_name: nextcloud-nextcloud
-            image: nextcloud:apache
-            restart: always
-            ports:
-              - "8080:80"
-            volumes:
-              - /mnt/data/nextcloud/data/:/var/www/html
-            environment:
-              POSTGRES_HOST: db
-              POSTGRES_DB: nextcloud
-              POSTGRES_USER: postgre
-              POSTGRES_PASSWORD: password
-            depends_on:
-              - db
-
+      db:
+        container_name: nextcloud-postgres
+        image: postgres:16
+        restart: always
         volumes:
-          pgdata:
+          - pgdata:/var/lib/postgresql/data
+        environment:
+          POSTGRES_DB: nextcloud
+          POSTGRES_USER: postgre
+          POSTGRES_PASSWORD: contraseña
+
+      redis:
+        container_name: nextcloud-redis
+        image: redis:7-alpine
+        restart: always
+        command: redis-server --save "" --appendonly no
+
+      app:
+        container_name: nextcloud-nextcloud
+        image: nextcloud:apache
+        restart: always
+        ports:
+          - "8080:80"
+        volumes:
+          - /mnt/data/nextcloud/data/:/var/www/html
+        environment:
+          POSTGRES_HOST: db
+          POSTGRES_DB: nextcloud
+          POSTGRES_USER: postgre
+          POSTGRES_PASSWORD: contraseña
+        depends_on:
+          - db
+          - redis
+
+    volumes:
+      pgdata:
   ```
 
 - Añade tu usuario al grupo docker:
@@ -107,6 +114,37 @@
     docker compose up -d
   ```
 
+- Como hemos instalado redis entonces debemos de configurarlo, para eso entra al contenedor de nextcloud
+  ```bash
+    docker exec -it nextcloud-nextcloud bash
+  ```
+- Instalar nano
+  ```bash
+    apt update && apt install -y nano
+  ```
+- Entra a la configuración
+  ```bash
+    nano config/config.php
+  ```
+  Y dentro añade (memcache.local puede que ya este con ese valor, si es asi solo añade los demás):
+  ```nano
+    'memcache.local' => '\\OC\\Memcache\\APCu',
+    'memcache.locking' => '\\OC\\Memcache\\Redis',
+    'redis' => [
+      'host' => 'redis', 'port' => 6379,
+    ],
+  ```
+- Reinicia todo:
+  ```bash
+    docker compose down
+    docker compose up -d
+  ```
+- Verifica que redis funciona:
+  ```bash
+    docker exec -u www-data nextcloud-nextcloud php occ config:list system | grep memcache
+  ```
+  Debe salir ` "memcache.locking": "\\OC\\Memcache\\Redis",`
+
 - Entra a http://ip_o_localhost:8080
 
 ## Cambiar trusted domains en nextcloud:
@@ -118,7 +156,7 @@
   ```bash
     apt update && apt install -y nano
   ```
-- Entra a la configuraicon
+- Entra a la configuración
   ```bash
     nano config/config.php
   ```
