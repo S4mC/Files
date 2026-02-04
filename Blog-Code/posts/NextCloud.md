@@ -242,3 +242,16 @@
     ```bash
       docker exec -u www-data nextcloud-nextcloud php occ maintenance:mode --off
     ```
+
+
+## Configurar "Ajustes básicos" > "Trabajos en segundo plano"
+
+- En tu terminal (fuera de Docker), ejecuta:
+  ```bash
+    sudo crontab -e
+  ```
+- Añade la siguiente línea al final del archivo:
+  ```bash
+      */5 * * * * docker exec -u www-data nextcloud-nextcloud php -f /var/www/html/cron.php
+  ```
+- Luego en las opciones de la pestaña de nextcloud elige "cron", si no funciona verifica que el comandp `docker exec -u www-data nextcloud-nextcloud php -f /var/www/html/cron.php` si funcione (no arroje nada al ejecutar)
