@@ -58,7 +58,7 @@
     nano docker-compose.yml
   ```
 
-- Dentro pega:
+- Dentro pega (reemplazando antes la "contraseña", "JWT_SECRET_KEY" y "NEXTCLOUD_URL"):
   ```bash
     services:
       db:
@@ -94,6 +94,16 @@
         depends_on:
           - db
           - redis
+
+      nextcloud-whiteboard-server:
+          container_name: nextcloud-whiteboard
+          image: ghcr.io/nextcloud-releases/whiteboard:stable
+          restart: always
+          ports:
+            - "3002:3002"
+          environment:
+            - NEXTCLOUD_URL=https://nextcloud.tudominio.com
+            - JWT_SECRET_KEY=TuClaveSecretaJWT
 
     volumes:
       pgdata:
@@ -262,3 +272,28 @@
   ```bash
       docker-compose exec --user www-data -e NC_loglevel=0 app php occ setupchecks
   ```
+
+## Configurar pizarra Excalidraw en tiempo real
+- En la lista de sitios de ngix puedes añadir una location al sitio de next cloud:
+  ```bash
+      # Configuración para el WebSocket de la Pizarra
+      location /whiteboard/ {
+          proxy_pass http://127.0.0.1:3002/; # Importante el "/" al final
+          
+          # Cabeceras necesarias para WebSockets
+          proxy_http_version 1.1;
+          proxy_set_header Upgrade $http_upgrade;
+          proxy_set_header Connection "upgrade";
+          
+          # Cabeceras estándar
+          proxy_set_header Host $host;
+          proxy_set_header X-Real-IP $remote_addr;
+          proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+          proxy_set_header X-Forwarded-Proto $scheme;
+
+          # Evitar cortes de conexión por inactividad
+          proxy_read_timeout 86400s;
+          proxy_send_timeout 86400s;
+      }
+  ```
+- Luego en la configuración añade la "Clave secreta JWT" del docker-compose y "wss://nextclouddominio.com/whiteboard/"
