@@ -255,3 +255,10 @@
       */5 * * * * docker exec -u www-data nextcloud-nextcloud php -f /var/www/html/cron.php
   ```
 - Luego en las opciones de la pestaña de nextcloud elige "cron", si no funciona verifica que el comandp `docker exec -u www-data nextcloud-nextcloud php -f /var/www/html/cron.php` si funcione (no arroje nada al ejecutar)
+
+
+## "Avisos de seguridad y configuración" no carga ("Fallo al ejecutar las verificaciones de instalación")
+- Puedes desde la terminal ejecutar:
+  ```bash
+      docker-compose exec --user www-data -e NC_loglevel=0 app php occ setupchecks
+  ```
