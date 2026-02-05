@@ -58,7 +58,7 @@
     nano docker-compose.yml
   ```
 
-- Dentro pega (reemplazando antes la "contraseña", "JWT_SECRET_KEY", "NEXTCLOUD_URL", "CLAVE_SUPER_SEGURA", "aliasgroup1" y "server_name"):
+- Dentro pega (reemplazando antes la "contraseña", "JWT_SECRET_KEY", "NEXTCLOUD_URL", "CLAVE_SUPER_SEGURA", "aliasgroup1", "server_name" y "NC_HAPROXY_PASSWORD"):
   ```bash
     services:
       db:
@@ -122,6 +122,18 @@
           - dictionaries=es_ES
         cap_add:
           - MKNOD
+          
+      nextcloud-appapi-dsp:
+        image: ghcr.io/nextcloud/nextcloud-appapi-dsp:release
+        container_name: nextcloud-appapi-dsp
+        restart: always
+        environment:
+          - NC_HAPROXY_PASSWORD=contraseña
+          - NC_INSTANCE_URL=https://nextcloud.tudominio.com
+        ports:
+          - "2375:2375"
+        volumes:
+          - /var/run/docker.sock:/var/run/docker.sock
 
     volumes:
       pgdata:
@@ -355,3 +367,13 @@
 - Anda a la configuración de administrador de nextcloud y entra a "Office"
 - Elije "Use su propio servidor", dentro pega `http://nextcloud-collabora:9980` y activa el checkbox
 - En "Allow list for WOPI requests" pon la ip de tu servidor o dejalo en blanco (primero en blanco y si todo funciona puedes modificarlo y probar)
+
+## Como habilitar Daemons de despliegue (AppAPI)
+
+- Entra en la configuración de administrador y a "AppAPI"
+- Clic en "Registrar Daemon"
+- En la pestaña que se abre selecciona "Docker Socket Proxy"
+- En "Servidor del Daemon" escribe "nextcloud-appapi-dsp:2375"
+- En "Contraseña de HaProxy" escribe la clave que pusiste en el campo "NC_INSTANCE_URL" del docker-compose
+- Y dentro de "Configuración del despliegue" en "Red de Docker" escribe "nextcloud_default"
+- Verifica la conexión y si funciona clic en "Registrar"
