@@ -58,7 +58,7 @@
     nano docker-compose.yml
   ```
 
-- Dentro pega (reemplazando antes la "contraseña", "JWT_SECRET_KEY" y "NEXTCLOUD_URL"):
+- Dentro pega (reemplazando antes la "contraseña", "JWT_SECRET_KEY", "NEXTCLOUD_URL", "CLAVE_SUPER_SEGURA", "aliasgroup1" y "server_name"):
   ```bash
     services:
       db:
@@ -96,15 +96,32 @@
           - redis
 
       nextcloud-whiteboard-server:
-          container_name: nextcloud-whiteboard
-          image: ghcr.io/nextcloud-releases/whiteboard:stable
-          restart: always
-          ports:
-            - "3002:3002"
-          environment:
-            - NEXTCLOUD_URL=https://nextcloud.tudominio.com
-            - JWT_SECRET_KEY=TuClaveSecretaJWT
-            - MAX_UPLOAD_FILE_SIZE=10485760
+        container_name: nextcloud-whiteboard
+        image: ghcr.io/nextcloud-releases/whiteboard:stable
+        restart: always
+        ports:
+          - "3002:3002"
+        environment:
+          - NEXTCLOUD_URL=https://nextcloud.tudominio.com
+          - JWT_SECRET_KEY=TuClaveSecretaJWT
+          - MAX_UPLOAD_FILE_SIZE=10485760
+      
+      collabora:
+        container_name: nextcloud-collabora
+        image: collabora/code
+        restart: always
+        ports:
+          - "9980:9980"
+        environment:
+          - username=admin
+          - password=CLAVE_SUPER_SEGURA
+          - aliasgroup1=https://nextcloud.tudominio.com:443
+          - extra_params=--o:ssl.enable=false --o:ssl.termination=true
+          - DONT_GEN_SSL_CERT=true
+          - server_name=collabora.tudominio.com
+          - dictionaries=es_ES
+        cap_add:
+          - MKNOD
 
     volumes:
       pgdata:
@@ -298,3 +315,43 @@
       }
   ```
 - Luego en la configuración añade la "Clave secreta JWT" del docker-compose y "wss://nextclouddominio.com/whiteboard/"
+
+
+## Activar Nextcloud Office
+- En ngix añade un nuevo sitio:
+  - listen: `443 ssl`
+  - listen: `[::]:443 ssl`
+  - server_name: `collabora.tudominio.com`
+  - Certificados ssl
+  - En locations:
+    `~ ^/cool/(.*)/ws$`
+    ```bash
+      proxy_pass http://localhost:9980;
+      proxy_set_header Upgrade $http_upgrade;
+      proxy_set_header Connection "Upgrade";
+      proxy_set_header Host $host;
+      proxy_read_timeout 36000s;
+    ```
+    `^~ /cool/adminws`
+    ```bash
+      proxy_pass http://localhost:9980;
+      proxy_set_header Upgrade $http_upgrade;
+      proxy_set_header Connection "Upgrade";
+      proxy_set_header Host $host;
+      proxy_read_timeout 36000s;
+    ```
+    `/`
+    ```bash
+      proxy_pass http://localhost:9980/;
+      proxy_set_header Host $host;
+      proxy_set_header X-Forwarded-For $remote_addr;
+      proxy_set_header X-Forwarded-Proto https;
+      proxy_set_header X-Forwarded-Host $host;
+      proxy_http_version 1.1;
+      proxy_set_header Upgrade $http_upgrade;
+      proxy_set_header Connection "upgrade";
+    ```
+- Configura el tunnel con cloudfare
+- Anda a la configuración de administrador de nextcloud y entra a "Office"
+- Elije "Use su propio servidor", dentro pega `http://nextcloud-collabora:9980` y activa el checkbox
+- En "Allow list for WOPI requests" pon la ip de tu servidor o dejalo en blanco (primero en blanco y si todo funciona puedes modificarlo y probar)
