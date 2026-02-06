@@ -377,3 +377,24 @@
 - En "Contraseña de HaProxy" escribe la clave que pusiste en el campo "NC_INSTANCE_URL" del docker-compose
 - Y dentro de "Configuración del despliegue" en "Red de Docker" escribe "nextcloud_default"
 - Verifica la conexión y si funciona clic en "Registrar"
+
+## Instalar modelo de ia local en server:
+- Instala ollama: `curl -fsSL https://ollama.com/install.sh | sh`
+- Instala un modelo (en este caso Llama 3.2 3B): `ollama run llama3.2:3b`
+- Ejecutar Ollama como servicio API:
+    - Edita: `sudo systemctl edit ollama`
+    - Pega entre los comentarios (ten cuidado de pegarlo debajo del que dice que debajo se borra):
+        ```bash
+            [Service]
+            Environment="OLLAMA_HOST=0.0.0.0:11434"
+        ```
+    - Reinicia:
+        ```bash
+            sudo systemctl daemon-reexec
+            sudo systemctl restart ollama
+        ```
+    - Verifica: `ss -tulnp | grep 11434`, debe salir `0.0.0.0:11434`
+- Instala la aplicación en NextCloud "OpenAI and LocalAI integration"
+- En la configuracion de administrador > "Asistente" busca "OpenAI and LocalAI integration" y dentro:
+    - En "Service URl" pon: `http://172.17.0.1:11434/v1`
+    - Y en "Tiempo de vida de la solicitud" pon: `600`
