@@ -134,6 +134,17 @@
           - "2375:2375"
         volumes:
           - /var/run/docker.sock:/var/run/docker.sock
+          
+      notify_push:
+        container_name: nextcloud-notify-push
+        image: ghcr.io/nextcloud-releases/notify_push:latest
+        restart: always
+        environment:
+          - NEXTCLOUD_URL=https://nextcloud.tudominio.com
+          - REDIS_URL=redis://redis:6379
+        depends_on:
+          - redis
+          - app
 
     volumes:
       pgdata:
