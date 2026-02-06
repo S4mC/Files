@@ -400,3 +400,13 @@
 - En la configuracion de administrador > "Asistente" busca "OpenAI and LocalAI integration" y dentro:
     - En "Service URl" pon: `http://172.17.0.1:11434/v1`
     - Y en "Tiempo de vida de la solicitud" pon: `600`
+    
+## Configura la hora de mantenimiento (trabajos pesados)
+- En la consola ejecuta (cambia --value por el deseado, ahora esta en 2 de la mañana):
+  ```bash
+    docker exec -it nextcloud-nextcloud php occ config:system:set maintenance_window_start --type=integer --value=2
+  ```
+- Verifica, debe salir el numero puesto:
+  ```bash
+    docker exec -it nextcloud-nextcloud php occ config:system:get maintenance_window_start
+  ```
