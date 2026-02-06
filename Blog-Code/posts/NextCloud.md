@@ -175,6 +175,7 @@
     ],
     'default_language' => 'es',
     'force_language' => 'es',
+    'default_phone_region' => 'PE',
   ```
 - Reinicia todo:
   ```bash
