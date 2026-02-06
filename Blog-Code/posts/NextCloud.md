@@ -173,6 +173,8 @@
     'redis' => [
       'host' => 'redis', 'port' => 6379,
     ],
+    'default_language' => 'es',
+    'force_language' => 'es',
   ```
 - Reinicia todo:
   ```bash
