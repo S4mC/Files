@@ -313,7 +313,7 @@
 
 
 ## "Avisos de seguridad y configuración" no carga ("Fallo al ejecutar las verificaciones de instalación")
-- Puedes desde la terminal ejecutar:
+- Desde la terminal dentro de la carpeta del docker-compose ejecuta:
   ```bash
       docker-compose exec --user www-data -e NC_loglevel=0 app php occ setupchecks
   ```
