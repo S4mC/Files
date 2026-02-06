@@ -58,7 +58,7 @@
     nano docker-compose.yml
   ```
 
-- Dentro pega (reemplazando antes la "contraseña", "JWT_SECRET_KEY", "NEXTCLOUD_URL", "CLAVE_SUPER_SEGURA", "aliasgroup1", "server_name" y "NC_HAPROXY_PASSWORD"):
+- Dentro pega (reemplazando antes la "contraseña", "JWT_SECRET_KEY", "NEXTCLOUD_URL", "CLAVE_SUPER_SEGURA", "aliasgroup1", "server_name", "NC_HAPROXY_PASSWORD" y la contraseña de "DATABASE_URL"):
   ```bash
     services:
       db:
@@ -134,6 +134,18 @@
           - "2375:2375"
         volumes:
           - /var/run/docker.sock:/var/run/docker.sock
+
+      notify_push:
+        image: icewind1991/notify_push:latest
+        container_name: nextcloud-notify-push
+        restart: unless-stopped
+        depends_on:
+          - redis
+          - app
+        environment:
+          - NEXTCLOUD_URL=https://nextcloud.tudominio.com
+          - REDIS_URL=redis://redis:6379
+          - DATABASE_URL=postgres://postgre:contraseña@db:5432/nextcloud
 
     volumes:
       pgdata:
