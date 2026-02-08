@@ -1,6 +1,13 @@
 {
   "entries": [
     {
+      "title": "Immich",
+      "summary": "Como instalar y configurar Immich para fotos",
+      "path": "Immich",
+      "tags": [],
+      "hidden": false
+    },
+    {
       "title": "Next Cloud",
       "summary": "Next Cloud",
       "path": "NextCloud",
