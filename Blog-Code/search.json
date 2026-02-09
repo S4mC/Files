@@ -1,6 +1,13 @@
 {
   "entries": [
     {
+      "title": "Jellyfin",
+      "summary": "Instalar Jellyfin",
+      "path": "Jellyfin",
+      "tags": [],
+      "hidden": false
+    },
+    {
       "title": "Immich",
       "summary": "Como instalar y configurar Immich para fotos",
       "path": "Immich",
