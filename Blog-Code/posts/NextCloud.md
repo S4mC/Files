@@ -188,6 +188,7 @@
     'default_language' => 'es',
     'force_language' => 'es',
     'default_phone_region' => 'PE',
+    'max_chunk_size' => 52428800,
   ```
 - Reinicia todo:
   ```bash
