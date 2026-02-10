@@ -181,14 +181,17 @@
   Y dentro añade (memcache.local puede que ya este con ese valor, si es asi solo añade los demás):
   ```nano
     'memcache.local' => '\\OC\\Memcache\\APCu',
+    'memcache.distributed' => '\OC\Memcache\Redis',
     'memcache.locking' => '\\OC\\Memcache\\Redis',
     'redis' => [
-      'host' => 'redis', 'port' => 6379,
+        'host' => 'redis',
+        'port' => 6379,
     ],
     'default_language' => 'es',
     'force_language' => 'es',
     'default_phone_region' => 'PE',
-    'max_chunk_size' => 52428800,
+    'filelocking.enabled' => true,
+    'files.chunked_upload.max_size' => 52428800,
   ```
 - Reinicia todo:
   ```bash
