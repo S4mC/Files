@@ -36,3 +36,15 @@
 
 ## Como hacer copias de seguridad de la base de datos en otro disco
 - Las copias de seguridad de la bse de datos se guardan automaticamente en la ubicacion de subida (UPLOAD_LOCATION/backups) por lo que como ahí tenemos raid 1 no hay problema
+
+## Como actualizar immich
+- Cambia el numero de la versión a la mas actual dentro del green`.env`:
+    ```bash
+        cd ~/immich
+        docker compose down
+        nano .env
+    ```
+- Vuelve a levantar el compose:
+    ```bash
+        docker compose up -d
+    ```
