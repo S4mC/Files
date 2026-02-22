@@ -5,7 +5,7 @@
     ```bash
         mkdir -p ~/n8n && cd ~/n8n
     ```
-- Crea el docker-compose `nano docker-compose.yml` dentro pega (reemplaza "N8N_BASIC_AUTH_PASSWORD" y la ubicación de data):
+- Crea el docker-compose `nano docker-compose.yml` dentro pega (reemplaza "N8N_BASIC_AUTH_PASSWORD", tu dominio y la ubicación de data):
     ```bash
         services:
             n8n:
@@ -21,6 +21,10 @@
                     - N8N_BASIC_AUTH_PASSWORD=contraseña
                     - N8N_DIAGNOSTICS_ENABLED=false
                     - N8N_VERSION_NOTIFICATIONS_ENABLED=true
+                    - N8N_HOST=n8n.tudominio.com
+                    - N8N_PROTOCOL=https
+                    - WEBHOOK_URL=https://n8n.tudominio.com
+                    - N8N_EDITOR_BASE_URL=https://n8n.tudominio.com
                 volumes:
                     - /mnt/data/n8n:/home/node/.n8n
     ```
