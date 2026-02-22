@@ -1,6 +1,13 @@
 {
   "entries": [
     {
+      "title": "n8n",
+      "summary": "Instalación con docker de n8n",
+      "path": "n8n",
+      "tags": [],
+      "hidden": false
+    },
+    {
       "title": "Chatwoot",
       "summary": "Self hosting de Chatwoot que sirve para en una interfaz tener a varias plataformas de chat al cliente (como incrustada en una web, en telegram, etc)",
       "path": "Chatwoot",
