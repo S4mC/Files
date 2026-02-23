@@ -427,3 +427,104 @@
   ```bash
     docker exec -it nextcloud-nextcloud php occ config:system:get maintenance_window_start
   ```
+
+
+## Como hacer una replica de la base de datos en un nuevo disco:
+
+- Modifica el docker compose con (reemplaza POSTGRES_PASSWORD):
+  ```bash
+      db:
+        container_name: nextcloud-postgres
+        image: postgres:16
+        restart: always
+        command: >
+          postgres
+          -c wal_level=replica
+          -c max_wal_senders=10
+          -c max_replication_slots=10
+          -c wal_keep_size=1GB
+        volumes:
+          - pgdata:/var/lib/postgresql/data
+        environment:
+          POSTGRES_DB: nextcloud
+          POSTGRES_USER: postgre
+          POSTGRES_PASSWORD: contraseña
+  ```
+  y añade (reemplaza PGPASSWORD):
+  ```bash
+    db-replica:
+      container_name: nextcloud-postgres-replica
+      image: postgres:16
+      restart: always
+      depends_on:
+        - db
+      user: "999:999"
+      environment:
+        PGPASSWORD: contraseña
+      command: >
+        bash -c "
+        if [ ! -s /var/lib/postgresql/data/PG_VERSION ]; then
+          until pg_basebackup -h db -D /var/lib/postgresql/data -U replicator -Fp -Xs -P -R; do
+            sleep 5;
+          done;
+        fi;
+        exec postgres
+        "
+      volumes:
+        - /mnt/sql/nextcloudreplica:/var/lib/postgresql/data
+  ```
+- Dirigete a green`/mnt/sql` y ejecuta `sudo mkdir nextcloudreplica`
+- Permite al usuario postgre que modifique los archivos de esa ubicación:
+  ```bash
+      sudo chown -R 999:999 /mnt/sql/nextcloudreplica
+      sudo chmod -R 700 /mnt/sql/nextcloudreplica
+  ```
+- Baja los contenedores:
+  ```bash
+      cd ~/nextcloud
+      docker compose down
+  ```
+- Inicia solo el de la db y entra al query tool:
+  ```bash
+      docker compose up -d db
+      docker exec -it nextcloud-postgres psql -U postgre nextcloud
+  ```
+- Crea un usuario para permitir la replicación (reemplaza "contraseña"):
+  ```bash
+      CREATE ROLE replicator WITH REPLICATION LOGIN PASSWORD 'contraseña';
+      \q
+  ```
+- Entra a la consola de nextcloud-postgres:
+  ```bash
+      docker exec -it nextcloud-postgres bash
+  ```
+- Dirigete a la carpeta green`data` de postgresql, instala nano y edita el archivo green`pg_hba.conf`:
+  ```bash
+      cd /var/lib/postgresql/data
+      apt update && apt install -y nano
+      nano pg_hba.conf
+  ```
+  agrega al final:
+  ```bash
+      host replication replicator 0.0.0.0/0 scram-sha-256
+  ```
+  y sal de la consola de nextcloud-postgres:
+  ```bash
+      exit 
+  ```
+- Reinicia el contenedor:
+  ```bash
+      docker restart nextcloud-postgres
+  ```
+- Inicia el contenedor de replica:
+  ```bash
+      docker compose up -d db-replica
+  ```
+- Verificar que está replicando (debe salir algo como "async (1 row)"):
+  ```bash
+      docker exec -it nextcloud-postgres psql -U postgre nextcloud -c "select * from pg_stat_replication;"
+  ```
+- Si no funciona verifica los logs de la replica con:
+  ```bash
+      docker logs nextcloud-postgres-replica
+  ```
