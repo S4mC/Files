@@ -1,8 +1,15 @@
 {
   "entries": [
     {
+      "title": "Mejoras a servidor",
+      "summary": "Lista de mejoras que se le puede hacer a un servidor casero",
+      "path": "Mejoras a servidor",
+      "tags": [],
+      "hidden": false
+    },
+    {
       "title": "n8n",
-      "summary": "Instalación con docker de n8n",
+      "summary": "InstalaciÃ³n con docker de n8n",
       "path": "n8n",
       "tags": [],
       "hidden": false
