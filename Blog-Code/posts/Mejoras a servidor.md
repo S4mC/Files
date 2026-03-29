@@ -1,4 +1,4 @@
-# Mejoras a servidor:
+# Mejoras a servidor
 ## Activar BBR (Mejora de Red)
 - Edita el archivo de configuración:
     ```bash 
@@ -89,6 +89,17 @@ Si no usas Bluetooth, impresión (CUPS) o descubrimiento de red (Que los disposi
     ```
 
 
-## 
-
-
+## Límites de archivos abiertos
+Si tienes varios contenedores o servicios (como bases de datos y servidores web), el límite por defecto de archivos abiertos puede quedarse corto y causar errores de "Too many open files".
+- Para evitar eso edita el archivo:
+    ```bash
+        sudo nano /etc/sysctl.conf
+    ```
+- Agrega:
+    ```bash
+        fs.file-max = 2097152
+    ```
+- Guarda y luego aplica executando:
+    ```bash
+        sudo sysctl -p
+    ```
