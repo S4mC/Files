@@ -1,6 +1,13 @@
 {
   "entries": [
     {
+      "title": "Harbor",
+      "summary": "Guía de como instalar y usar Harbor para guardar docker files en debiam",
+      "path": "Harbor",
+      "tags": [],
+      "hidden": false
+    },
+    {
       "title": "Mejoras a servidor",
       "summary": "Lista de mejoras que se le puede hacer a un servidor casero",
       "path": "Mejoras a servidor",
@@ -9,7 +16,7 @@
     },
     {
       "title": "n8n",
-      "summary": "InstalaciÃ³n con docker de n8n",
+      "summary": "InstalaciÃÂ³n con docker de n8n",
       "path": "n8n",
       "tags": [],
       "hidden": false
