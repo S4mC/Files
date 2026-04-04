@@ -1,8 +1,15 @@
 {
   "entries": [
     {
+      "title": "Adguard home",
+      "summary": "Como instalar Adguard Home",
+      "path": "Adguard home",
+      "tags": [],
+      "hidden": false
+    },
+    {
       "title": "Harbor",
-      "summary": "Guía de como instalar y usar Harbor para guardar docker files en debiam",
+      "summary": "GuÃ­a de como instalar y usar Harbor para guardar docker files en debiam",
       "path": "Harbor",
       "tags": [],
       "hidden": false
@@ -16,7 +23,7 @@
     },
     {
       "title": "n8n",
-      "summary": "InstalaciÃÂ³n con docker de n8n",
+      "summary": "InstalaciÃÂÃÂ³n con docker de n8n",
       "path": "n8n",
       "tags": [],
       "hidden": false
