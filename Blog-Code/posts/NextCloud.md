@@ -336,6 +336,10 @@
 - En los Ajustes de administración > Office selecciona la opción:
   - Utilice el servidor CODE incorporado (Built-in CODE Server)
 - Haz clic en Guardar y verás un check verde si la conexión es exitosa.
+- En el textbox de "Allow list for WOPI request" escribe (si con eso no conecta reviza los logs de nextcloud desde la web y añade la ip que haga la petición):
+  ```bash
+    127.0.0.1/8,::1/128
+  ```
 
 ## Como habilitar Daemons de despliegue (AppAPI)
 
