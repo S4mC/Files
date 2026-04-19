@@ -105,23 +105,6 @@
           - NEXTCLOUD_URL=https://nextcloud.tudominio.com
           - JWT_SECRET_KEY=TuClaveSecretaJWT
           - MAX_UPLOAD_FILE_SIZE=10485760
-      
-      collabora:
-        container_name: nextcloud-collabora
-        image: collabora/code
-        restart: always
-        ports:
-          - "9980:9980"
-        environment:
-          - username=admin
-          - password=CLAVE_SUPER_SEGURA
-          - aliasgroup1=https://nextcloud.tudominio.com:443
-          - extra_params=--o:ssl.enable=false --o:ssl.termination=true
-          - DONT_GEN_SSL_CERT=true
-          - server_name=collabora.tudominio.com
-          - dictionaries=es_ES
-        cap_add:
-          - MKNOD
           
       nextcloud-appapi-dsp:
         image: ghcr.io/nextcloud/nextcloud-appapi-dsp:release
@@ -349,43 +332,10 @@
 
 
 ## Activar Nextcloud Office
-- En ngix añade un nuevo sitio:
-  - listen: `443 ssl`
-  - listen: `[::]:443 ssl`
-  - server_name: `collabora.tudominio.com`
-  - Certificados ssl
-  - En locations:
-    `~ ^/cool/(.*)/ws$`
-    ```bash
-      proxy_pass http://localhost:9980;
-      proxy_set_header Upgrade $http_upgrade;
-      proxy_set_header Connection "Upgrade";
-      proxy_set_header Host $host;
-      proxy_read_timeout 36000s;
-    ```
-    `^~ /cool/adminws`
-    ```bash
-      proxy_pass http://localhost:9980;
-      proxy_set_header Upgrade $http_upgrade;
-      proxy_set_header Connection "Upgrade";
-      proxy_set_header Host $host;
-      proxy_read_timeout 36000s;
-    ```
-    `/`
-    ```bash
-      proxy_pass http://localhost:9980/;
-      proxy_set_header Host $host;
-      proxy_set_header X-Forwarded-For $remote_addr;
-      proxy_set_header X-Forwarded-Proto https;
-      proxy_set_header X-Forwarded-Host $host;
-      proxy_http_version 1.1;
-      proxy_set_header Upgrade $http_upgrade;
-      proxy_set_header Connection "upgrade";
-    ```
-- Configura el tunnel con cloudfare
-- Anda a la configuración de administrador de nextcloud y entra a "Office"
-- Elije "Use su propio servidor", dentro pega `http://nextcloud-collabora:9980` y activa el checkbox
-- En "Allow list for WOPI requests" pon la ip de tu servidor o dejalo en blanco (primero en blanco y si todo funciona puedes modificarlo y probar)
+- Instala "Collabora Online - Built-in CODE Server" y "Nextcloud Office" en las apps de Nextcloud
+- En los Ajustes de administración > Office selecciona la opción:
+  - Utilice el servidor CODE incorporado (Built-in CODE Server)
+- Haz clic en Guardar y verás un check verde si la conexión es exitosa.
 
 ## Como habilitar Daemons de despliegue (AppAPI)
 
