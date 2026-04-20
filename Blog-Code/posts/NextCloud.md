@@ -393,7 +393,7 @@
 - Elije "Use su propio servidor", dentro pega `http://nextcloud-collabora:9980` y activa el checkbox
 - En "Allow list for WOPI requests" pon (primero en blanco y si todo funciona puedes modificarlo y probar):
   ```bash
-    127.0.0.1/8,::1/128
+    127.0.0.1/8,::1/128,172.0.0.0/8
   ```
 
 ## Como habilitar Daemons de despliegue (AppAPI)
