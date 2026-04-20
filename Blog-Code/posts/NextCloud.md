@@ -91,6 +91,8 @@
           POSTGRES_DB: nextcloud
           POSTGRES_USER: postgre
           POSTGRES_PASSWORD: contraseña
+          PHP_UPLOAD_LIMIT: 10G
+          APACHE_BODY_LIMIT: 0
         depends_on:
           - db
           - redis
@@ -169,6 +171,10 @@
 
 - Como hemos instalado redis entonces debemos de configurarlo, para eso entra al contenedor de nextcloud
   ```bash
+    docker exec -u www-data -it nextcloud-nextcloud php occ config:app:set files max_chunk_size --value 20971520
+    docker exec -u www-data -it nextcloud-nextcloud php occ config:system:set --type int --value 20971520 files.chunked_upload.max_size
+    docker exec -u www-data nextcloud-nextcloud php occ maintenance:mode --on
+    docker exec -u www-data nextcloud-nextcloud php occ maintenance:mode --off
     docker exec -it nextcloud-nextcloud bash
   ```
 - Instalar nano
@@ -191,8 +197,6 @@
     'default_language' => 'es',
     'force_language' => 'es',
     'default_phone_region' => 'PE',
-    'filelocking.enabled' => true,
-    'files.chunked_upload.max_size' => 52428800,
   ```
 - Reinicia todo:
   ```bash
