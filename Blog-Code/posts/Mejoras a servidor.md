@@ -103,3 +103,13 @@ Si tienes varios contenedores o servicios (como bases de datos y servidores web)
     ```bash
         sudo sysctl -p
     ```
+
+# Mejoras adicionales para SBC
+
+## Instalar log2ram
+Los sistemas Linux escriben logs constantemente en green`/var/log/`. **log2ram** crea un espacio en la memoria RAM donde se guardan los logs temporalmente, y solo los escribe en la tarjeta SD una vez al día o al apagar el equipo. (Nota: Si usas el sistema operativo Armbian, esto ya viene activado por defecto bajo el nombre armbian-ramlog)
+- Si tienes Armbian puedes ya tener activado green`armbian-ramlog` por lo que no sería necesario usar log2ram, puedes verificarlo con `systemctl status armbian-ramlog`, si sale active (exited) ya está activo.
+
+## Usar ZRAM en lugar de Swap tradicional
+En lugar de escribir la memoria virtual (Swap) en la lenta tarjeta SD, ZRAM crea un bloque de memoria comprimida dentro de la propia RAM. Es muchísimo más rápido y evita desgastar la SD.
+- Si tienes Armbian puedes ya tener activado green`zram` para verlo ejecuta `swapon --show` si sale algo como `/dev/zram0` ya está activo.
