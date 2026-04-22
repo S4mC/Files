@@ -1,9 +1,11 @@
 # Cosas que hacer en un servidor nuevo
 
 ## Actualizar paquetes:
-  ```bash
-      sudo apt update && sudo apt upgrade -y
-  ```
+  - Ejecuta esto para actualizar los paquetes y el kernel
+    ```bash
+        sudo apt update && sudo apt upgrade -y
+    ```
+  - Reinicia
 
 ## Conectarse con ssh (si no está instalado)
 - En la terminal del servidor debes de instalar ssh:
