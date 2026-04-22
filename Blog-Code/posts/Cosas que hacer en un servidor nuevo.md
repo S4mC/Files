@@ -109,5 +109,5 @@
 Puedes instalar Tailscale, Netbird o otros servicios que permitan crear una red privada virtual de forma gratuita, eso permite conectarse con ssh desde otra ubicación de manera privada como si estuvieras en la misma red (te conectas con la ip asignada en la red privada creada)
 
 ## Optimizar
-Puedes ver una guía para optimizar servidor que creamos aquí:
+Puedes ver la guía para optimizar servidor que creamos aquí:
 https://s4mc.github.io/Blog-Code/post.html?path=Mejoras%20a%20servidor
