@@ -6,6 +6,9 @@
         sudo apt update && sudo apt upgrade -y
     ```
   - Reinicia
+    ```bash
+        sudo reboot
+    ```
 
 ## Conectarse con ssh (si no está instalado)
 - En la terminal del servidor debes de instalar ssh:
