@@ -105,5 +105,9 @@
 - Si todo esta configurado bien debería llegar un correo de prueba inmediatamente
 - Si todo funciona quita purple`-M test` de smart.conf para que no sea solo un correo de prueba
 
+## Conectarse al servidor con una red privada virtual (incluso desde lejos)
+Puedes instalar Tailscale, Netbird o otros servicios que permitan crear una red privada virtual de forma gratuita, eso permite conectarse con ssh desde otra ubicación de manera privada como si estuvieras en la misma red (te conectas con la ip asignada en la red privada creada)
+
 ## Optimizar
+Puedes ver una guía para optimizar servidor que creamos aquí:
 https://s4mc.github.io/Blog-Code/post.html?path=Mejoras%20a%20servidor
