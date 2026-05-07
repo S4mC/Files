@@ -133,8 +133,6 @@
         environment:
           - NC_HAPROXY_PASSWORD=contraseña
           - NC_INSTANCE_URL=https://nextcloud.tudominio.com
-        ports:
-          - "2375:2375"
         volumes:
           - /var/run/docker.sock:/var/run/docker.sock
 
