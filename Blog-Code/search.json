@@ -1,8 +1,15 @@
 {
   "entries": [
     {
+      "title": "Nginx",
+      "summary": "Uso y configuración de Nginx y Nginx UI",
+      "path": "Nginx",
+      "tags": [],
+      "hidden": false
+    },
+    {
       "title": "Cosas que hacer en un servidor nuevo",
-      "summary": "Guía de que cosas se deben hacer al configurar un servidor nuevo",
+      "summary": "GuÃ­a de que cosas se deben hacer al configurar un servidor nuevo",
       "path": "Cosas que hacer en un servidor nuevo",
       "tags": [],
       "hidden": false
@@ -16,7 +23,7 @@
     },
     {
       "title": "Harbor",
-      "summary": "GuÃÂ­a de como instalar y usar Harbor para guardar docker files en debiam",
+      "summary": "GuÃÂÃÂ­a de como instalar y usar Harbor para guardar docker files en debiam",
       "path": "Harbor",
       "tags": [],
       "hidden": false
@@ -30,7 +37,7 @@
     },
     {
       "title": "n8n",
-      "summary": "InstalaciÃÂÃÂÃÂÃÂ³n con docker de n8n",
+      "summary": "InstalaciÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ³n con docker de n8n",
       "path": "n8n",
       "tags": [],
       "hidden": false
