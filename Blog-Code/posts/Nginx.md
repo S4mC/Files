@@ -1,7 +1,7 @@
 # Nginx
 
-## Como instalar ngix en debiam y usar una interfaz visual
-- Ejecuta este comando en la terminal del servidor para instalar ngix y ngixUI:
+## Como instalar Nginx en debiam y usar una interfaz visual
+- Ejecuta este comando en la terminal del servidor para instalar nginx y nginxUI:
   ```bash
     sudo apt update && sudo apt install nginx
     sudo bash -c "$(curl -L https://cloud.nginxui.com/install.sh)" @ install
