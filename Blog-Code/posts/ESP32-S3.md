@@ -108,3 +108,34 @@ Usa c`pinMode(numero_pin, tipo_pin)` para configurar un número de pin con algun
         ```
 :::
 
+### Evitar el efecto rebote en un pulsador
+El efecto rebote se da cuando se pulsa un botón o pulsador y por culpa de defectos físicos se activa varias veces al pulsarlo o al soltarlo, para evitar esto desde software se puede poner un pequeño retrazo de 10ms luego de detectar o soltar el pulsador:
+```c
+    // Versión robusta de filtro al efecto rebote
+    const int boton = 5;   // Pin del pulsador
+
+    bool estadoBoton = LOW;
+
+    void setup() {
+        Serial.begin(115200);
+        pinMode(boton, INPUT_PULLDOWN);
+    }
+
+    void loop() {
+        // Lee el estado del botón
+        estadoBoton = digitalRead(boton);
+
+        // Pequeño delay para evitar rebotes
+        delay(10);
+
+        // Vuelve a leer para confirmar
+        if (estadoBoton == digitalRead(boton)) {
+            // Si el botón está presionado
+            if (estadoBoton == HIGH) {
+                Serial.println("Botón presionado");
+            } else {
+                Serial.println("Botón no presionado");
+            }
+        }
+    }
+```
