@@ -3,6 +3,7 @@
 El ESP32-S3 es un microcontrolador que ejecuta un solo programa en bucle dedicado a controlar hardware.
 ![alt](https://naylampmechatronics.com/img/cms/001206/Pinout%20ESP32-S3-DevKitC-1.jpg)
 
+
 ## La GPIO Matrix
 En los microcontroladores tradicionales (como el Arduino Uno), los pines están conectados de forma fija. Por ejemplo, los pines para la comunicación I2C o UART son fijos y no se pueden cambiar. En cambio, en un ESP32-S3 la GPIO Matrix te **permite configurar mediante código que cualquier pin físico sea de entrada o de salida** (con algunas excepciones)(?=excepciones-pines-gpio)
 
@@ -139,3 +140,103 @@ El efecto rebote se da cuando se pulsa un botón o pulsador y por culpa de defec
         }
     }
 ```
+
+
+### Comunicación UART
+Usa c`Serial.begin(baudios, configuracion, pin_rx, pin_tx)` para configurar la velocidad y asignar los pines físicos dentro de la GPIO Matrix *(configuracion, pin_rx y pin_tx son opcionales; si no se ponen entonces se conecta con UART desde el cable tipo C)*. Usa purple`Serial` para el USB (Monitor Serie) y purple`Serial1` y purple`Serial2` para mapear a pines:
+:::connector
+    #### Inicializar puertos UART
+        Puedes usar el canal principal para la PC y mapear los otros canales a los pines que prefieras para comunicarte con módulos externos:
+        ```c
+            const int rx_pin = 16;
+            const int tx_pin = 17;
+
+            void setup() {
+                // UART0: Comunicación con la PC por USB
+                Serial.begin(115200);
+
+                // UART1: Comunicación con otro dispositivo (ej. GPS, Bluetooth, sensor)
+                Serial1.begin(9600, SERIAL_8N1, rx_pin, tx_pin); // SERIAL_8N1 significa: 8 bits de datos, sin paridad (None), 1 bit de parada
+            }
+
+            void loop() {
+                // Código principal
+            }    
+        ```
+    #### Comprobar y leer datos recibidos (byte a byte)
+        Usa c`Serial.available()` para saber cuántos bytes han llegado al buffer de recepción y c`Serial.read()` para extraerlos uno por uno y procesarlos:
+        ```c
+            void setup() {
+                Serial.begin(115200);
+            }
+
+            void loop() {
+                // Verifica si hay 1 o más bytes esperando en el buffer
+                if (Serial.available() > 0) {
+                    // Lee el primer byte disponible y lo saca de la memoria temporal
+                    char dato = Serial.read();
+                    
+                    Serial.print("Carácter recibido en ESP: ");
+                    Serial.println(dato);
+                }
+            }
+        ```
+    #### Leer cadenas completas de texto
+        Usa c`Serial.readString()` para leer varios bytes juntos hasta que pase el tiempo de espera configurado o c`Serial.readStringUntil(caracter)` para leer hasta que se detecte un carácter específico (como un salto de línea):
+        ```c
+            void setup() {
+                Serial.begin(115200);
+                Serial.setTimeout(1000); // Define el tiempo máximo de espera a 1 segundo (1000 ms)
+            }
+
+            void loop() {
+                if (Serial.available() > 0) {
+                    // Lee todo el texto que llega hasta encontrar un salto de línea ('\n')
+                    String mensaje = Serial.readStringUntil('\n');
+                    
+                    Serial.print("Mensaje completo recibido: ");
+                    Serial.println(mensaje);
+                }
+            }
+        ```
+    #### Enviar datos en formato de texto legible
+        Usa c`Serial.print(dato)` para enviar valores convertidos a texto (ASCII) o c`Serial.println(dato)` para enviarlos y terminar con purple`\n`:
+        ```c
+            int contador = 0;
+
+            void setup() {
+                Serial.begin(115200);
+            }
+
+            void loop() {
+                Serial.print("El valor actual es: ");
+                Serial.println(contador); // Envía texto desde el ESP32 a la PC por UART
+                
+                contador++;
+                delay(1000);
+            }
+        ```
+    #### Enviar datos en formato binario crudo
+        Usa c`Serial.write(dato)` para enviar un byte al UART o c`Serial.write(buffer, tamaño)` para enviar varios bytes:
+        ```c
+            const int pin_rx = 4;
+            const int pin_tx = 5;
+
+            void setup() {
+                Serial2.begin(115200, SERIAL_8N1, pin_rx, pin_tx);
+            }
+
+            void loop() {
+                byte comando = 0xA5; // Un byte en formato hexadecimal (165 en decimal)
+                
+                // Envía el byte 165 tal cual, NO envía el texto "165"
+                Serial2.write(comando);
+                
+                // Enviar una trama o arreglo de bytes completos
+                byte trama[] = {0x01, 0x02, 0x03, 0x04};
+                Serial2.write(trama, 4); // Envía el arreglo de 4 bytes
+                
+                delay(2000);
+            }
+        ```
+:::
