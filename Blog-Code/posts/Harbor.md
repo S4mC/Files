@@ -16,7 +16,11 @@
     - external_url: Necesarío si usas ngix y cloudfare tunnel para evitar errores
 - Instalación de Harbor
     Ejecuta el script de instalación. Puedes añadir --with-trivy para escanear vulnerabilidades en tus imágenes:
-    `sudo ./install.sh --with-trivy`
+    ```bash
+        sudo chmod -R 755 ~/harbor
+        ./prepare --with-trivy
+        sudo ./install.sh --with-trivy
+    ```
 - Configura en ngix (ponle client_max_body_size 5G; para que funcione bien) y cloudfare tunnel y ahora entrando desde el hostname deberías poder iniciar (por defecto usuario=admin y contraseña=Harbor12345) (Te saldra error si intentas acceder desde fuera del hostname incluso si pones bien todo)
 
 ## Como subir imagenes a Harbor
