@@ -17,7 +17,6 @@
 - Instalación de Harbor
     Ejecuta el script de instalación. Puedes añadir --with-trivy para escanear vulnerabilidades en tus imágenes:
     ```bash
-        sudo chmod -R 755 ~/harbor
         ./prepare --with-trivy
         sudo ./install.sh --with-trivy
     ```
