@@ -113,6 +113,32 @@
 ## Conectarse al servidor con una red privada virtual (incluso desde lejos)
 Puedes instalar Tailscale, Netbird o otros servicios que permitan crear una red privada virtual de forma gratuita, eso permite conectarse con ssh desde otra ubicación de manera privada como si estuvieras en la misma red (te conectas con la ip asignada en la red privada creada)
 
+## Poner límite en los logs para que no se acumulen
+Por defecto el sistema pone limite a los logs del sistema, pero si usas docker entonces debes configurar tú mismo el límite, para eso:
+- Edita la configuración de docker (esa ruta es por defecto, sino cambiala a la usada):
+  ```bash
+      sudo nano /etc/docker/daemon.json
+  ```
+- Añade algo como esto:
+  ```bash
+    {
+      "log-driver": "json-file",
+      "log-opts": {
+        "max-size": "10m",
+        "max-file": "3"
+      }
+    }
+  ```
+- Reinicia docker:
+  ```bash
+    sudo systemctl restart docker
+  ```
+- Puedes ver si funciono en cada contenedor usando (Reemplaza "nombreContenedor" por un nombre desde bash`docker ps`):
+```bash
+  docker inspect -f '{{.Name}} {{json .HostConfig.LogConfig}}' nombreContenedor
+```
+- Si no funciona en un contenedor reinicialo y vuelve a probar
+
 ## Optimizar
 Puedes ver la guía para optimizar servidor que creamos aquí:
 https://s4mc.github.io/Blog-Code/post.html?path=Mejoras%20a%20servidor
