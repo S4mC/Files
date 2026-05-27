@@ -133,7 +133,7 @@ Por defecto el sistema pone limite a los logs del sistema, pero si usas docker e
   ```bash
     sudo systemctl restart docker
   ```
-- Puedes ver si funciono en cada contenedor usando (Reemplaza "nombreContenedor" por un nombre desde bash`docker ps`):
+- Puedes ver si funcionó en cada contenedor usando (Reemplaza "nombreContenedor" por un nombre desde bash`docker ps`):
 ```bash
   docker inspect -f '{{.Name}} {{json .HostConfig.LogConfig}}' nombreContenedor
 ```
