@@ -41,3 +41,4 @@
         sudo systemctl daemon-reload
         sudo systemctl restart nginx-ui
     ```
+- Puede que sea necesario que vuelvas a añadir al ACME user o los certificados de Cloudflare DNS si los habías puesto antes (eliminalos y vuelvelos a crear)
