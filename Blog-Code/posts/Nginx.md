@@ -11,11 +11,27 @@
 - Una vez que pruebes que funciona bien debes de cambiar de ubicación los datos para que no se pierdan en un reinicio (me paso eso solo con los usuarios ACME clave privada)
 - Ejecuta:
     ```bash
+        sudo mkdir -p /usr/local/etc/nginx-ui
+        sudo chown -R root:root /usr/local/etc/nginx-ui
+        sudo chmod 755 /usr/local/etc/nginx-ui
         sudo nano /etc/systemd/system/nginx-ui.service
     ```
 - Busca la línea que dice purple`WorkingDirectory` y cámbiala por otra ruta:
     ```nano
         WorkingDirectory=/usr/local/etc/nginx-ui
+    ```
+- Reinicia nginx UI
+    ```bash
+        sudo systemctl daemon-reload
+        sudo systemctl restart nginx-ui
+    ```
+- Ejecuta:
+    ```bash
+        sudo nano /usr/local/etc/nginx-ui/app.ini
+    ```
+- Busca la línea en purple`[cert]` que dice purple`RecursiveNameservers` y cámbiala por:
+    ```nano
+        RecursiveNameservers = 1.1.1.1:53,8.8.8.8:53
     ```
 - Reinicia nginx UI
     ```bash
