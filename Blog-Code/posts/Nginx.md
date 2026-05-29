@@ -29,10 +29,13 @@
     ```bash
         sudo nano /usr/local/etc/nginx-ui/app.ini
     ```
-- Busca la línea en purple`[cert]` que dice purple`RecursiveNameservers` y cámbiala por:
+- Busca la línea en purple`[cert]` que dice purple`RecursiveNameservers` y cámbiala por (Reemplaza a los NS(?=ns-donde-buscar) correctos primero):
     ```nano
-        RecursiveNameservers = 1.1.1.1:53,8.8.8.8:53
+        RecursiveNameservers = tu-ns.ns.cloudflare.com,tu-2-ns.ns.cloudflare.com
     ```
+    :::float-ns-donde-buscar
+        Deben estar en la página de tu registrador de dominio, donde compraste el dominio. En Cloudflare pueden salir unos NS pero pueden ser diferentes a los de Cloudflare.
+    :::
 - Reinicia nginx UI
     ```bash
         sudo systemctl daemon-reload
