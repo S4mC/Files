@@ -1,4 +1,4 @@
-# Nginx
+# Nginx UI
 
 ## Como instalar Nginx en debiam y usar una interfaz visual
 - Ejecuta este comando en la terminal del servidor para instalar nginx y nginxUI:
@@ -42,3 +42,29 @@
         sudo systemctl restart nginx-ui
     ```
 - Puede que sea necesario que vuelvas a añadir al ACME user o los certificados de Cloudflare DNS si los habías puesto antes (eliminalos y vuelvelos a crear)
+
+## Obtener certificados automáticamente con Let's Encrypt
+Let's Encrypt permite tener certificados gratuitos, para sacarlos automáticamente con Nginx UI debes:
+- En Nginx UI "Cetificates" > "ACME User" crea un nuevo usuario:
+    - Name: Let's Encrypt
+    - Email: tu-correo@gmail.com
+    - CA Dir: https://acme-v02.api.letsencrypt.org/directory
+    - Register On Startup: true
+- En el panel de Cloudflare "API Tokens" > "Create Token"
+    - Usa la plantilla "Edit zone DNS"
+    - En "Permissions" pon:
+        - Zone DNS Edit
+        - Zone DNS Read
+    - En "Zone Resources" puedes elegir todas las zonas o solo un dominio específico
+    - Clic en "Continue to summary" y copia el token 
+- En Nginx UI "DNS" > "Credentials" crea un nuevo credencial (usando el token de Cloudflare DNS):
+    - Name: Cloudfare DNS Credencial
+    - DNS Provider: Cloudfare
+    - CF_DNS_API_TOKEN: cfut_tu_credencial
+    - CF_ZONE_API_TOKEN: cfut_tu_credencial
+- En Nginx UI "Cetificates" > "Certificates List" clic en "Issue Certificate", elige el dominio (o para todos los subdominios con Wildcard) luego pon:
+    - Challenge Method: DNS01
+    - Key Type: EC256
+    - ACME User: Let's Encrypt
+    - Credential: Cloudfare DNS Credencial
+- Guarda los cambios y prueba que funcione, se repetirá automáticamente según esté configurado en la configuración de Nginx UI
