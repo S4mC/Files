@@ -34,7 +34,7 @@
         RecursiveNameservers = tu-ns.ns.cloudflare.com,tu-2-ns.ns.cloudflare.com
     ```
     :::float-ns-donde-buscar
-        Deben estar en la página de tu registrador de dominio, donde compraste el dominio. En Cloudflare pueden salir unos NS pero pueden ser diferentes a los de Cloudflare.
+        Deben estar en la página de tu registrador de dominio (donde compraste el dominio) o en la información who.is de tu dominio. En Cloudflare Records pueden salir unos NS pero pueden ser diferentes a los reales.
     :::
 - Reinicia nginx UI
     ```bash
