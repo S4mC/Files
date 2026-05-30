@@ -2,21 +2,21 @@
   "entries": [
     {
       "title": "ESP32-S3",
-      "summary": "Uso, pines, arquitectura y programación del ESP32 S3.",
+      "summary": "Uso, pines, arquitectura y programaciÃ³n del ESP32 S3.",
       "path": "ESP32-S3",
       "tags": [],
       "hidden": false
     },
     {
-      "title": "Nginx",
-      "summary": "Uso y configuraciÃ³n de Nginx y Nginx UI",
+      "title": "Nginx UI",
+      "summary": "Uso y configuraciÃÂ³n de Nginx y Nginx UI",
       "path": "Nginx",
       "tags": [],
       "hidden": false
     },
     {
       "title": "Cosas que hacer en un servidor nuevo",
-      "summary": "GuÃÂ­a de que cosas se deben hacer al configurar un servidor nuevo",
+      "summary": "GuÃÂÃÂ­a de que cosas se deben hacer al configurar un servidor nuevo",
       "path": "Cosas que hacer en un servidor nuevo",
       "tags": [],
       "hidden": false
@@ -30,7 +30,7 @@
     },
     {
       "title": "Harbor",
-      "summary": "GuÃÂÃÂÃÂÃÂ­a de como instalar y usar Harbor para guardar docker files en debiam",
+      "summary": "GuÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ­a de como instalar y usar Harbor para guardar docker files en debiam",
       "path": "Harbor",
       "tags": [],
       "hidden": false
@@ -44,7 +44,7 @@
     },
     {
       "title": "n8n",
-      "summary": "InstalaciÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ³n con docker de n8n",
+      "summary": "InstalaciÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ³n con docker de n8n",
       "path": "n8n",
       "tags": [],
       "hidden": false
