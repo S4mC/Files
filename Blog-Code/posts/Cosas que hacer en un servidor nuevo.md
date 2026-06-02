@@ -113,6 +113,20 @@
 ## Conectarse al servidor con una red privada virtual (incluso desde lejos)
 Puedes instalar Tailscale, Netbird o otros servicios que permitan crear una red privada virtual de forma gratuita, eso permite conectarse con ssh desde otra ubicación de manera privada como si estuvieras en la misma red (te conectas con la ip asignada en la red privada creada)
 
+### Quitar magic DNS en Tailscale y Netbid (No dominios, solo IPs)
+Puedes hacer esto para que el servidor solo use ips de usuarios y no use los dns que puedes configurar en Tailscale o Netbird.
+- Entrar con netbird y ejecutar:
+```bash
+    sudo tailscale down
+    sudo tailscale up --accept-dns=false
+    sudo tailscale set --accept-dns=false
+```
+- Entrar con Tailscale y ejecutar:
+```bash
+    sudo netbird down
+    sudo netbird up --disable-dns
+```
+
 ## Poner límite en los logs para que no se acumulen
 Por defecto el sistema pone limite a los logs del sistema, pero si usas docker entonces debes configurar tú mismo el límite, para eso:
 - Edita la configuración de docker (esa ruta es por defecto, sino cambiala a la usada):
