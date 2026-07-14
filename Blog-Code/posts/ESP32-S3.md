@@ -240,3 +240,97 @@ Usa c`Serial.begin(baudios, configuracion, pin_rx, pin_tx)` para configurar la v
             }
         ```
 :::
+
+
+### Modos de ejecución y ahorro de energía en un ESP32
+Los ESP32 pueden funcionar en distintos modos según el consumo de energía y la cantidad de hardware que permanece activo.
+
+:::connector
+#### Modo normal (Active Mode)
+    La CPU ejecuta instrucciones continuamente, todos los periféricos pueden utilizarse y el consumo de energía es el mayor.
+
+    - La CPU ejecuta el `loop()` normalmente.
+    - Todos los periféricos (GPIO, UART, SPI, I2C, ADC, PWM, WiFi, Bluetooth, etc.) pueden funcionar.
+    - Es el modo por defecto después de iniciar el ESP32.
+
+    ```c
+        void setup() {
+            Serial.begin(115200);
+        }
+
+        void loop() {
+            Serial.println("Ejecutando normalmente");
+            delay(1000);
+        }
+    ```
+
+#### Light Sleep
+    La CPU se detiene temporalmente para ahorrar energía, pero gran parte del hardware permanece alimentado.
+
+    - **No se ejecuta código mientras está dormido.**
+    - La RAM y el estado del programa se conservan.
+    - Algunos periféricos pueden seguir funcionando (según la configuración).
+    - Puede despertarse mediante temporizador, GPIO u otras fuentes.
+    - Al despertar continúa ejecutando la siguiente instrucción después de entrar al modo sleep.
+
+    ```c
+        #include "esp_sleep.h"
+
+        void setup() {
+            Serial.begin(115200);
+
+            esp_sleep_enable_timer_wakeup(5000000); // 5 segundos
+
+            Serial.println("Entrando en Light Sleep...");
+            esp_light_sleep_start();
+
+            Serial.println("¡Desperté!");
+        }
+
+        void loop() {
+            Serial.println("Ejecutando normalmente");
+            delay(1000);
+        }
+    ```
+
+#### Deep Sleep
+    Casi todo el chip se apaga para minimizar el consumo de energía.
+
+    - **No se ejecuta código mientras está dormido.**
+    - La CPU se apaga completamente.
+    - La RAM principal se pierde (excepto la RTC RAM).
+    - Solo permanecen activos algunos circuitos RTC.
+    - Puede despertarse mediante temporizador, GPIO RTC, touch, ULP, etc.
+    - Al despertar **el programa comienza nuevamente desde `setup()`**, como si se hubiera reiniciado.
+
+    ```c
+        #include "esp_sleep.h"
+
+        void setup() {
+            Serial.begin(115200);
+
+            Serial.println("Entrando en Deep Sleep...");
+
+            esp_sleep_enable_timer_wakeup(5000000); // 5 segundos
+            esp_deep_sleep_start();
+        }
+
+        void loop() {
+            // Nunca llega aquí antes de dormir
+        }
+    ```
+:::
+
+### Diferencias entre Light Sleep y Deep Sleep
+
+| Característica | Light Sleep | Deep Sleep |
+|----------------|------------|------------|
+| CPU | Detenida | Apagada |
+| Ejecuta código durante el sleep | ❌ No | ❌ No |
+| Conserva la RAM | ✅ Sí | ❌ No (excepto RTC RAM) |
+| Continúa donde se quedó al despertar | ✅ Sí | ❌ No |
+| Empieza desde `setup()` al despertar | ❌ No | ✅ Sí |
+| Consumo de energía | Bajo | Muy bajo |
+| Tiempo de despertar | Muy rápido | Más lento |
+
+> **Importante:** En **ningún modo Sleep** se ejecuta código. La diferencia es que en **Light Sleep** el programa continúa exactamente donde se suspendió, mientras que en **Deep Sleep** el ESP32 realiza un reinicio completo al despertar.
