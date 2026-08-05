@@ -1,8 +1,16 @@
 {
   "entries": [
     {
+      "title": "Como hacer aplicaciones web que corran en varios servidores sin downtime",
+      "summary": "Idea general de como hacer una aplicación web que corra en varios servidores y con varias instancias sin fallar",
+      "path": "Como hacer aplicaciones web que corran en varios servidores sin downtime",
+      "tags": [],
+      "hidden": false,
+      "date": "2026-08-05"
+    },
+    {
       "title": "Autohostear un servidor de Minecraft",
-      "summary": "Lista de pasos de como autohostear un servidor de minecraft bajo CGNAT (sin ip pública)",
+      "summary": "Lista de pasos de como autohostear un servidor de minecraft bajo CGNAT (sin ip pÃºblica)",
       "path": "Autohostear un servidor de Minecraft",
       "tags": [],
       "hidden": false,
@@ -10,21 +18,21 @@
     },
     {
       "title": "ESP32-S3",
-      "summary": "Uso, pines, arquitectura y programaciÃÂ³n del ESP32 S3.",
+      "summary": "Uso, pines, arquitectura y programaciÃÂÃÂ³n del ESP32 S3.",
       "path": "ESP32-S3",
       "tags": [],
       "hidden": false
     },
     {
       "title": "Nginx UI",
-      "summary": "Uso y configuraciÃÂÃÂ³n de Nginx y Nginx UI",
+      "summary": "Uso y configuraciÃÂÃÂÃÂÃÂ³n de Nginx y Nginx UI",
       "path": "Nginx",
       "tags": [],
       "hidden": false
     },
     {
       "title": "Cosas que hacer en un servidor nuevo",
-      "summary": "GuÃÂÃÂÃÂÃÂ­a de que cosas se deben hacer al configurar un servidor nuevo",
+      "summary": "GuÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ­a de que cosas se deben hacer al configurar un servidor nuevo",
       "path": "Cosas que hacer en un servidor nuevo",
       "tags": [],
       "hidden": false
@@ -38,7 +46,7 @@
     },
     {
       "title": "Harbor",
-      "summary": "GuÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ­a de como instalar y usar Harbor para guardar docker files en debiam",
+      "summary": "GuÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ­a de como instalar y usar Harbor para guardar docker files en debiam",
       "path": "Harbor",
       "tags": [],
       "hidden": false
@@ -52,7 +60,7 @@
     },
     {
       "title": "n8n",
-      "summary": "InstalaciÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ³n con docker de n8n",
+      "summary": "InstalaciÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ³n con docker de n8n",
       "path": "n8n",
       "tags": [],
       "hidden": false
